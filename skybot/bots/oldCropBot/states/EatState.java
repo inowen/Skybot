@@ -16,6 +16,9 @@ import net.minecraft.inventory.container.ClickType;
  */
 public class EatState extends State {
 
+    private static final long MAX_TIME_BEFORE_STUCK = 15000;
+    private long timeStateEntered = 0;
+
     private static final double TIME_BEFORE_EAT_AFTER_LOOK = 800;
     private double timeLookedUp = 0;
 
@@ -32,6 +35,7 @@ public class EatState extends State {
         PlayerMovementHelper.desetAllkeybinds();
         mc.player.rotationPitch = -90;
         timeLookedUp = System.currentTimeMillis();
+        timeStateEntered = System.currentTimeMillis();
     }
 
     @Override
@@ -54,6 +58,13 @@ public class EatState extends State {
 
             // Right click to eat.
             mc.gameSettings.keyBindUseItem.setPressed(true);
+        }
+
+        // If stuck, reset the eating state by resetting the timer and not clicking for a moment.
+        if (System.currentTimeMillis()-timeStateEntered > MAX_TIME_BEFORE_STUCK) {
+            timeStateEntered = System.currentTimeMillis();
+            timeLookedUp = System.currentTimeMillis();
+            mc.gameSettings.keyBindUseItem.setPressed(false);
         }
     }
 
