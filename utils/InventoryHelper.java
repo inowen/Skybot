@@ -141,6 +141,40 @@ public class InventoryHelper {
 
 
     /**
+     * Highest amount of this that could be sold in the Sellshop (on BD).
+     * @param item
+     * @return
+     */
+    public static int bestAmountForSellShop(Item item) {
+        int quantityAvailable = countNumItems(item);
+        if (quantityAvailable >= 2304) {
+            return 2304;
+        }
+        else if (quantityAvailable >= 576) {
+            return 576;
+        }
+        else if (quantityAvailable >= 128) {
+            return 128;
+        }
+        else if (quantityAvailable >= 64) {
+            return 64;
+        }
+        else if (quantityAvailable >= 32) {
+            return 32;
+        }
+        else if (quantityAvailable >= 16) {
+            return 16;
+        }
+        else if (quantityAvailable >= 1) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
+
+    /**
      * For debugging, tests for every method in this class.
      */
     public static void printDebugMessages(boolean printIngame) {
