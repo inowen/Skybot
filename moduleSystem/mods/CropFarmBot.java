@@ -1,7 +1,7 @@
 package inowen.moduleSystem.mods;
 
-import inowen.provisionalCropBot.CropFarmBotHFSM;
-import inowen.provisionalCropBot.context.ContextManager;
+import inowen.oldCropBot.CropFarmBotHFSM;
+import inowen.oldCropBot.context.ContextManager;
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
 import inowen.utils.PlayerMovementHelper;

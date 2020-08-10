@@ -1,6 +1,5 @@
 package inowen.skybot.bots.sugarcaneBot.states;
 
-import inowen.provisionalCropBot.context.ContextManager;
 import inowen.skybot.bots.sugarcaneBot.context.SugarcaneFarm;
 import inowen.skybot.hfsmBase.State;
 import inowen.utils.CoordinateTranslator;
