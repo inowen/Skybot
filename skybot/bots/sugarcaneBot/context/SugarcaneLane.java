@@ -1,9 +1,11 @@
 package inowen.skybot.bots.sugarcaneBot.context;
 
+import inowen.utils.CoordinateTranslator;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class SugarcaneLane {
 
@@ -72,6 +74,15 @@ public class SugarcaneLane {
         }
     }
 
+
+    /**
+     * Get the distance between the initPos of the lane and the target.
+     * @param target
+     * @return
+     */
+    public double distanceTo(Vec3d target) {
+        return target.subtract(CoordinateTranslator.blockPosToVectorPosition(this.initPosition)).length();
+    }
 
 
 }

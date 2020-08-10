@@ -135,9 +135,17 @@ public class SugarcaneFarm {
     public SugarcaneLane getMostProfitableLane() {
         SugarcaneLane mostProfitable = null;
         int highestProfit = 0;
+        double bestDistance = 999999D;
         for (SugarcaneLane lane : lanes) {
-            if (lane.numCanHarvest >= highestProfit) {
+            if (lane.numCanHarvest > highestProfit) {
                 mostProfitable = lane;
+                highestProfit = lane.numCanHarvest;
+                bestDistance = lane.distanceTo(mc.player.getPositionVector());
+            }
+            else if (lane.numCanHarvest == highestProfit && lane.distanceTo(mc.player.getPositionVector()) < bestDistance) {
+                mostProfitable = lane;
+                highestProfit = lane.numCanHarvest;
+                bestDistance = lane.distanceTo(mc.player.getPositionVector());
             }
         }
         return mostProfitable;
