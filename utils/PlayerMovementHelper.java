@@ -150,6 +150,22 @@ public class PlayerMovementHelper {
 	public static void stopJumping() {
 		mc.gameSettings.keyBindJump.setPressed(false);
 	}
+
+	public static void goRight() {
+		mc.gameSettings.keyBindRight.setPressed(true);
+	}
+
+	public static void stopGoingRight() {
+		mc.gameSettings.keyBindRight.setPressed(false);
+	}
+
+	public static void goLeft() {
+		mc.gameSettings.keyBindLeft.setPressed(true);
+	}
+
+	public static void stopGoingLeft() {
+		mc.gameSettings.keyBindLeft.setPressed(false);
+	}
 	
 	
 	/**
@@ -164,6 +180,8 @@ public class PlayerMovementHelper {
 		mc.gameSettings.keyBindJump.setPressed(false);
 		mc.gameSettings.keyBindUseItem.setPressed(false);
 		mc.gameSettings.keyBindAttack.setPressed(false);
+		mc.gameSettings.keyBindLeft.setPressed(false);
+		mc.gameSettings.keyBindRight.setPressed(false);
 	}
 	
 }

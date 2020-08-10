@@ -190,4 +190,24 @@ public class SugarcaneFarm {
     }
 
 
+    /**
+     * Find a lane in the farm that has the given InitPosition.
+     * If none found, return null.
+     * @param givenInitPos
+     * @return
+     */
+    public SugarcaneLane getLaneWithInitPos(BlockPos givenInitPos) {
+        SugarcaneLane resultLane = null;
+
+        for (SugarcaneLane lane : lanes) {
+            BlockPos laneInitPos = lane.initPosition;
+            if (givenInitPos.getX()==laneInitPos.getX() && givenInitPos.getY()==laneInitPos.getY() && givenInitPos.getZ()==laneInitPos.getZ()) {
+                resultLane = lane;
+            }
+        }
+
+        return resultLane;
+    }
+
+
 }

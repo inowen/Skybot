@@ -46,7 +46,6 @@ public class PickUpItemsState extends State {
         boolean shouldSwitch = (theFarm.itemsToRecollect.size() == 0 || !InventoryHelper.isSpaceLeftToStore(Items.SUGAR_CANE));
         if (shouldSwitch) {
             if (!InventoryHelper.isSpaceLeftToStore(Items.SUGAR_CANE)) {
-                System.out.println("Transition: PickUpItemsState -> SellState");
                 nextState = new SellState(theFarm);
             }
             else {
