@@ -1,4 +1,4 @@
-package inowen.oldCropBot.utilsQuimochy;
+package inowen.skybot.bots.oldCropBot.utilsQuimochy;
 
 
 import net.minecraft.client.Minecraft;

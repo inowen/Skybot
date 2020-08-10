@@ -1,7 +1,7 @@
-package inowen.oldCropBot.states.breakState.substates;
+package inowen.skybot.bots.oldCropBot.states.breakState.substates;
 
-import inowen.oldCropBot.context.ContextManager;
-import inowen.oldCropBot.states.State;
+import inowen.skybot.bots.oldCropBot.context.ContextManager;
+import inowen.skybot.bots.oldCropBot.states.State;
 import inowen.utils.CoordinateTranslator;
 import inowen.utils.PlayerMovementHelper;
 import net.minecraft.util.math.BlockPos;

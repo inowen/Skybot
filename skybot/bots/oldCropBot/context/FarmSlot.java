@@ -1,4 +1,4 @@
-package inowen.oldCropBot.context;
+package inowen.skybot.bots.oldCropBot.context;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;

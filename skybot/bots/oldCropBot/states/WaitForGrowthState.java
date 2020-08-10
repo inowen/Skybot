@@ -1,6 +1,6 @@
-package inowen.oldCropBot.states;
+package inowen.skybot.bots.oldCropBot.states;
 
-import inowen.oldCropBot.context.ContextManager;
+import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.utils.InventoryHelper;
 
 public class WaitForGrowthState extends State{

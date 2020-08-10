@@ -1,9 +1,9 @@
-package inowen.oldCropBot.states.plantState;
+package inowen.skybot.bots.oldCropBot.states.plantState;
 
-import inowen.oldCropBot.context.ContextManager;
-import inowen.oldCropBot.states.State;
-import inowen.oldCropBot.states.plantState.substates.PlantingSurroundingsState;
-import inowen.oldCropBot.states.plantState.substates.SimplePathingState;
+import inowen.skybot.bots.oldCropBot.context.ContextManager;
+import inowen.skybot.bots.oldCropBot.states.State;
+import inowen.skybot.bots.oldCropBot.states.plantState.substates.PlantingSurroundingsState;
+import inowen.skybot.bots.oldCropBot.states.plantState.substates.SimplePathingState;
 import inowen.utils.InventoryHelper;
 import inowen.utils.PlayerMovementHelper;
 

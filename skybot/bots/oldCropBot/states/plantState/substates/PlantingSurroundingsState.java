@@ -1,8 +1,8 @@
-package inowen.oldCropBot.states.plantState.substates;
+package inowen.skybot.bots.oldCropBot.states.plantState.substates;
 
-import inowen.oldCropBot.context.ContextManager;
-import inowen.oldCropBot.context.FarmSlotContent;
-import inowen.oldCropBot.states.State;
+import inowen.skybot.bots.oldCropBot.context.ContextManager;
+import inowen.skybot.bots.oldCropBot.context.FarmSlotContent;
+import inowen.skybot.bots.oldCropBot.states.State;
 import inowen.utils.CoordinateTranslator;
 import inowen.utils.PlayerMovementHelper;
 import net.minecraft.inventory.container.ClickType;

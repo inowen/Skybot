@@ -1,4 +1,4 @@
-package inowen.oldCropBot.context;
+package inowen.skybot.bots.oldCropBot.context;
 
 import inowen.utils.CoordinateTranslator;
 import net.minecraft.block.Block;

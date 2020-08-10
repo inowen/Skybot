@@ -1,14 +1,14 @@
-package inowen.oldCropBot;
+package inowen.skybot.bots.oldCropBot;
 
-import inowen.oldCropBot.context.ContextManager;
+import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.moduleSystem.ModuleManager;
-import inowen.oldCropBot.states.EatState;
-import inowen.oldCropBot.states.PickupItemsState;
-import inowen.oldCropBot.states.State;
-import inowen.oldCropBot.states.WaitForGrowthState;
-import inowen.oldCropBot.states.breakState.BreakState;
-import inowen.oldCropBot.states.plantState.PlantState;
-import inowen.oldCropBot.states.sellState.SellState;
+import inowen.skybot.bots.oldCropBot.states.EatState;
+import inowen.skybot.bots.oldCropBot.states.PickupItemsState;
+import inowen.skybot.bots.oldCropBot.states.State;
+import inowen.skybot.bots.oldCropBot.states.WaitForGrowthState;
+import inowen.skybot.bots.oldCropBot.states.breakState.BreakState;
+import inowen.skybot.bots.oldCropBot.states.plantState.PlantState;
+import inowen.skybot.bots.oldCropBot.states.sellState.SellState;
 import inowen.utils.PlayerMovementHelper;
 import inowen.utils.RayTraceHelper;
 import net.minecraft.block.Block;

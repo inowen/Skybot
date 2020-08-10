@@ -1,7 +1,7 @@
-package inowen.oldCropBot.states.sellState;
+package inowen.skybot.bots.oldCropBot.states.sellState;
 
-import inowen.oldCropBot.context.ContextManager;
-import inowen.oldCropBot.states.State;
+import inowen.skybot.bots.oldCropBot.context.ContextManager;
+import inowen.skybot.bots.oldCropBot.states.State;
 import inowen.utils.InventoryHelper;
 import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.ClickType;

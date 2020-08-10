@@ -1,6 +1,6 @@
 package inowen.testing.mods;
 
-import inowen.oldCropBot.context.InventoryContext;
+import inowen.skybot.bots.oldCropBot.context.InventoryContext;
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
 import net.minecraft.item.Items;
