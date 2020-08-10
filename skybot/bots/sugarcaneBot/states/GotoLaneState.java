@@ -14,7 +14,7 @@ public class GotoLaneState extends State {
     public Vec3d targetPosition = null;
 
     private static final double ANGLE_LENIENCY = 10;
-    private static final double PROXIMITY_ACCURACY = 0.5;
+    private static final double PROXIMITY_ACCURACY = 0.3;
 
     public GotoLaneState(SugarcaneFarm farm) {
         this.theFarm = farm;
