@@ -12,6 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class PlantingSurroundingsState extends State {
+
+	private static final long MAX_TIME_BEFORE_STUCK = 15000;
+	private long timeStateEntered = 0;
+	private boolean isStuckInThisState = false;
 	
 	// How far the player can reach to plant something (to calculate what is in range and what isn't)
 	private static final double MAX_REACH = 3.0D;
@@ -43,6 +47,10 @@ public class PlantingSurroundingsState extends State {
 		timeLastPlant = 0;
 		timeLastMouseClick = 0;
 		isLookingAtEmptyFarmland = false;
+		isStuckInThisState = false;
+
+		// Record the time when the state was entered to notice if it gets stuck later.
+		timeStateEntered = System.currentTimeMillis();
 		
 		// Look where the player should be looking and note the time at which the player has looked there.
 		BlockPos target = ContextManager.getClosestVisibleWithGivenContent(FarmSlotContent.EMPTY_USABLE);
@@ -124,6 +132,11 @@ public class PlantingSurroundingsState extends State {
 			}
 			
 		}
+
+		// In case the bot gets stuck in this state, set the flag to potentially change state / reset bot.
+		if (System.currentTimeMillis() - timeStateEntered > MAX_TIME_BEFORE_STUCK) {
+			isStuckInThisState = true;
+		}
 		
 	}
 	
@@ -150,6 +163,14 @@ public class PlantingSurroundingsState extends State {
 		else if (ContextManager.getClosestEmptyFarmland(mc.player.getPositionVector()) != null) {
 			nextState = "SimplePathingState";
 		}
+
+		
+		// Emergency measure to avoid getting stuck in this state in some way: if it takes too long,
+		// automatically switch back to pathing.
+		if (isStuckInThisState) {
+			nextState = "SimplePathingState";
+		}
+
 
 		return nextState;
 	}
