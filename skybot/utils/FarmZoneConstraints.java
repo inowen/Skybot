@@ -129,8 +129,9 @@ public class FarmZoneConstraints {
      * @return
      */
     public boolean contains(Vec3d position) {
-        boolean containedX = (position.getX()<=maxX && position.getX()>=minX-1);
-        boolean containedZ = (position.getZ()<=maxZ && position.getZ()>=minZ-1);
+        // These coordinates are the last valid blocks inside the farm. Add/subtract one to get the borders.
+        boolean containedX = (position.getX()<=maxX+1 && position.getX()>=minX-1);
+        boolean containedZ = (position.getZ()<=maxZ+1 && position.getZ()>=minZ-1);
         return (containedX && containedZ);
     }
 
