@@ -4,6 +4,7 @@ import inowen.skybot.bots.oldCropBot.CropFarmBotHFSM;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
+import inowen.utils.InventoryHelper;
 import inowen.utils.PlayerMovementHelper;
 
 
@@ -64,6 +65,7 @@ public class CropFarmBot extends Module {
         if (mc.player != null) {
             // Display the current state of the machine on screen. state_substate_substateSubstate_...
             mc.fontRenderer.drawString("Current bot state: " + theStateMachine.getStatePath(), 75, 75, 0xffffff);
+            mc.fontRenderer.drawString("Space left till sell: " + InventoryHelper.howManyMoreCanStore(ContextManager.farmedItem), 75, 85, 0xffffff);
         }
     }
 
