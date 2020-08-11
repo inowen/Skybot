@@ -164,7 +164,7 @@ public class PlantingSurroundingsState extends State {
 			nextState = "SimplePathingState";
 		}
 
-		
+
 		// Emergency measure to avoid getting stuck in this state in some way: if it takes too long,
 		// automatically switch back to pathing.
 		if (isStuckInThisState) {
