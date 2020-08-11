@@ -2,6 +2,7 @@ package inowen.moduleSystem;
 
 import inowen.moduleSystem.mods.CropFarmBot;
 import inowen.moduleSystem.mods.SugarcaneBot;
+import inowen.moduleSystem.mods.WhiteList;
 import inowen.testing.mods.TestSugarcaneContext;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class ModuleManager {
         // Add all the modules
         addMod(new CropFarmBot());
         addMod(new SugarcaneBot());
+        addMod(new WhiteList());
 
     }
 
