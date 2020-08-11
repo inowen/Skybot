@@ -30,9 +30,6 @@ public class SkyBotMod {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        // do something that can only be done on the client
-
-        //...Init the ModuleManager
         ModuleManager.init();
     }
 
