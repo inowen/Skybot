@@ -125,6 +125,7 @@ public class InventoryHelper {
      * @return
      */
     public static int howManyMoreCanStore(Item item) {
+        mainInv = mc.player.inventory.mainInventory;
         int amountCanStore = 0;
         for (int i=0; i<36; i++) {
             if (mainInv.get(i).getItem() == Items.AIR) {
