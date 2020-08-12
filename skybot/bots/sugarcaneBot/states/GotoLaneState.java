@@ -48,7 +48,9 @@ public class GotoLaneState extends State {
         Vec3d vecToTarget2d = new Vec3d(vecToTarget3d.getX(), 0, vecToTarget3d.getZ());
         double distanceToTarget = vecToTarget2d.length();
 
-        boolean shouldTransition = (distanceToTarget < PROXIMITY_ACCURACY);
+        boolean shouldTransition = (distanceToTarget < PROXIMITY_ACCURACY)
+                || !InventoryHelper.isSpaceLeftToStore(Items.SUGAR_CANE)
+                || theFarm.itemsToRecollect.size() > 0;
 
         if (shouldTransition) {
             if (!InventoryHelper.isSpaceLeftToStore(Items.SUGAR_CANE)) {
