@@ -61,4 +61,16 @@ public class ModuleManager {
         return null;
     }
 
+    /**
+     * Shut off all the modules.
+     */
+    public static void disableAll() {
+        for (Module m : modules) {
+            if (m.isToggled()) {
+                m.onDisable();
+                m.toggled = false;
+            }
+        }
+    }
+
 }
