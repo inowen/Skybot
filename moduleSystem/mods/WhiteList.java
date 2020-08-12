@@ -2,6 +2,7 @@ package inowen.moduleSystem.mods;
 
 
 import inowen.moduleSystem.Module;
+import inowen.moduleSystem.ModuleManager;
 import inowen.utils.ForgeKeys;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,13 +42,12 @@ public class WhiteList extends Module {
         for (Entity entity : allEntities) {
             if (entity instanceof PlayerEntity) {
                 String username = ((PlayerEntity) entity).getName().getString();
-                // Check if in whitelist.
 
-                // Testing: print all whitelisted users.
-                for (String name : whitelistedUsers) {
-                    System.out.println(name);
+                // Check if in whitelist.
+                if (!whitelistedUsers.contains(username)) {
+                    System.out.println("Non-whitelisted user detected. Shutting off all modules.");
+                    ModuleManager.disableAll();
                 }
-                // Testing done.
             }
         }
     }
