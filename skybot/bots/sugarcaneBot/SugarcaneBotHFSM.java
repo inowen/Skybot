@@ -2,9 +2,8 @@ package inowen.skybot.bots.sugarcaneBot;
 
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
-import inowen.skybot.bots.sugarcaneBot.context.InitializationTracker;
+import inowen.skybot.bots.sugarcaneBot.context.SugarcaneInitTracker;
 import inowen.skybot.bots.sugarcaneBot.context.SugarcaneFarm;
-import inowen.skybot.bots.sugarcaneBot.states.GotoLaneState;
 import inowen.skybot.bots.sugarcaneBot.states.PickUpItemsState;
 import inowen.skybot.hfsmBase.State;
 import inowen.skybot.hfsmBase.StateMachine;
@@ -19,7 +18,7 @@ public class SugarcaneBotHFSM extends StateMachine {
 
     public State currentState = null;
     public SugarcaneFarm theFarm;
-    public InitializationTracker tracker;
+    public SugarcaneInitTracker tracker;
 
     private float lastRealYaw = 0;
     private float lastRealPitch = 0;
@@ -27,7 +26,7 @@ public class SugarcaneBotHFSM extends StateMachine {
     @Override
     public void start() {
         // Create a tracker to follow how the initialization goes.
-        tracker = new InitializationTracker();
+        tracker = new SugarcaneInitTracker();
 
         // Load the context / environment
         theFarm = new SugarcaneFarm();

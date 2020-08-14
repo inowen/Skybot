@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -35,7 +34,7 @@ public class SugarcaneFarm {
      * Initialise: get borders, check if on homerow, register lanes.
      * @param tracker
      */
-    public void init(InitializationTracker tracker) {
+    public void init(SugarcaneInitTracker tracker) {
 
         itemsToRecollect = new ArrayList<ItemEntity>();
 
