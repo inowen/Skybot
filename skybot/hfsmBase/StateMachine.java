@@ -18,4 +18,19 @@ public abstract class StateMachine {
      * When the state machine is turned off.
      */
     public abstract void onShutdown();
+
+
+    /**
+     * Hierarchical report of the state that the machine is in. From bottom to top.
+     * @return
+     */
+    public String getStatePath() {
+        String statePath = "";
+        State s = currentState;
+        while(s != null) {
+            statePath += s.getName() + " -- ";
+            s = s.getCurrentSubstate();
+        }
+        return statePath;
+    }
 }
