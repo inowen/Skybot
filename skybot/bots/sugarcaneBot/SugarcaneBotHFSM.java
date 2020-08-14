@@ -99,21 +99,6 @@ public class SugarcaneBotHFSM extends StateMachine {
     }
 
 
-    /**
-     * A concatenation of the states that the bot is in - in hierarchical order:
-     * TravelState - DriveState - TurnState - MoveHandState ... (from external to internal substate).
-     * @return
-     */
-    public String getStatePath() {
-        String statePath = "";
-        State trackingState = currentState;
-        while(trackingState != null) {
-            statePath += trackingState.getName() + " -- ";
-            trackingState = trackingState.getCurrentSubstate();
-        }
-        return statePath;
-    }
-
 
     /**
      * If the rotation angles are numbers, store them.

@@ -28,7 +28,10 @@ public abstract class StateMachine {
         String statePath = "";
         State s = currentState;
         while(s != null) {
-            statePath += s.getName() + " -- ";
+            statePath += s.getName();
+            if (s.getCurrentSubstate() != null) {
+                statePath += " -- ";
+            }
             s = s.getCurrentSubstate();
         }
         return statePath;
