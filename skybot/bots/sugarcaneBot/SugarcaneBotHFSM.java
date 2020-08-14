@@ -16,7 +16,6 @@ public class SugarcaneBotHFSM extends StateMachine {
     public static Minecraft mc = Minecraft.getInstance();
     public static Module botModule = ModuleManager.getModule("SugarcaneBot");
 
-    public State currentState = null;
     public SugarcaneFarm theFarm;
     public SugarcaneInitTracker tracker;
 

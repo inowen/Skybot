@@ -28,6 +28,8 @@ public class MumpkinFarm {
     public void init(MumpkinInitTracker tracker) {
         zoneConstraints = new FarmZoneConstraints(BARRIER_BLOCK);
         zoneConstraints.findCorners(new BlockPos(mc.player.getPositionVector()), tracker);
+
+
     }
 
     public void update() {
