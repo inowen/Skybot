@@ -17,13 +17,13 @@ import java.util.ArrayList;
 public class InventoryHelper {
 
     private static Minecraft mc = Minecraft.getInstance();
-    private static NonNullList<ItemStack> mainInv = mc.player.inventory.mainInventory;
 
     /**
      * True if there are no free slots in the inventory.
      * @return
      */
     public static boolean isInvFull() {
+        NonNullList<ItemStack> mainInv = mc.player.inventory.mainInventory;
         for (int i=0; i<36; i++) {
             if (mainInv.get(i).getItem() == Items.AIR) {
                 return false;
@@ -38,6 +38,8 @@ public class InventoryHelper {
      * @return
      */
     public static boolean isInvEmpty() {
+        NonNullList<ItemStack> mainInv = mc.player.inventory.mainInventory;
+
         for (int i=0; i<36; i++) {
             if (mainInv.get(i).getItem() != Items.AIR) {
                 return false;
@@ -54,6 +56,7 @@ public class InventoryHelper {
      */
      public static int countNumItems(Item item) {
         int totalCount = 0;
+         NonNullList<ItemStack> mainInv = mc.player.inventory.mainInventory;
 
         for (int i=0; i<36; i++) {
             if (mainInv.get(i).getItem() == item) {
@@ -83,6 +86,7 @@ public class InventoryHelper {
      */
     public static int firstSlotWithContent(Item item) {
         int slotId = -1;
+        NonNullList<ItemStack> mainInv = mc.player.inventory.mainInventory;
 
         for (int i=0; i<36 && slotId==-1; i++) {
             if (mainInv.get(i).getItem() == item) {
@@ -101,6 +105,8 @@ public class InventoryHelper {
      * @return
      */
     public static boolean isSpaceLeftToStore(Item item) {
+
+        NonNullList<ItemStack> mainInv = mc.player.inventory.mainInventory;
         boolean spaceLeft = false;
 
         for (int i=0; i<36 && !spaceLeft; i++) {
@@ -125,7 +131,8 @@ public class InventoryHelper {
      * @return
      */
     public static int howManyMoreCanStore(Item item) {
-        mainInv = mc.player.inventory.mainInventory;
+        NonNullList<ItemStack> mainInv = mc.player.inventory.mainInventory;
+
         int amountCanStore = 0;
         for (int i=0; i<36; i++) {
             if (mainInv.get(i).getItem() == Items.AIR) {
