@@ -1,5 +1,6 @@
 package inowen.skybot.bots.melonPumpkinBot;
 
+import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.StateMachine;
 
 /**
@@ -9,7 +10,7 @@ import inowen.skybot.hfsmBase.StateMachine;
  */
 public class MumpkinBotHFSM extends StateMachine {
 
-
+    public MumpkinFarm theFarm = null;
 
     @Override
     public void start() {
