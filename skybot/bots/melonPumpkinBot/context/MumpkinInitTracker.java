@@ -2,7 +2,7 @@ package inowen.skybot.bots.melonPumpkinBot.context;
 
 import inowen.skybot.utils.InitTracker;
 
-public class InitializationTracker extends InitTracker {
+public class MumpkinInitTracker extends InitTracker {
 
 
 

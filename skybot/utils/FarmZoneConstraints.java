@@ -1,6 +1,6 @@
 package inowen.skybot.utils;
 
-import inowen.skybot.bots.sugarcaneBot.context.InitializationTracker;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
@@ -43,7 +43,7 @@ public class FarmZoneConstraints {
      * find the borders of the farm.
      * @param insideFarm A block position that is inside the farm.
      */
-    public void findCorners(BlockPos insideFarm, InitializationTracker tracker) {
+    public void findCorners(BlockPos insideFarm, InitTracker tracker) {
 
         boolean minXInit = false;
         boolean maxXInit = false;

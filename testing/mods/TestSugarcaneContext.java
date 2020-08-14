@@ -1,7 +1,7 @@
 package inowen.testing.mods;
 
 import inowen.moduleSystem.Module;
-import inowen.skybot.bots.sugarcaneBot.context.InitializationTracker;
+import inowen.skybot.bots.sugarcaneBot.context.SugarcaneInitTracker;
 import inowen.skybot.bots.sugarcaneBot.context.SugarcaneFarm;
 import inowen.skybot.bots.sugarcaneBot.context.SugarcaneLane;
 import inowen.utils.ForgeKeys;
@@ -9,7 +9,7 @@ import net.minecraft.entity.item.ItemEntity;
 
 public class TestSugarcaneContext extends Module {
 
-    public InitializationTracker tracker = null;
+    public SugarcaneInitTracker tracker = null;
     public SugarcaneFarm theFarm = null;
 
     public TestSugarcaneContext() {
@@ -18,7 +18,7 @@ public class TestSugarcaneContext extends Module {
 
     @Override
     public void onEnable() {
-        tracker = new InitializationTracker();
+        tracker = new SugarcaneInitTracker();
         theFarm = new SugarcaneFarm();
 
         // Init stuff (NOT IMPLEMENTED)

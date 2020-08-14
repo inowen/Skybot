@@ -1,6 +1,8 @@
 package inowen.skybot.bots.sugarcaneBot.context;
 
 
+import inowen.skybot.utils.InitTracker;
+
 /**
  * Flags to follow the initialization process of the farm context.
  * Whether the player is on the homerow, whether there are any lanes,
@@ -8,13 +10,13 @@ package inowen.skybot.bots.sugarcaneBot.context;
  *
  * @author PrinceChaos
  */
-public class InitializationTracker {
+public class SugarcaneInitTracker extends InitTracker {
 
-    public boolean foundFarmConstraints = false;
     public boolean onHomeRow = false;
     public boolean foundAtLeastOneLane = false;
 
 
+    @Override
     public boolean isCompletelyInit() {
         return foundFarmConstraints && onHomeRow && foundAtLeastOneLane;
     }
