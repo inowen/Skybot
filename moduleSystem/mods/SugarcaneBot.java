@@ -40,7 +40,7 @@ public class SugarcaneBot extends Module {
     @Override
     public void onGui() {
         if (mc.player != null && mc.world != null) {
-            mc.fontRenderer.drawString(theStateMachine.getStatePath(), 100, 50, 0xffffff);
+            mc.fontRenderer.drawString("Current state: " + theStateMachine.getStatePath(), 100, 50, 0xffffff);
             mc.fontRenderer.drawString("Items left till sell: " + InventoryHelper.howManyMoreCanStore(Items.SUGAR_CANE), 100, 60, 0xffffff);
         }
     }
