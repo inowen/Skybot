@@ -126,4 +126,24 @@ public class MumpkinFarm {
         return map;
     }
 
+
+    /**
+     * Count how many melon blocks there are in the farm.
+     * (probably mostly to know if there are 0 or more).
+     * @return int
+     */
+    public int numFullyGrownMelons() {
+        int totalNum = 0;
+        for (int x=0; x<zoneConstraints.lengthXAxis(); x++) {
+            for (int z=0; z<zoneConstraints.lengthZAxis(); z++) {
+                if (farmSlots[x][z].content == FarmSlot.FarmSlotContent.MELON_BLOCK) {
+                    totalNum++;
+                }
+            }
+        }
+        return totalNum;
+    }
+
+    
+
 }
