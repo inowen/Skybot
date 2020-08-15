@@ -2,11 +2,11 @@ package inowen.skybot.bots.melonPumpkinBot.states;
 
 import inowen.skybot.hfsmBase.State;
 
-public class SellState extends State {
+public class WaitForGrowthState extends State {
 
-    public SellState() {
-        this.name = "SellState";
-        this.currentState = null;
+    public WaitForGrowthState() {
+        this.name = "WaitForGrowthState";
+        this.currentState = null; // Atomic
     }
 
     @Override

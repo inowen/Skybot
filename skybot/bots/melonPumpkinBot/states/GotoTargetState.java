@@ -4,6 +4,11 @@ import inowen.skybot.hfsmBase.State;
 
 public class GotoTargetState extends State {
 
+    public GotoTargetState() {
+        this.name = "GotoTargetState";
+        this.currentState = null;
+    }
+
     @Override
     public void onEnter() {
 

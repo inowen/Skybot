@@ -4,6 +4,11 @@ import inowen.skybot.hfsmBase.State;
 
 public class BreakState extends State {
 
+    public BreakState() {
+        this.name = "BreakState";
+        this.currentState = null; // Atomic
+    }
+
     @Override
     public void onEnter() {
 
