@@ -13,7 +13,7 @@ public class FarmSlot {
     public FarmSlotContent content = null;
 
     // Different things that a FarmSlot can contain.
-    enum FarmSlotContent {
+    public enum FarmSlotContent {
         COVERS_WATER, EMPTY, MELON_STEM, MELON_BLOCK, UNKNOWN
     }
 }
