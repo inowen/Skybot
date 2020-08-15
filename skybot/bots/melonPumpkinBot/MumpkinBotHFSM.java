@@ -6,6 +6,7 @@ import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinInitTracker;
 import inowen.skybot.bots.melonPumpkinBot.states.GotoTargetState;
 import inowen.skybot.bots.melonPumpkinBot.states.SellState;
+import inowen.skybot.bots.melonPumpkinBot.states.WaitForGrowthState;
 import inowen.skybot.hfsmBase.State;
 import inowen.skybot.hfsmBase.StateMachine;
 import inowen.utils.InventoryHelper;
@@ -46,7 +47,12 @@ public class MumpkinBotHFSM extends StateMachine {
 
         // Get into the first state.
         if (InventoryHelper.howManyMoreCanStore(farmedItem) > 0) {
-            this.currentState = new GotoTargetState(theFarm);
+            if (theFarm.numFullyGrownMelons() > 0) {
+                this.currentState = new GotoTargetState(theFarm);
+            }
+            else {
+                this.currentState = new WaitForGrowthState(theFarm);
+            }
         }
         else {
             this.currentState = new SellState(theFarm);
