@@ -4,6 +4,7 @@ import inowen.moduleSystem.mods.CropFarmBot;
 import inowen.moduleSystem.mods.SugarcaneBot;
 import inowen.moduleSystem.mods.WhiteList;
 import inowen.testing.mods.TestSugarcaneContext;
+import inowen.testing.mods.TestingMelonFarm;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,9 @@ public class ModuleManager {
         addMod(new CropFarmBot());
         addMod(new SugarcaneBot());
         addMod(new WhiteList());
+
+        // Testing
+        addMod(new TestingMelonFarm());
 
     }
 
