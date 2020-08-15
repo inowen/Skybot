@@ -8,6 +8,9 @@ public class MumpkinBot extends Module {
 
     public MumpkinBotHFSM theStateMachine = null;
 
+    public float lastRealYaw = 0;
+    public float lastRealPitch = 0;
+
     public MumpkinBot() {
         super("MumpkinBot", ForgeKeys.KEY_I);
     }
@@ -33,6 +36,7 @@ public class MumpkinBot extends Module {
         }
 
         // Check for NaN angles.
+        checkForNaNAngles();
 
     }
 
@@ -47,4 +51,28 @@ public class MumpkinBot extends Module {
             theStateMachine.onShutdown();
         }
     }
+
+
+    /**
+     * Check that the Euler Angles are real numbers, if they are save the last valid angle, if not reset
+     * to the last real value.
+     */
+    public void checkForNaNAngles() {
+        // Check Yaw
+        if (Float.isNaN(mc.player.rotationYaw)) {
+            mc.player.rotationYaw = lastRealYaw;
+        }
+        else {
+            lastRealYaw = mc.player.rotationYaw;
+        }
+
+        // Check Pitch
+        if (Float.isNaN(mc.player.rotationPitch)) {
+            mc.player.rotationPitch = lastRealPitch;
+        }
+        else {
+            lastRealPitch = mc.player.rotationPitch;
+        }
+    }
+    
 }
