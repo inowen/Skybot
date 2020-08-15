@@ -4,9 +4,15 @@ import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinInitTracker;
+import inowen.skybot.bots.melonPumpkinBot.states.GotoTargetState;
+import inowen.skybot.bots.melonPumpkinBot.states.SellState;
 import inowen.skybot.hfsmBase.State;
 import inowen.skybot.hfsmBase.StateMachine;
+import inowen.utils.InventoryHelper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 /**
  * The Hierarchical Finite State Machine that runs the Melon-Pumpkin (Mumpkin) bot.
@@ -17,6 +23,7 @@ public class MumpkinBotHFSM extends StateMachine {
 
     public MumpkinFarm theFarm = null;
     public Module botModule;
+    public Item farmedItem = Items.MELON;
 
     public MumpkinBotHFSM() {
         botModule = ModuleManager.getModule("MumpkinBot");
@@ -33,8 +40,21 @@ public class MumpkinBotHFSM extends StateMachine {
                 System.out.println("Couldn't load farm correctly. Shutting off.");
                 botModule.onDisable();
                 botModule.toggled = false;
+                return;
             }
         }
+
+        // Get into the first state.
+        if (InventoryHelper.howManyMoreCanStore(farmedItem) > 0) {
+            this.currentState = new GotoTargetState();
+        }
+        else {
+            this.currentState = new SellState();
+        }
+
+        // Start the first state.
+        this.currentState.onEnter();
+
     }
 
     @Override
