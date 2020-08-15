@@ -46,7 +46,7 @@ public class SellState extends State {
         }
 
         // If what we're doing is closing the sellshop:
-        if (action == Action.CLOSING_Q_MENU) {
+        if (action == Action.CLOSING_Q_MENU && mc.player.openContainer instanceof ChestContainer && ((ChestContainer) mc.player.openContainer).getNumRows()==6) {
             mc.playerController.windowClick(mc.player.openContainer.windowId, SLOT_ID_BACK_CHEST, 0, ClickType.PICKUP, mc.player);
             timeLastAction = System.currentTimeMillis();
             action = Action.CLOSING_SELECT_MENU;
