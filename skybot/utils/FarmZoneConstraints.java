@@ -135,4 +135,20 @@ public class FarmZoneConstraints {
         return (containedX && containedZ);
     }
 
+    /**
+     * How many blocks of farm (without counting the barriers) there are between minX and maxX (both included).
+     * @return int
+     */
+    public int lengthXAxis() {
+        return (maxX - minX + 1);
+    }
+
+    /**
+     * How many blocks of farm (without counting barriers) there are between minZ and maxZ (both included).
+     * @return int
+     */
+    public int lengthZAxis() {
+        return (maxZ - minZ + 1);
+    }
+
 }
