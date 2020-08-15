@@ -35,7 +35,7 @@ public class MumpkinBot extends Module {
             }
         }
 
-        // Check for NaN angles.
+        // Check if Euler Angles somehow became NaN.
         checkForNaNAngles();
 
     }
@@ -74,5 +74,5 @@ public class MumpkinBot extends Module {
             lastRealPitch = mc.player.rotationPitch;
         }
     }
-    
+
 }

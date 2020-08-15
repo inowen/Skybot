@@ -17,7 +17,6 @@ public class MumpkinFarm {
     // The kind of block with which the farm enclosure is made.
     public static final Block BARRIER_BLOCK = Blocks.COBBLESTONE;
 
-    public MumpkinInitTracker tracker = null;
     public FarmZoneConstraints zoneConstraints = null;
     public FarmSlot[][] farmSlots = null;
 
