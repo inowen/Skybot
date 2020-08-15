@@ -9,14 +9,14 @@ import inowen.skybot.hfsmBase.StateMachine;
 import net.minecraft.client.Minecraft;
 
 /**
- * The Hierarchical Finite State Machine that runs the Melon-Pumpking bot.
+ * The Hierarchical Finite State Machine that runs the Melon-Pumpkin (Mumpkin) bot.
  *
  * @author inowen
  */
 public class MumpkinBotHFSM extends StateMachine {
 
     public MumpkinFarm theFarm = null;
-    public Module botModule = null;
+    public Module botModule;
 
     public MumpkinBotHFSM() {
         botModule = ModuleManager.getModule("MumpkinBot");

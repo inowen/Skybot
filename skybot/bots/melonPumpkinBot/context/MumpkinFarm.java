@@ -76,7 +76,6 @@ public class MumpkinFarm {
                     thisSlot.content = FarmSlot.FarmSlotContent.UNKNOWN;
                 }
 
-
                 farmSlots[x][z] = thisSlot;
             }
         }
