@@ -1,11 +1,13 @@
 package inowen.skybot.bots.melonPumpkinBot.context;
 
 import inowen.skybot.utils.FarmZoneConstraints;
+import inowen.utils.CoordinateTranslator;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
 
@@ -144,6 +146,42 @@ public class MumpkinFarm {
         return totalNum;
     }
 
+
+    /**
+     * Find the position of the closest block matching the queried content.
+     * If there are no such blocks, it will return null.
+     * @param reference Position to which it should be closest.
+     * @param farmSlotContent Queried content.
+     * @return BlockPos
+     */
+    public BlockPos posClosestMatching(Vec3d reference, FarmSlot.FarmSlotContent farmSlotContent) {
+        BlockPos result = null;
+        double closestDistance = 999999D;
+
+        // Go through all the slots in the farm
+        for (int x=0; x<zoneConstraints.lengthXAxis(); x++) {
+            for (int z=0; z<zoneConstraints.lengthZAxis(); z++) {
+
+                // Check if the block matches the queried content.
+                FarmSlot currentSlot = farmSlots[x][z];
+                if (currentSlot.content == farmSlotContent) {
+
+                    // Calculate distance to the reference position
+                    Vec3d refPosToTarget = CoordinateTranslator.blockPosToVectorPosition(currentSlot.globalBlockPos).subtract(reference);
+                    Vec3d refPosToTargetXZ = new Vec3d(refPosToTarget.getX(), 0, refPosToTarget.getZ());
+                    double currentDistance = refPosToTargetXZ.length();
+
+                    // If it meets the criteria, make it the new closest.
+                    if (currentDistance <= closestDistance) {
+                        closestDistance = currentDistance;
+                        result = currentSlot.globalBlockPos;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
 
 
 }
