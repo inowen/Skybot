@@ -29,6 +29,8 @@ public class FarmZoneConstraints {
     public int minZ = 0;
     public int maxZ = 0;
 
+    public int yLevel = 0;
+
     /**
      * Needs a block to know the kind of blocks that make the walls of the farm.
      * @param barrierBlock Blocks that the barriers are made of.
@@ -116,6 +118,8 @@ public class FarmZoneConstraints {
         maxZ--;
 
 
+        // Set the yLevel of the farm
+        this.yLevel = insideFarm.getY();
 
         // Return feedback to InitializationTracker
         tracker.foundFarmConstraints = (minXInit && minZInit && maxXInit && maxZInit);
