@@ -1,12 +1,16 @@
 package inowen.skybot.bots.melonPumpkinBot.states;
 
+import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.State;
 
 public class GotoTargetState extends State {
 
-    public GotoTargetState() {
+    public MumpkinFarm theFarm;
+
+    public GotoTargetState(MumpkinFarm farm) {
         this.name = "GotoTargetState";
         this.currentState = null;
+        this.theFarm = farm;
     }
 
     @Override

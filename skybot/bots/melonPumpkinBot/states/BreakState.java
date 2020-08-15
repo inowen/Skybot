@@ -1,12 +1,16 @@
 package inowen.skybot.bots.melonPumpkinBot.states;
 
+import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.State;
 
 public class BreakState extends State {
 
-    public BreakState() {
+    public MumpkinFarm theFarm;
+
+    public BreakState(MumpkinFarm farm) {
         this.name = "BreakState";
         this.currentState = null; // Atomic
+        this.theFarm = farm;
     }
 
     @Override

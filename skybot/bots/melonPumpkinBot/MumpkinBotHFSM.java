@@ -46,10 +46,10 @@ public class MumpkinBotHFSM extends StateMachine {
 
         // Get into the first state.
         if (InventoryHelper.howManyMoreCanStore(farmedItem) > 0) {
-            this.currentState = new GotoTargetState();
+            this.currentState = new GotoTargetState(theFarm);
         }
         else {
-            this.currentState = new SellState();
+            this.currentState = new SellState(theFarm);
         }
 
         // Start the first state.
