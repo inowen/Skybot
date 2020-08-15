@@ -5,6 +5,8 @@ import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.ArrayList;
+
 /**
  * Contains all the information about the physical farm ingame.
  *
@@ -34,7 +36,6 @@ public class MumpkinFarm {
             // Get the contents of those farmslots for the first time.
             updateFarmSlots();
         }
-
 
     }
 
@@ -82,5 +83,44 @@ public class MumpkinFarm {
 
     }
 
+
+    /**
+     * Map of the farm as a list of strings (one per line).
+     * Displaying the strings top-down, they make a map of the farm from the FarmZoneContents.
+     * @return
+     */
+    public ArrayList<String> getStringMap() {
+        ArrayList<String> map = new ArrayList<>();
+
+        for (int x=0; x<zoneConstraints.lengthXAxis(); x++) {
+            // Add the rows one by one.
+            String currentRow = "";
+            for (int z=0; z<zoneConstraints.lengthZAxis(); z++) {
+                FarmSlot.FarmSlotContent slotContent = farmSlots[x][z].content;
+                if (slotContent == FarmSlot.FarmSlotContent.EMPTY) {
+                    currentRow += "E ";
+                }
+                else if (slotContent == FarmSlot.FarmSlotContent.COVERS_WATER) {
+                    currentRow += "W ";
+                }
+                else if (slotContent == FarmSlot.FarmSlotContent.MELON_BLOCK) {
+                    currentRow += "M ";
+                }
+                else if (slotContent == FarmSlot.FarmSlotContent.MELON_STEM) {
+                    currentRow += "S ";
+                }
+                else if (slotContent == FarmSlot.FarmSlotContent.UNKNOWN) {
+                    currentRow += "? ";
+                }
+                else {
+                    currentRow += "# ";
+                }
+            }
+
+            map.add(currentRow);
+        }
+
+        return map;
+    }
 
 }
