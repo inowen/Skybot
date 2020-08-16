@@ -3,6 +3,7 @@ package inowen.skybot.bots.melonPumpkinBot.states;
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.State;
 import inowen.utils.InventoryHelper;
+import org.lwjgl.system.CallbackI;
 
 public class WaitForGrowthState extends State {
 
@@ -26,6 +27,9 @@ public class WaitForGrowthState extends State {
 
         if (InventoryHelper.howManyMoreCanStore(theFarm.itemBeingFarmed) == 0) {
             nextState = new SellState(theFarm);
+        }
+        else if (theFarm.itemsToRecollect.size() > 0) {
+            nextState = new PickUpItemsState(theFarm);
         }
         else if (theFarm.numFullyGrownBlocks() > 0) {
             nextState = new GotoTargetState(theFarm);
