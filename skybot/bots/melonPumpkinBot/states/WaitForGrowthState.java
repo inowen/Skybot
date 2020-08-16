@@ -27,7 +27,7 @@ public class WaitForGrowthState extends State {
         if (InventoryHelper.howManyMoreCanStore(theFarm.itemBeingFarmed) == 0) {
             nextState = new SellState(theFarm);
         }
-        else if (theFarm.numFullyGrownMelons() > 0) {
+        else if (theFarm.numFullyGrownBlocks() > 0) {
             nextState = new GotoTargetState(theFarm);
         }
 

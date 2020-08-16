@@ -14,6 +14,6 @@ public class FarmSlot {
 
     // Different things that a FarmSlot can contain.
     public enum FarmSlotContent {
-        COVERS_WATER, EMPTY, MELON_STEM, MELON_BLOCK, UNKNOWN
+        COVERS_WATER, EMPTY, STEM, PLANT_BLOCK, UNKNOWN
     }
 }

@@ -47,7 +47,7 @@ public class MumpkinBotHFSM extends StateMachine {
 
         // Get into the first state.
         if (InventoryHelper.howManyMoreCanStore(farmedItem) > 0) {
-            if (theFarm.numFullyGrownMelons() > 0) {
+            if (theFarm.numFullyGrownBlocks() > 0) {
                 this.currentState = new GotoTargetState(theFarm);
             }
             else {

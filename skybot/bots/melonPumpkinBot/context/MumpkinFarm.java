@@ -72,11 +72,11 @@ public class MumpkinFarm {
                 else if (blockAtThisSlot instanceof AirBlock) {
                     thisSlot.content = FarmSlot.FarmSlotContent.EMPTY;
                 }
-                else if (blockAtThisSlot instanceof MelonBlock) {
-                    thisSlot.content = FarmSlot.FarmSlotContent.MELON_BLOCK;
+                else if (blockAtThisSlot instanceof StemGrownBlock) {
+                    thisSlot.content = FarmSlot.FarmSlotContent.PLANT_BLOCK;
                 }
-                else if (blockAtThisSlot instanceof StemBlock || blockAtThisSlot instanceof StemGrownBlock) {
-                    thisSlot.content = FarmSlot.FarmSlotContent.MELON_STEM;
+                else if (blockAtThisSlot instanceof StemBlock || blockAtThisSlot instanceof AttachedStemBlock) {
+                    thisSlot.content = FarmSlot.FarmSlotContent.STEM;
                 }
                 else {
                     thisSlot.content = FarmSlot.FarmSlotContent.UNKNOWN;
@@ -108,10 +108,10 @@ public class MumpkinFarm {
                 else if (slotContent == FarmSlot.FarmSlotContent.COVERS_WATER) {
                     currentRow += "W ";
                 }
-                else if (slotContent == FarmSlot.FarmSlotContent.MELON_BLOCK) {
+                else if (slotContent == FarmSlot.FarmSlotContent.PLANT_BLOCK) {
                     currentRow += "M ";
                 }
-                else if (slotContent == FarmSlot.FarmSlotContent.MELON_STEM) {
+                else if (slotContent == FarmSlot.FarmSlotContent.STEM) {
                     currentRow += "S ";
                 }
                 else if (slotContent == FarmSlot.FarmSlotContent.UNKNOWN) {
@@ -134,11 +134,11 @@ public class MumpkinFarm {
      * (probably mostly to know if there are 0 or more).
      * @return int
      */
-    public int numFullyGrownMelons() {
+    public int numFullyGrownBlocks() {
         int totalNum = 0;
         for (int x=0; x<zoneConstraints.lengthXAxis(); x++) {
             for (int z=0; z<zoneConstraints.lengthZAxis(); z++) {
-                if (farmSlots[x][z].content == FarmSlot.FarmSlotContent.MELON_BLOCK) {
+                if (farmSlots[x][z].content == FarmSlot.FarmSlotContent.PLANT_BLOCK) {
                     totalNum++;
                 }
             }

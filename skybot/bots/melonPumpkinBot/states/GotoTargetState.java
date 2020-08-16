@@ -27,7 +27,7 @@ public class GotoTargetState extends State {
     @Override
     public void onEnter() {
         PlayerMovementHelper.desetAllkeybinds();
-        targetPos = theFarm.posClosestMatching(mc.player.getPositionVector(), FarmSlotContent.MELON_BLOCK);
+        targetPos = theFarm.posClosestMatching(mc.player.getPositionVector(), FarmSlotContent.PLANT_BLOCK);
     }
 
 

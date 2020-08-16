@@ -5,6 +5,8 @@ import inowen.skybot.hfsmBase.State;
 
 public class BreakState extends State {
 
+    public static final double REACH_DIST = 3.8D;
+
     public MumpkinFarm theFarm;
 
     public BreakState(MumpkinFarm farm) {
