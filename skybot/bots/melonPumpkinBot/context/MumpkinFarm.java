@@ -42,7 +42,7 @@ public class MumpkinFarm {
     public void init(MumpkinInitTracker tracker) {
         // Find the farm borders.
         zoneConstraints = new FarmZoneConstraints(BARRIER_BLOCK);
-        zoneConstraints.findCorners(new BlockPos(mc.player.getPositionVector()), tracker);
+        zoneConstraints.findCorners(new BlockPos(mc.player.getPositionVector().add(0,0.25,0)), tracker);
 
         if (tracker.foundFarmConstraints) {
             // Create the FarmSlot matrix (x, z)

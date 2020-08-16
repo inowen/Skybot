@@ -56,15 +56,17 @@ public class BreakState extends State {
             timeLastTargetChange = System.currentTimeMillis();
         }
 
-        // Make sure the bot is still looking at the focusedTarget (or very close).
-        double yawShouldBe = PlayerMovementHelper.getYawToLookAt(focusTarget);
-        double pitchShouldBe = PlayerMovementHelper.getPitchToLookAt(focusTarget);
+        if (focusTarget != null) {
+            // Make sure the bot is still looking at the focusedTarget (or very close).
+            double yawShouldBe = PlayerMovementHelper.getYawToLookAt(focusTarget);
+            double pitchShouldBe = PlayerMovementHelper.getPitchToLookAt(focusTarget);
 
-        if (Math.abs(mc.player.rotationYaw-yawShouldBe) > ANGLE_LENIENCY) {
-            mc.player.rotationYaw = (float) yawShouldBe;
-        }
-        if (Math.abs(mc.player.rotationPitch-pitchShouldBe) > ANGLE_LENIENCY) {
-            mc.player.rotationPitch = (float) pitchShouldBe;
+            if (Math.abs(mc.player.rotationYaw - yawShouldBe) > ANGLE_LENIENCY) {
+                mc.player.rotationYaw = (float) yawShouldBe;
+            }
+            if (Math.abs(mc.player.rotationPitch - pitchShouldBe) > ANGLE_LENIENCY) {
+                mc.player.rotationPitch = (float) pitchShouldBe;
+            }
         }
 
     }
