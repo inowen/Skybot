@@ -218,4 +218,28 @@ public class MumpkinFarm {
         }
     }
 
+
+    /**
+     * Get the item closest to a given position.
+     * @param reference The position to which it's closest.
+     * @return ItemEntity, or null if there isn't any.
+     */
+    public ItemEntity getClosestItemTo(Vec3d reference) {
+        ItemEntity closestItem = null;
+        double distClosestItem = 999999D;
+
+        for (ItemEntity item : itemsToRecollect) {
+            Vec3d fromReferenceToItem = item.getPositionVector().subtract(reference);
+            double distanceCurrentItem = fromReferenceToItem.length();
+
+            // If this item is closer, make it the new closest item.
+            if (distClosestItem > distanceCurrentItem) {
+                distClosestItem = distanceCurrentItem;
+                closestItem = item;
+            }
+        }
+
+        return closestItem;
+    }
+
 }
