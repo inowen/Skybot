@@ -4,6 +4,8 @@ import inowen.skybot.utils.FarmZoneConstraints;
 import inowen.utils.CoordinateTranslator;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +27,12 @@ public class MumpkinFarm {
 
     public FarmZoneConstraints zoneConstraints = null;
     public FarmSlot[][] farmSlots = null;
+    public ArrayList<ItemEntity> itemsToRecollect;
 
+
+    public MumpkinFarm() {
+        itemsToRecollect = new ArrayList<>();
+    }
 
     /**
      * Load the farm in. Stop if no farm found.
@@ -50,6 +57,7 @@ public class MumpkinFarm {
     public void update() {
         if(mc.player != null && mc.world != null) {
             updateFarmSlots();
+            updateItemsToRecollect();
         }
     }
 
@@ -183,5 +191,31 @@ public class MumpkinFarm {
         return result;
     }
 
+
+    /**
+     * Update the list of items of interest inside the farm (from mc.world.getAllEntities()).
+     * Get all the items in the world, filter the ones being farmed, and then add
+     * them to the list to recollect if they are inside the farm.
+     */
+    public void updateItemsToRecollect() {
+
+        itemsToRecollect.clear();
+        for (Entity entity : mc.world.getAllEntities()) {
+
+            // Filter out entities that are items.
+            if (entity instanceof ItemEntity) {
+                ItemEntity item = (ItemEntity) entity;
+
+                // Only proceed if this item is what the bot is farming
+                // (ignore trash).
+                if (item.getItem().getItem() == itemBeingFarmed) {
+
+                    if (zoneConstraints.contains(item.getPositionVector())) {
+                        itemsToRecollect.add(item);
+                    }
+                }
+            }
+        }
+    }
 
 }
