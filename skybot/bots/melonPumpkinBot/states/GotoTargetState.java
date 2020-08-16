@@ -16,6 +16,7 @@ public class GotoTargetState extends State {
     public static double MIN_DIST_TO_TARGET = 0.3D;
 
     public MumpkinFarm theFarm;
+    public BlockPos targetPos = null;
 
     public GotoTargetState(MumpkinFarm farm) {
         this.name = "GotoTargetState";
@@ -26,15 +27,13 @@ public class GotoTargetState extends State {
     @Override
     public void onEnter() {
         PlayerMovementHelper.desetAllkeybinds();
+        targetPos = theFarm.posClosestMatching(mc.player.getPositionVector(), FarmSlotContent.MELON_BLOCK);
     }
 
 
     @Override
     public void run() {
         mc.gameSettings.autoJump = true;
-
-        // Find a target location.
-        BlockPos targetPos = theFarm.posClosestMatching(mc.player.getPositionVector(), FarmSlotContent.MELON_BLOCK);
 
         // Go to the target.
         if (targetPos != null) {
@@ -55,7 +54,18 @@ public class GotoTargetState extends State {
 
     @Override
     public State getNextState() {
-        return null;
+        State nextState = null;
+
+        boolean shouldTransition = false;
+        if (targetPos != null) {
+            shouldTransition = CoordinateTranslator.blockPosToVectorPosition(targetPos).subtract(mc.player.getPositionVector()).length() < MIN_DIST_TO_TARGET;
+
+            if (shouldTransition) {
+                nextState = new BreakState(theFarm);
+            }
+        }
+
+        return nextState;
     }
 
     @Override
