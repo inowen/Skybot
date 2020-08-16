@@ -1,6 +1,7 @@
 package inowen.moduleSystem;
 
 import inowen.moduleSystem.mods.CropFarmBot;
+import inowen.moduleSystem.mods.MumpkinBot;
 import inowen.moduleSystem.mods.SugarcaneBot;
 import inowen.moduleSystem.mods.WhiteList;
 import inowen.testing.mods.TestSugarcaneContext;
@@ -17,6 +18,7 @@ public class ModuleManager {
         // Add all the modules
         addMod(new CropFarmBot());
         addMod(new SugarcaneBot());
+        addMod(new MumpkinBot());
         addMod(new WhiteList());
 
         // Testing

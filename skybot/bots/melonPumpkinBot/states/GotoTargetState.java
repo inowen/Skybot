@@ -13,7 +13,7 @@ import static inowen.skybot.bots.melonPumpkinBot.context.FarmSlot.*;
 public class GotoTargetState extends State {
 
     public static double ANGLE_LENIENCY = 15D;
-    public static double MIN_DIST_TO_TARGET = 0.3D;
+    public static double DIST_ACCURACY = 0.4D;
 
     public MumpkinFarm theFarm;
     public BlockPos targetPos = null;
@@ -58,7 +58,9 @@ public class GotoTargetState extends State {
 
         boolean shouldTransition = false;
         if (targetPos != null) {
-            shouldTransition = CoordinateTranslator.blockPosToVectorPosition(targetPos).subtract(mc.player.getPositionVector()).length() < MIN_DIST_TO_TARGET;
+            Vec3d fromPlayerToTarget = CoordinateTranslator.blockPosToVectorPosition(targetPos).subtract(mc.player.getPositionVector());
+            Vec3d playerToTargetXZ = new Vec3d(fromPlayerToTarget.getX(), 0, fromPlayerToTarget.getZ());
+            shouldTransition = playerToTargetXZ.length() < DIST_ACCURACY;
 
             if (shouldTransition) {
                 nextState = new BreakState(theFarm);
