@@ -3,6 +3,12 @@ package inowen.moduleSystem.mods;
 import inowen.moduleSystem.Module;
 import inowen.skybot.bots.melonPumpkinBot.MumpkinBotHFSM;
 import inowen.utils.ForgeKeys;
+import inowen.utils.RayTraceHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.StemGrownBlock;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 
 public class MumpkinBot extends Module {
 
@@ -38,6 +44,9 @@ public class MumpkinBot extends Module {
         // Check if Euler Angles somehow became NaN.
         checkForNaNAngles();
 
+        // Don't attack if it isn't a melon or pumpkin!
+        preventBreakingFarm();
+
     }
 
     @Override
@@ -72,6 +81,21 @@ public class MumpkinBot extends Module {
         }
         else {
             lastRealPitch = mc.player.rotationPitch;
+        }
+    }
+
+
+    /**
+     * Use raytracing to determine whether the bot is looking at a block of the farmed item.
+     * If it isn't, suppress breaking keypress.
+     */
+    public void preventBreakingFarm() {
+        BlockRayTraceResult lookingAt = RayTraceHelper.firstSeenBlockInDirection(mc.player.getLookVec(), 6);
+        BlockPos posLookingAt = lookingAt.getPos();
+        Block blockLookingAt = mc.world.getBlockState(posLookingAt).getBlock();
+
+        if (!(blockLookingAt instanceof StemGrownBlock)) {
+            mc.gameSettings.keyBindAttack.setPressed(false);
         }
     }
 
