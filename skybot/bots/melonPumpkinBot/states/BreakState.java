@@ -91,11 +91,21 @@ public class BreakState extends State {
                 }
             }
         }
+        else if (!InventoryHelper.isSpaceLeftToStore(theFarm.itemBeingFarmed)) {
+            nextState = new SellState(theFarm);
+        }
         else {
             // Calculate distance, if higher than reach switch to pathing state.
             double distance = mc.player.getEyePosition(0).subtract(closestVisiblePos).length();
             if (distance > REACH_DIST) {
-                nextState = new GotoTargetState(theFarm);
+
+                // Each time it relocates inside break state, this is triggered.
+                if (theFarm.itemsToRecollect.size() > 0) {
+                    nextState = new PickUpItemsState(theFarm);
+                }
+                else {
+                    nextState = new GotoTargetState(theFarm);
+                }
             }
         }
 

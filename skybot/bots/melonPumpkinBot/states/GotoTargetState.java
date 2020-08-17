@@ -13,7 +13,7 @@ import static inowen.skybot.bots.melonPumpkinBot.context.FarmSlot.*;
 public class GotoTargetState extends State {
 
     public static double ANGLE_LENIENCY = 15D;
-    public static double DIST_ACCURACY = 1.5D;
+    public static double DIST_ACCURACY = 1.8D;
 
     public MumpkinFarm theFarm;
     public BlockPos targetPos = null;
