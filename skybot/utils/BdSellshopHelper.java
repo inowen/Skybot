@@ -10,7 +10,6 @@ import net.minecraft.item.Items;
 public class BdSellshopHelper {
 
     public static final int SLOT_ID_BACK_QUANTITY_MENU = 53;
-    
 
 
     /**
@@ -53,7 +52,7 @@ public class BdSellshopHelper {
      * @param quantity
      * @return
      */
-    public int slotForQuantity(int quantity) {
+    public static int slotForQuantity(int quantity) {
         int slot = 28;
 
         if (quantity == 1) {

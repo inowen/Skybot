@@ -2,7 +2,16 @@ package inowen.skybot.bots.melonPumpkinBot.states;
 
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.State;
+import inowen.skybot.utils.BdSellshopHelper;
+import inowen.utils.InventoryHelper;
+import net.minecraft.inventory.container.ChestContainer;
+import net.minecraft.inventory.container.ClickType;
+import net.minecraft.inventory.container.Container;
 
+
+/**
+ * Total spaghetti. Make better one for future bots...
+ */
 public class SellState extends State {
 
     public static final long MAX_TIME_IN_THIS_STATE = 20000; // ms
@@ -14,6 +23,7 @@ public class SellState extends State {
 
     public MumpkinFarm theFarm;
 
+    private long timeLastAction = 0;
     private long timeStateEntered = 0;
     private boolean timeExceeded = false;
     private InnerState innerState = InnerState.SELLING;
@@ -33,9 +43,74 @@ public class SellState extends State {
     public void run() {
 
         // Check if time exceeded
+        if (System.currentTimeMillis() - timeStateEntered > MAX_TIME_IN_THIS_STATE) {
+            timeExceeded = true;
+        }
 
-        // Switch case for Inner State, what to do in each case.
+        // Switch case for Inner State, what to do in each case. (these are just too small to make proper substates...)
+        if (System.currentTimeMillis()-timeLastAction > DELAY_BETWEEN_ACTIONS) {
+            Container openContainer = mc.player.openContainer;
 
+            switch (innerState) {
+                case SELLING:
+                    if (!timeExceeded) {
+                        // Sell stuff.
+                        if (!(openContainer instanceof ChestContainer)) {
+                            mc.player.sendChatMessage("/sellshop");
+                            timeLastAction = System.currentTimeMillis();
+                        }
+                        else {
+                            ChestContainer openChest = (ChestContainer) openContainer;
+                            if (openChest.getNumRows() == 1) {
+                                int itemSlot = BdSellshopHelper.slotForItemChoice(theFarm.itemBeingFarmed);
+                                mc.playerController.windowClick(openChest.windowId, itemSlot, 0, ClickType.PICKUP, mc.player);
+                                timeLastAction = System.currentTimeMillis();
+                            }
+                            else if (openChest.getNumRows() == 6) {
+                                int quantityToSell = InventoryHelper.bestAmountForSellShop(theFarm.itemBeingFarmed);
+                                int slotIdToClick = BdSellshopHelper.slotForQuantity(quantityToSell);
+                                mc.playerController.windowClick(openChest.windowId, slotIdToClick, 0, ClickType.PICKUP, mc.player);
+                                timeLastAction = System.currentTimeMillis();
+                            }
+                        }
+                    }
+                    else {
+                        innerState = InnerState.EXITING;
+                        timeLastAction = System.currentTimeMillis();
+                    }
+
+                    break;
+                case EXITING:
+                    if (openContainer instanceof ChestContainer) {
+                        ChestContainer openChest = (ChestContainer) openContainer;
+                        if (openChest.getNumRows() == 1) {
+                            mc.player.closeScreen();
+                            mc.setGameFocused(true);
+                            timeLastAction = System.currentTimeMillis();
+
+                        } else if (openChest.getNumRows() == 6) {
+                            mc.playerController.windowClick(openContainer.windowId, BdSellshopHelper.SLOT_ID_BACK_QUANTITY_MENU, 0, ClickType.PICKUP, mc.player);
+                            timeLastAction = System.currentTimeMillis();
+                        }
+                    }
+                    else {
+                        innerState = InnerState.PAUSE_AFTER_CLOSING;
+                        timeLastAction = System.currentTimeMillis();
+                    }
+                    break;
+
+                case PAUSE_AFTER_CLOSING:
+                    if (!(openContainer instanceof ChestContainer)) {
+                        innerState = InnerState.FREE_TO_SWITCH;
+                    }
+                    else {
+                        innerState = InnerState.EXITING;
+                    }
+                    break;
+            }
+
+            timeLastAction = System.currentTimeMillis();
+        }
     }
 
     @Override
@@ -43,6 +118,18 @@ public class SellState extends State {
         State nextState = null;
         if (innerState == InnerState.FREE_TO_SWITCH) {
             // Depending on conditions, set nextState
+            if (timeExceeded) {
+                nextState = new SellState(theFarm);
+            }
+            else if (theFarm.itemsToRecollect.size() != 0) {
+                nextState = new PickUpItemsState(theFarm);
+            }
+            else if (theFarm.numFullyGrownBlocks() > 0) {
+                nextState = new GotoTargetState(theFarm);
+            }
+            else {
+                nextState = new WaitForGrowthState(theFarm);
+            }
         }
         return nextState;
     }
@@ -54,7 +141,7 @@ public class SellState extends State {
     }
 
     public enum InnerState {
-        SELLING, EXITING, FREE_TO_SWITCH
+        SELLING, EXITING, PAUSE_AFTER_CLOSING, FREE_TO_SWITCH
     }
 
 }
