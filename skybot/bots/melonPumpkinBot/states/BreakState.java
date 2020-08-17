@@ -4,6 +4,8 @@ import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.State;
 import inowen.utils.InventoryHelper;
 import inowen.utils.PlayerMovementHelper;
+import net.minecraft.inventory.container.ClickType;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.Vec3d;
 
 public class BreakState extends State {
@@ -31,6 +33,18 @@ public class BreakState extends State {
 
     @Override
     public void run() {
+
+        // Switch to axe if there is one in the inventory and if the player isn't holding one.
+        if (mc.player.getHeldItemMainhand().getItem() != Items.DIAMOND_AXE) {
+            int axeSlotId = InventoryHelper.firstSlotWithContent(Items.DIAMOND_AXE);
+            int slotHand = InventoryHelper.mainInvIndexToSlotId(mc.player.inventory.currentItem);
+            // Swap the axe for what the player has in their hand.
+            mc.playerController.windowClick(mc.player.container.windowId, axeSlotId, 0, ClickType.PICKUP, mc.player);
+            mc.playerController.windowClick(mc.player.container.windowId, slotHand, 0, ClickType.PICKUP, mc.player);
+            mc.playerController.windowClick(mc.player.container.windowId, axeSlotId, 0, ClickType.PICKUP, mc.player);
+        }
+
+
         mc.gameSettings.keyBindAttack.setPressed(true);
         /*
         Try something: The bot doesn't allow itself to break anything that isn't a plant block.
