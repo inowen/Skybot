@@ -18,8 +18,8 @@ public class SellState extends State {
     // Minimum amount of items in the inventory to keep selling.
     // If limit is 128 and there are 200, it would sell 2 stacks and have 72 left. Then it would leave the sellshop.
     // Use this so it doesn't sell items one by one until it has 0 and triggers the spam filter (also speeds up).
-    public static final int MIN_ITEMS_TO_SELL = 128;
-    public static final long DELAY_BETWEEN_ACTIONS = 1500;
+    public static final int MIN_ITEMS_TO_SELL = 1;
+    public static final long DELAY_BETWEEN_ACTIONS = 2500;
 
     public MumpkinFarm theFarm;
 
@@ -68,9 +68,16 @@ public class SellState extends State {
                             }
                             else if (openChest.getNumRows() == 6) {
                                 int quantityToSell = InventoryHelper.bestAmountForSellShop(theFarm.itemBeingFarmed);
-                                int slotIdToClick = BdSellshopHelper.slotForQuantity(quantityToSell);
-                                mc.playerController.windowClick(openChest.windowId, slotIdToClick, 0, ClickType.PICKUP, mc.player);
-                                timeLastAction = System.currentTimeMillis();
+                                if (quantityToSell >= MIN_ITEMS_TO_SELL) {
+                                    int slotIdToClick = BdSellshopHelper.slotForQuantity(quantityToSell);
+                                    mc.playerController.windowClick(openChest.windowId, slotIdToClick, 0, ClickType.PICKUP, mc.player);
+                                    timeLastAction = System.currentTimeMillis();
+                                }
+                                else {
+                                    mc.playerController.windowClick(openChest.windowId, BdSellshopHelper.SLOT_ID_BACK_QUANTITY_MENU, 0, ClickType.PICKUP, mc.player);
+                                    timeLastAction = System.currentTimeMillis();
+                                    innerState = InnerState.EXITING;
+                                }
                             }
                         }
                     }
