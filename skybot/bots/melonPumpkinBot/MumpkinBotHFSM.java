@@ -70,6 +70,14 @@ public class MumpkinBotHFSM extends StateMachine {
             return;
         }
 
+        // Check that the player is inside the farm. If not, disable the module.
+        if (!theFarm.zoneConstraints.contains(Minecraft.getInstance().player.getPositionVector())) {
+            if (botModule.isToggled()) {
+                botModule.onDisable();
+                botModule.toggled = false;
+            }
+        }
+
         // Update information about the context (the farm)
         theFarm.update();
 
