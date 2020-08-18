@@ -70,11 +70,26 @@ public class MumpkinBotHFSM extends StateMachine {
             return;
         }
 
+        // If there is no player (disconnect or the likes), toggle off the module.
+        if (Minecraft.getInstance().player == null) {
+            if (botModule.isToggled()) {
+                try {
+                    botModule.onDisable();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+                botModule.toggled = false;
+                return;
+            }
+        }
+
         // Check that the player is inside the farm. If not, disable the module.
         if (!theFarm.zoneConstraints.contains(Minecraft.getInstance().player.getPositionVector())) {
             if (botModule.isToggled()) {
                 botModule.onDisable();
                 botModule.toggled = false;
+                return;
             }
         }
 
