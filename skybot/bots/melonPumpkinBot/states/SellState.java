@@ -14,11 +14,11 @@ import net.minecraft.inventory.container.Container;
  */
 public class SellState extends State {
 
-    public static final long MAX_TIME_IN_THIS_STATE = 20000; // ms
+    public static final long MAX_TIME_IN_THIS_STATE = 25000; // ms
     // Minimum amount of items in the inventory to keep selling.
     // If limit is 128 and there are 200, it would sell 2 stacks and have 72 left. Then it would leave the sellshop.
     // Use this so it doesn't sell items one by one until it has 0 and triggers the spam filter (also speeds up).
-    public static final int MIN_ITEMS_TO_SELL = 1;
+    public static final int MIN_ITEMS_TO_SELL = 64;
     public static final long DELAY_BETWEEN_ACTIONS = 2500;
 
     public MumpkinFarm theFarm;
