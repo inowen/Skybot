@@ -3,6 +3,7 @@ package inowen.moduleSystem.mods;
 import inowen.moduleSystem.Module;
 import inowen.skybot.bots.melonPumpkinBot.MumpkinBotHFSM;
 import inowen.utils.ForgeKeys;
+import inowen.utils.InventoryHelper;
 import inowen.utils.RayTraceHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -51,6 +52,7 @@ public class MumpkinBot extends Module {
 
     @Override
     public void onGui() {
+        mc.fontRenderer.drawString("Items left until selling: " + InventoryHelper.howManyMoreCanStore(theStateMachine.farmedItem), 100, 90, 0xffffff);
         mc.fontRenderer.drawString("State: " + theStateMachine.getStatePath(), 100, 100, 0xffffff);
     }
 
