@@ -1,4 +1,9 @@
 package inowen.skybot.bots.seedsCropBot.context;
 
-public class SeedsCropInitTracker {
+import inowen.skybot.utils.InitTracker;
+
+public class SeedsCropInitTracker extends InitTracker {
+
+    public SeedsCropInitTracker() { }
+
 }
