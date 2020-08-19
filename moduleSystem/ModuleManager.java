@@ -17,6 +17,7 @@ public class ModuleManager {
         addMod(new SugarcaneBot());
         addMod(new MumpkinBot());
         addMod(new WhiteList());
+        addMod(new HideNames());
 
         // Testing
         addMod(new TestingMelonFarm());

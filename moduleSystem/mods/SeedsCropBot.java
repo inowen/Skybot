@@ -9,5 +9,5 @@ public class SeedsCropBot extends Module {
         super(SeedsCropBot.class.getName(), ForgeKeys.KEY_V);
     }
 
-    
+
 }

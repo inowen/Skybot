@@ -1,0 +1,36 @@
+package inowen.moduleSystem.mods;
+
+import inowen.SkyBotMod;
+import inowen.moduleSystem.Module;
+import inowen.utils.ForgeKeys;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderNameplateEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+
+/**
+ * Hide the names of every player around by exchanging it with something else.
+ * (SUBSTITUTE constant).
+ */
+@Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
+public class HideNames extends Module {
+
+    public static final String SUBSTITUTE = "SkybotHiddenName";
+
+    /**
+     * Create the module. Done in the ModuleManager, addMod.
+     */
+    public HideNames() {
+        super(HideNames.class.getName(), ForgeKeys.KEY_H);
+    }
+
+    @SubscribeEvent
+    public static void hideNames(RenderNameplateEvent event) {
+        if (event.getEntity() instanceof PlayerEntity) {
+            event.setContent(SUBSTITUTE);
+        }
+    }
+
+}
