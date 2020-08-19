@@ -18,13 +18,13 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
 public class HideNames extends Module {
 
-    public static final String SUBSTITUTE = "SkybotHiddenName";
+    public static final String SUBSTITUTE = "Skybot_hidden_name";
 
     /**
      * Create the module. Done in the ModuleManager, addMod.
      */
     public HideNames() {
-        super(HideNames.class.getName(), ForgeKeys.KEY_H);
+        super("HideNames", ForgeKeys.KEY_H);
     }
 
     /**
@@ -34,7 +34,7 @@ public class HideNames extends Module {
     @SubscribeEvent
     public static void hideNames(RenderNameplateEvent event) {
         if (event.getEntity() instanceof PlayerEntity) {
-            if (ModuleManager.getModule(HideNames.class.getName()).isToggled()) {
+            if (ModuleManager.getModule("HideNames").isToggled()) {
                 event.setContent(SUBSTITUTE);
             }
         }
