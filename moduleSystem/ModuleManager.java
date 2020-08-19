@@ -1,9 +1,6 @@
 package inowen.moduleSystem;
 
-import inowen.moduleSystem.mods.CropFarmBot;
-import inowen.moduleSystem.mods.MumpkinBot;
-import inowen.moduleSystem.mods.SugarcaneBot;
-import inowen.moduleSystem.mods.WhiteList;
+import inowen.moduleSystem.mods.*;
 import inowen.testing.mods.TestSugarcaneContext;
 import inowen.testing.mods.TestingMelonFarm;
 
