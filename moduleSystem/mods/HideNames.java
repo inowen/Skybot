@@ -2,6 +2,7 @@ package inowen.moduleSystem.mods;
 
 import inowen.SkyBotMod;
 import inowen.moduleSystem.Module;
+import inowen.moduleSystem.ModuleManager;
 import inowen.utils.ForgeKeys;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,10 +27,16 @@ public class HideNames extends Module {
         super(HideNames.class.getName(), ForgeKeys.KEY_H);
     }
 
+    /**
+     * If this module is toggled, switch the names of players for the given SUBSTITUTE
+     * @param event RenderNameplateEvent
+     */
     @SubscribeEvent
     public static void hideNames(RenderNameplateEvent event) {
         if (event.getEntity() instanceof PlayerEntity) {
-            event.setContent(SUBSTITUTE);
+            if (ModuleManager.getModule(HideNames.class.getName()).isToggled()) {
+                event.setContent(SUBSTITUTE);
+            }
         }
     }
 
