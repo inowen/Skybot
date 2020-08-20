@@ -1,6 +1,7 @@
 package inowen.moduleSystem.mods;
 
 import inowen.SkyBotMod;
+import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.utils.ForgeKeys;
@@ -18,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
 public class HideNames extends Module {
 
-    public static final String SUBSTITUTE = "Skybot_hidden_name";
+    public static final String SUBSTITUTE = SkybotConfig.HideNames.NAMES_SUBSTITUTE;
 
     /**
      * Create the module. Done in the ModuleManager, addMod.

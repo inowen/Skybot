@@ -22,7 +22,7 @@ public class SkybotConfig {
     // Global stuff
 
 
-    // Each got gets its own config section
+    // Each module gets its own config section
     public static class OldCropBot {
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static net.minecraft.item.Item FARMED_ITEM = Items.CARROT;
@@ -51,5 +51,10 @@ public class SkybotConfig {
         public static Item FARMED_ITEM = Items.BEETROOT;
         public static Item SEEDS_FARMED_ITEM = Items.BEETROOT_SEEDS;
 
+    }
+
+
+    public static class HideNames {
+        public static String NAMES_SUBSTITUTE = "Skybot_Hidden_Name";
     }
 }
