@@ -9,8 +9,14 @@ import net.minecraftforge.fml.loading.FMLPaths;
 @Mod.EventBusSubscriber
 public class TestFMLPaths {
 
+    private static final boolean SHOULD_PRINT = false;
+
     @SubscribeEvent
     public static void printOutPath(TickEvent.ClientTickEvent event) {
-        System.out.println("Path to Game directory: " + FMLPaths.GAMEDIR);
+        if (SHOULD_PRINT) {
+            System.out.println("Path to Game directory: " + FMLPaths.GAMEDIR.get().toString());
+            System.out.println("Path to config folder: " + FMLPaths.CONFIGDIR.get().toString());
+        }
     }
+
 }
