@@ -17,7 +17,6 @@ public class SkyBotMod {
     public static final String MOD_ID = "skybot";
 
     public SkyBotMod() {
-        FMLPaths.CONFIGDIR.get();
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -34,6 +33,7 @@ public class SkyBotMod {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         ModuleManager.init();
+        // Config stuff here.
     }
 
 
