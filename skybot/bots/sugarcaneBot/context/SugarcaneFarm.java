@@ -1,5 +1,6 @@
 package inowen.skybot.bots.sugarcaneBot.context;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.utils.FarmZoneConstraints;
 import inowen.utils.CoordinateTranslator;
 import net.minecraft.block.Block;
@@ -16,9 +17,9 @@ public class SugarcaneFarm {
     // Reference to the singleton Minecraft instance.
     private Minecraft mc = Minecraft.getInstance();
 
-    public static final Block BARRIER_BLOCK = Blocks.COBBLESTONE;
-    public static final Block HOMEROW_BLOCK = Blocks.LAPIS_BLOCK;
-    public static final Block INIT_LANE_BLOCK = Blocks.COAL_BLOCK;
+    public static final Block BARRIER_BLOCK = SkybotConfig.SugarcaneBot.BARRIER_BLOCK;
+    public static final Block HOMEROW_BLOCK = SkybotConfig.SugarcaneBot.HOME_ROW_BLOCK;
+    public static final Block INIT_LANE_BLOCK = SkybotConfig.SugarcaneBot.INIT_LANE_BLOCK;
 
     public FarmZoneConstraints zoneConstraints;
     public ArrayList<SugarcaneLane> lanes;

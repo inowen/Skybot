@@ -1,5 +1,6 @@
 package inowen.skybot.bots.oldCropBot.states.plantState.substates;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.skybot.bots.oldCropBot.context.FarmSlotContent;
 import inowen.skybot.bots.oldCropBot.states.State;
@@ -18,7 +19,7 @@ public class PlantingSurroundingsState extends State {
 	private boolean isStuckInThisState = false;
 	
 	// How far the player can reach to plant something (to calculate what is in range and what isn't)
-	private static final double MAX_REACH = 3.0D;
+	private static final double MAX_REACH = SkybotConfig.OldCropBot.PLANT_REACH;
 	
 	// Delay that should be respected when planting (in ms)
 	private static final long TIME_AFTER_PLANT_TO_LOOK = 75;

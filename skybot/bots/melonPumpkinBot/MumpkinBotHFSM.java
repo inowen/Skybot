@@ -1,5 +1,6 @@
 package inowen.skybot.bots.melonPumpkinBot;
 
+import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
@@ -24,7 +25,7 @@ public class MumpkinBotHFSM extends StateMachine {
 
     public MumpkinFarm theFarm = null;
     public Module botModule;
-    public Item farmedItem = Items.MELON;
+    public Item farmedItem = SkybotConfig.MelonPumpkinBot.FARMED_ITEM;
 
     public MumpkinBotHFSM() {
         botModule = ModuleManager.getModule("MumpkinBot");

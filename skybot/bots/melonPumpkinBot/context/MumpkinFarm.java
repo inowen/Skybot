@@ -1,5 +1,6 @@
 package inowen.skybot.bots.melonPumpkinBot.context;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.utils.FarmZoneConstraints;
 import inowen.utils.CoordinateTranslator;
 import inowen.utils.RayTraceHelper;
@@ -24,8 +25,8 @@ public class MumpkinFarm {
 
     private static Minecraft mc = Minecraft.getInstance();
     // The kind of block with which the farm enclosure is made.
-    public static final Block BARRIER_BLOCK = Blocks.COBBLESTONE;
-    public static final Item itemBeingFarmed = Items.MELON;
+    public static final Block BARRIER_BLOCK = SkybotConfig.MelonPumpkinBot.BARRIER_BLOCK;
+    public static final Item itemBeingFarmed = SkybotConfig.MelonPumpkinBot.FARMED_ITEM;
 
     public FarmZoneConstraints zoneConstraints = null;
     public FarmSlot[][] farmSlots = null;

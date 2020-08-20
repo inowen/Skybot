@@ -1,5 +1,6 @@
 package inowen.skybot.bots.oldCropBot;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.moduleSystem.ModuleManager;
 import inowen.skybot.bots.oldCropBot.states.EatState;
@@ -43,7 +44,7 @@ public class CropFarmBotHFSM {
     public CropFarmBotHFSM() {
 
         // Which item is to be farmed
-        ContextManager.farmedItem = Items.CARROT;
+        ContextManager.farmedItem = SkybotConfig.OldCropBot.FARMED_ITEM;
 
         // Initiate the "sensors" of the bot (the things that filter relevant information from the environment)
         ContextManager.init();

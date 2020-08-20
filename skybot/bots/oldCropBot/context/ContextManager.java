@@ -2,6 +2,7 @@ package inowen.skybot.bots.oldCropBot.context;
 
 import java.util.ArrayList;
 
+import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.utils.CoordinateTranslator;
@@ -37,6 +38,7 @@ public class ContextManager {
 	// The item that the bot should be farming (that is dropped when breaking
 	// crops).
 	public static Item farmedItem = null; // The HFSM module sets this.
+	public static Block BARRIER_BLOCK = SkybotConfig.OldCropBot.BARRIER_BLOCK;
 
 	// The information about the farm in general (how big, contents).
 	public static FarmSlot[][] farmSlots = null; // x , z
@@ -63,7 +65,7 @@ public class ContextManager {
 	public static void init() {
 		// Get the constaints (corners of the farm)
 		try {
-			zoneConstraints.getConstraints(mc.world, CoordinateTranslator.vec3ToBlockPos(mc.player.getPositionVector().add(new Vec3d(0,0.1,0))), Blocks.COBBLESTONE);
+			zoneConstraints.getConstraints(mc.world, CoordinateTranslator.vec3ToBlockPos(mc.player.getPositionVector().add(new Vec3d(0,0.1,0))), BARRIER_BLOCK);
 			constraintsInitialized = true;
 		} catch (Exception e) {
 			Module botModule = ModuleManager.getModule("CropsFarmingBot");

@@ -1,5 +1,6 @@
 package inowen.skybot.bots.oldCropBot.states.breakState.substates;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.skybot.bots.oldCropBot.context.FarmSlotContent;
 import inowen.skybot.bots.oldCropBot.states.State;
@@ -16,7 +17,7 @@ import net.minecraft.util.math.Vec3d;
  */
 public class BreakReachState extends State {
 	
-	public static final double MAX_REACH = 3.0D;
+	public static final double MAX_REACH = SkybotConfig.OldCropBot.BREAK_REACH;
 
 	public static final long MAX_TIME_IN_THIS_STATE = 15000;
 	

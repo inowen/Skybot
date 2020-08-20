@@ -1,5 +1,6 @@
 package inowen.skybot.bots.oldCropBot.context;
 
+import inowen.config.SkybotConfig;
 import inowen.utils.CoordinateTranslator;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +18,7 @@ import net.minecraft.world.World;
  */
 public class FarmZoneConstraints {
 	
-	public static int MAX_FARM_SIZE = 250;
+	public static int MAX_FARM_SIZE = SkybotConfig.OldCropBot.MAX_FARM_RADIUS;
 	
 	// Four corners of the zone.
 	public int minX = 0;
