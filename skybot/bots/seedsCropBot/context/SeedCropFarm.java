@@ -21,7 +21,7 @@ public class SeedCropFarm {
     private FarmZoneConstraints zoneConstraints = null;
     private FarmSlot[][] farmSlots = null;
     private ArrayList<ItemEntity> itemsToRecollect = null;
-    private SeedsCropInitTracker tracker;
+    private SeedsCropInitTracker initTracker = null;
 
     // Info about what is being farmed
     private Item farmedItem;
@@ -38,9 +38,10 @@ public class SeedCropFarm {
     }
 
 
-    public void init() {
+    public void init(SeedsCropInitTracker tracker) {
+        initTracker = tracker;
+
         // Get the borders (constraints) of the farm.
-        tracker = new SeedsCropInitTracker();
         zoneConstraints = new FarmZoneConstraints(FARM_WALLS);
         zoneConstraints.findCorners(new BlockPos(mc.player.getPositionVector().add(new Vec3d(0, 0.2, 0))), tracker);
 
@@ -56,7 +57,7 @@ public class SeedCropFarm {
 
 
     public void update() {
-        if (tracker.foundFarmConstraints && mc.player != null) {
+        if (initTracker.foundFarmConstraints && mc.player != null) {
             updateGroundItems();
             updateFarmSlots();
         }
@@ -84,10 +85,14 @@ public class SeedCropFarm {
     }
 
 
+    /**
+     * Scan the farm, update the FarmSlot 2D matrix (farmSlots).
+     */
     public void updateFarmSlots() {
         if (farmSlots == null) {
             return;
         }
+
 
 
     }
