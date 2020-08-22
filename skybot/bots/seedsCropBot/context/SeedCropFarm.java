@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
@@ -126,12 +125,64 @@ public class SeedCropFarm {
                 else {
                     currentSlot.content = FarmSlot.FarmSlotContent.UNKNOWN;
                 }
-                
+
 
                 farmSlots[x][z] = currentSlot;
             }
         }
+    }
 
 
+    /**
+     * Get the information of the farm (including 2D FarmSlot matrix) as an array of strings.
+     * Display them each as one line to debug.
+     */
+    public ArrayList<String> getDebugStringMap() {
+        ArrayList<String> stringMap = new ArrayList<>();
+
+        // General information about the farm
+        stringMap.add("Tracker existent? " + ((initTracker != null) ? "Yes" : "No"));
+        if (initTracker != null) {
+            stringMap.add("Farm found? : " + (initTracker.foundFarmConstraints ? "Yes" : "No"));
+
+            if (initTracker.foundFarmConstraints) {
+                stringMap.add("Farm size: " + zoneConstraints.lengthXAxis() + " x " + zoneConstraints.lengthZAxis());
+            }
+        }
+
+        // Farm map
+        if (farmSlots != null && zoneConstraints != null) {
+            stringMap.add("----------------- FARM MAP ------------------");
+            for (int z=0; z<zoneConstraints.lengthZAxis(); z++) {
+                // Display the current row in one string.
+                String currentRow = "";
+                for (int x=0; x<zoneConstraints.lengthXAxis(); x++) {
+                    switch (farmSlots[x][z].content) {
+                        case EMPTY_FARMLAND:
+                            currentRow += "E ";
+                            break;
+                        case COVERS_WATER:
+                            currentRow += "W ";
+                            break;
+                        case GROWING:
+                            currentRow += "+ ";
+                            break;
+                        case GROWN:
+                            currentRow += "G ";
+                            break;
+                        case UNKNOWN:
+                            currentRow += "? ";
+                            break;
+                        default:
+                            currentRow += "# ";
+                            break;
+                    }
+                }
+                stringMap.add(currentRow);
+            }
+        }
+
+
+        return stringMap;
     }
 }
