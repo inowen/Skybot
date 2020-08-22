@@ -37,6 +37,8 @@ public class SeedCropFarm {
 
 
     public void init(SeedsCropInitTracker tracker) {
+
+        itemsToRecollect = new ArrayList<>();
         initTracker = tracker;
 
         // Get the borders (constraints) of the farm.

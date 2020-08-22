@@ -12,7 +12,7 @@ public class TestingMelonFarm extends Module {
     public MumpkinFarm theFarm = null;
 
     public TestingMelonFarm() {
-        super("TestingMelonFarm", ForgeKeys.KEY_L);
+        super("TestingMelonFarm", ForgeKeys.KEY_NONE);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package inowen.moduleSystem;
 
 import inowen.moduleSystem.mods.*;
+import inowen.testing.mods.TestSeedsCropFarm;
 import inowen.testing.mods.TestSugarcaneContext;
 import inowen.testing.mods.TestingMelonFarm;
 
@@ -21,6 +22,7 @@ public class ModuleManager {
 
         // Testing
         addMod(new TestingMelonFarm());
+        addMod(new TestSeedsCropFarm());
 
     }
 
