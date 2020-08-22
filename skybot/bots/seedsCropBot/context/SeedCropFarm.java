@@ -1,8 +1,7 @@
 package inowen.skybot.bots.seedsCropBot.context;
 
 import inowen.skybot.utils.FarmZoneConstraints;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
@@ -93,6 +92,45 @@ public class SeedCropFarm {
             return;
         }
 
+        // Go through all the blocks in the farm and read them into the FarmSlot matrix.
+        BlockPos minPos = new BlockPos(zoneConstraints.minX, zoneConstraints.yLevel, zoneConstraints.minZ);
+        for (int x=0; x<zoneConstraints.lengthXAxis(); x++) {
+            for (int z=0; z<zoneConstraints.lengthZAxis(); z++) {
+
+                // For each block inside the farm:
+                BlockPos currentPos = new BlockPos(x + minPos.getX(), minPos.getY(), z + minPos.getZ());
+                FarmSlot currentSlot = new FarmSlot(currentPos);
+
+                // Get the content of the block.
+                Block currentBlock = mc.world.getBlockState(currentPos).getBlock();
+                Block belowCurrentBlock = mc.world.getBlockState(currentPos.down()).getBlock();
+
+                if (currentBlock instanceof AirBlock) {
+                    if (belowCurrentBlock instanceof FarmlandBlock) {
+                        currentSlot.content = FarmSlot.FarmSlotContent.EMPTY_FARMLAND;
+                    }
+                }
+                else if (currentBlock instanceof SlabBlock) {
+                    currentSlot.content = FarmSlot.FarmSlotContent.COVERS_WATER;
+                }
+                else if (currentBlock instanceof CropsBlock) {
+                    BlockState cropBlockState = mc.world.getBlockState(currentPos);
+                    boolean isMaxAge = ((CropsBlock)currentBlock).isMaxAge(cropBlockState);
+                    if (isMaxAge) {
+                        currentSlot.content = FarmSlot.FarmSlotContent.GROWN;
+                    }
+                    else {
+                        currentSlot.content = FarmSlot.FarmSlotContent.GROWING;
+                    }
+                }
+                else {
+                    currentSlot.content = FarmSlot.FarmSlotContent.UNKNOWN;
+                }
+                
+
+                farmSlots[x][z] = currentSlot;
+            }
+        }
 
 
     }
