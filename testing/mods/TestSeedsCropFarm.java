@@ -13,7 +13,7 @@ public class TestSeedsCropFarm extends Module {
     private SeedCropFarm theFarm = null;
 
     public TestSeedsCropFarm() {
-        super("TestSeedsCropFarm", ForgeKeys.KEY_J);
+        super("TestSeedsCropFarm", ForgeKeys.KEY_NONE);
     }
 
     @Override

@@ -25,6 +25,8 @@ public class SeedsCropBotHFSM extends StateMachine {
         this.tracker = new SeedsCropInitTracker();
         theFarm.init(tracker);
 
+        // Set and start first state.
+
     }
 
     @Override
