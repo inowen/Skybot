@@ -25,7 +25,7 @@ public class ShowInventoryConfigButton {
     }
 
     public static void showConfigScreen() {
-        mc.displayGuiScreen(new MainConfigScreen(new StringTextComponent("Config Screen")));
+        mc.displayGuiScreen(new MainConfigScreen(new StringTextComponent("SKYBOT SETTINGS")));
     }
 
 }

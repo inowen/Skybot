@@ -23,6 +23,7 @@ public class MainConfigScreen extends Screen {
     public void render(int mouseX, int mouseY, float partialTicks) {
         renderBackground();
         super.render(mouseX, mouseY, partialTicks);
+        this.drawCenteredString(mc.fontRenderer, this.title.getFormattedText(), (int)(0.5*this.width), (int)(0.05*this.height), 0xffffff);
     }
 
 
