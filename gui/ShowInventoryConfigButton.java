@@ -2,9 +2,11 @@ package inowen.gui;
 
 
 import inowen.SkyBotMod;
+import inowen.gui.screens.MainConfigScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,12 +20,12 @@ public class ShowInventoryConfigButton {
     @SubscribeEvent
     public static void showButtonInInventory(GuiScreenEvent.InitGuiEvent event) {
         if (event.getGui() instanceof InventoryScreen) {
-            event.addWidget(new Button(140, 60, 80, 20, "SkyBot Config", button->showConfigScreen() ));
+            event.addWidget(new Button((int)(0.25*event.getGui().width), (int)(0.15*event.getGui().height), 80, 20, "SkyBot Config", button->showConfigScreen() ));
         }
     }
 
     public static void showConfigScreen() {
-        mc.displayGuiScreen(null);
+        mc.displayGuiScreen(new MainConfigScreen(new StringTextComponent("Config Screen")));
     }
 
 }
