@@ -15,6 +15,7 @@ public class MainConfigScreen extends Screen {
 
     // Widgets
     private CheckboxButton hideNamesCheckBox = null;
+    private CheckboxButton whitelistCheckbox = null;
 
     public MainConfigScreen(ITextComponent titleIn) {
         super(titleIn);
@@ -24,8 +25,12 @@ public class MainConfigScreen extends Screen {
     public void init() {
         super.init();
         this.addButton(new Button((int)(0.75*this.width), (int)(0.9*this.height), 100, 20, "Exit", button -> {mc.displayGuiScreen(null);}));
+        // Checkbox for HideNames module
         hideNamesCheckBox = new CheckboxButton((int)(0.1*this.width), (int)(0.1*this.height), 20, 20, "Hide Names", ModuleManager.getModule("HideNames").isToggled());
         this.addButton(hideNamesCheckBox);
+        // Checkbox for Whitelist module
+        whitelistCheckbox = new CheckboxButton((int)(0.1*this.width), (int)(0.1*this.height)+20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
+        this.addButton(whitelistCheckbox);
     }
 
     @Override
@@ -41,6 +46,22 @@ public class MainConfigScreen extends Screen {
         super.tick();
         Module hideNames = ModuleManager.getModule("HideNames");
         hideNames.toggled = hideNamesCheckBox.isChecked();
+
+        Module whitelist = ModuleManager.getModule("WhiteList");
+        if (whitelistCheckbox.isChecked()) {
+            // Enable module if it isn't already
+            if (!whitelist.isToggled()) {
+                whitelist.onEnable();
+                whitelist.toggled = true;
+            }
+        }
+        else {
+            // if module enabled, disable it
+            if (whitelist.isToggled()) {
+                whitelist.onDisable();
+                whitelist.toggled = false;
+            }
+        }
     }
 
 
