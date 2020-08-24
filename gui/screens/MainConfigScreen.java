@@ -33,23 +33,14 @@ public class MainConfigScreen extends Screen {
     public void init() {
         super.init();
 
-        // Determine positions of gui widget groups
+        // Create and add the checkboxButtons to toggle the modules.
         modCheckboxX = (int)(0.025*this.width);
         topModCheckboxY = (int)(0.1*this.height);
+        createAndAddModCheckboxes(modCheckboxX, topModCheckboxY);
 
         // Create and add the exit button
         this.addButton(new Button((int)(0.75*this.width), (int)(0.9*this.height), 100, 20, "Exit", button -> {mc.displayGuiScreen(null);}));
 
-
-        int numModCheckBoxes = 0;
-        // Checkbox for HideNames module
-        hideNamesCheckBox = new CheckboxButton(modCheckboxX, topModCheckboxY + numModCheckBoxes*20, 20, 20, "Hide Names", ModuleManager.getModule("HideNames").isToggled());
-        this.addButton(hideNamesCheckBox);
-        numModCheckBoxes++;
-        // Checkbox for Whitelist module
-        whitelistCheckbox = new CheckboxButton(modCheckboxX, topModCheckboxY + numModCheckBoxes*20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
-        this.addButton(whitelistCheckbox);
-        numModCheckBoxes++;
     }
 
     @Override
@@ -81,6 +72,29 @@ public class MainConfigScreen extends Screen {
                 whitelist.toggled = false;
             }
         }
+    }
+
+
+
+    /**
+     * Create and add to the gui all the checkboxes related to enabling or disabling modules:
+     * Things like WhiteList and HideNames, and whatever might be added later.
+     * @param x The X coordinate of the mod checkboxes (they are a column, all have the same x)
+     * @param topY The Y coordinate of the highest checkbox. The rest are directly below.
+     */
+    public void createAndAddModCheckboxes(int x, int topY) {
+        int numModCheckBoxes = 0;
+
+        // Checkbox for HideNames module
+        hideNamesCheckBox = new CheckboxButton(modCheckboxX, topModCheckboxY + numModCheckBoxes*20, 20, 20, "Hide Names", ModuleManager.getModule("HideNames").isToggled());
+        this.addButton(hideNamesCheckBox);
+        numModCheckBoxes++;
+
+        // Checkbox for Whitelist module
+        whitelistCheckbox = new CheckboxButton(modCheckboxX, topModCheckboxY + numModCheckBoxes*20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
+        this.addButton(whitelistCheckbox);
+        numModCheckBoxes++;
+
     }
 
 
