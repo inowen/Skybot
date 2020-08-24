@@ -23,6 +23,7 @@ public class MainConfigScreen extends Screen {
     // Widgets: Checkbox buttons (need to be class-wide to access .isChecked())
     private CheckboxButton hideNamesCheckBox = null;
     private CheckboxButton whitelistCheckbox = null;
+    private CheckboxButton fullBrightCheckbox = null;
 
 
     // Widgets: Tabs buttons (settings for one or the other bot).
@@ -92,6 +93,14 @@ public class MainConfigScreen extends Screen {
         Module hideNames = ModuleManager.getModule("HideNames");
         hideNames.toggled = hideNamesCheckBox.isChecked();
 
+        Module fullBright = ModuleManager.getModule("FullBright");
+        if (fullBrightCheckbox.isChecked() && !fullBright.isToggled()) {
+            fullBright.toggle();
+        }
+        else if (!fullBrightCheckbox.isChecked() && fullBright.isToggled()) {
+            fullBright.toggle();
+        }
+
         Module whitelist = ModuleManager.getModule("WhiteList");
         if (whitelistCheckbox.isChecked()) {
             // Enable module if it isn't already
@@ -121,7 +130,7 @@ public class MainConfigScreen extends Screen {
         int numModCheckBoxes = 0;
 
         // Checkbox for HideNames module
-        hideNamesCheckBox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "Hide Names", ModuleManager.getModule("HideNames").isToggled());
+        hideNamesCheckBox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "HideNames", ModuleManager.getModule("HideNames").isToggled());
         this.addButton(hideNamesCheckBox);
         numModCheckBoxes++;
 
@@ -129,6 +138,15 @@ public class MainConfigScreen extends Screen {
         whitelistCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
         this.addButton(whitelistCheckbox);
         numModCheckBoxes++;
+
+        // Add an extra space in between (different categories)
+        numModCheckBoxes++;
+
+        // Checkbox for FullBright module
+        fullBrightCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "FullBright", ModuleManager.getModule("FullBright").isToggled());
+        this.addButton(fullBrightCheckbox);
+        numModCheckBoxes++;
+
 
     }
 
