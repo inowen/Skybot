@@ -20,6 +20,7 @@ public class ModuleManager {
         addMod(new WhiteList());
         addMod(new HideNames());
         addMod(new SeedsCropBot());
+        addMod(new FullBright());
 
         // Testing
         addMod(new TestingMelonFarm());
