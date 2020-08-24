@@ -27,6 +27,7 @@ public class SkybotConfig {
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static net.minecraft.item.Item FARMED_ITEM = Items.CARROT;
         public static int MAX_FARM_RADIUS = 200;
+        public static int MIN_ITEMS_SELL;
         // State specific
         public static double BREAK_REACH = 3.0D;
         public static double PLANT_REACH = 3.0D;
@@ -36,6 +37,7 @@ public class SkybotConfig {
     public static class MelonPumpkinBot {
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Item FARMED_ITEM = Items.MELON;
+        public static int MIN_ITEMS_SELL;
     }
 
 
@@ -43,6 +45,7 @@ public class SkybotConfig {
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Block HOME_ROW_BLOCK = Blocks.LAPIS_BLOCK;
         public static Block INIT_LANE_BLOCK = Blocks.COAL_BLOCK;
+        public static int MIN_ITEMS_SELL;
     }
 
 
@@ -50,6 +53,7 @@ public class SkybotConfig {
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Item FARMED_ITEM = Items.BEETROOT;
         public static Item SEEDS_FARMED_ITEM = Items.BEETROOT_SEEDS;
+        public static int MIN_ITEMS_SELL;
 
     }
 

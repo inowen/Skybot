@@ -13,9 +13,17 @@ public class MainConfigScreen extends Screen {
 
     protected Minecraft mc = Minecraft.getInstance();
 
-    // Widgets
+    // Widgets: Checkbox buttons
     private CheckboxButton hideNamesCheckBox = null;
     private CheckboxButton whitelistCheckbox = null;
+    public int topModCheckboxY;
+    public int modCheckboxX;
+
+    // Widgets: Tabs buttons (settings for one or the other bot).
+    // These lead to another identical gui screen except that there are settings for the chosen bot in the center.
+    // TODO: Create configSectionTab class or something to model these tab guis.
+
+
 
     public MainConfigScreen(ITextComponent titleIn) {
         super(titleIn);
@@ -24,13 +32,24 @@ public class MainConfigScreen extends Screen {
     @Override
     public void init() {
         super.init();
+
+        // Determine positions of gui widget groups
+        modCheckboxX = (int)(0.025*this.width);
+        topModCheckboxY = (int)(0.1*this.height);
+
+        // Create and add the exit button
         this.addButton(new Button((int)(0.75*this.width), (int)(0.9*this.height), 100, 20, "Exit", button -> {mc.displayGuiScreen(null);}));
+
+
+        int numModCheckBoxes = 0;
         // Checkbox for HideNames module
-        hideNamesCheckBox = new CheckboxButton((int)(0.1*this.width), (int)(0.1*this.height), 20, 20, "Hide Names", ModuleManager.getModule("HideNames").isToggled());
+        hideNamesCheckBox = new CheckboxButton(modCheckboxX, topModCheckboxY + numModCheckBoxes*20, 20, 20, "Hide Names", ModuleManager.getModule("HideNames").isToggled());
         this.addButton(hideNamesCheckBox);
+        numModCheckBoxes++;
         // Checkbox for Whitelist module
-        whitelistCheckbox = new CheckboxButton((int)(0.1*this.width), (int)(0.1*this.height)+20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
+        whitelistCheckbox = new CheckboxButton(modCheckboxX, topModCheckboxY + numModCheckBoxes*20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
         this.addButton(whitelistCheckbox);
+        numModCheckBoxes++;
     }
 
     @Override
