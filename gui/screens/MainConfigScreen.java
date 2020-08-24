@@ -31,48 +31,22 @@ public class MainConfigScreen extends Screen {
     // TODO: Create configSectionTab class or something to model these tab guis.
 
 
+    /**
+     * Constructor.
+     * @param titleIn Title for the window (can be accessed through this.title)
+     */
+    public MainConfigScreen(ITextComponent titleIn) { super(titleIn); }
 
-    public MainConfigScreen(ITextComponent titleIn) {
-        super(titleIn);
-    }
-
+    
     @Override
     public void init() {
         super.init();
 
-        // Create and add the checkboxButtons to toggle the modules.
-        int modCheckboxX = (int)(0.025*this.width);
-        int topModCheckboxY = (int)(0.1*this.height);
-        createAndAddModCheckboxes(modCheckboxX, topModCheckboxY);
+        // Create and add the checkboxButtons to toggle the modules (upper left side).
+        addModCheckboxes((int)(0.025*this.width), (int)(0.1*this.height));
 
         // Create and add the buttons to open the different options tabs.
-        int tabsButtonsHeight = (int)(0.09*this.height);
-        int tabsButtonsXOffset = (int)(0.175*this.width);
-        int buttonWidth = 82;
-        this.addButton(new Button(tabsButtonsXOffset, tabsButtonsHeight, buttonWidth, 20, "CropBot", button -> {
-            System.out.println("TestButtonPressed");
-        }));
-        this.addButton(new Button(tabsButtonsXOffset+buttonWidth*1, tabsButtonsHeight, buttonWidth, 20, "SugarcaneBot", button -> {
-            System.out.println("TestButtonPressed");
-        }));
-        this.addButton(new Button(tabsButtonsXOffset+buttonWidth*2, tabsButtonsHeight, buttonWidth, 20, "MelonPumpkinBot", button -> {
-            System.out.println("TestButtonPressed");
-        }));
-        this.addButton(new Button(tabsButtonsXOffset+buttonWidth*3, tabsButtonsHeight, buttonWidth, 20, "SeedsCropBot", button -> {
-            System.out.println("TestButtonPressed");
-        }));
-        this.addButton(new Button(tabsButtonsXOffset + buttonWidth*4, tabsButtonsHeight, buttonWidth, 20, "NetherwartsBot", button -> {
-            System.out.println("TestButtonPressed");
-        }));
-        this.addButton(new Button(tabsButtonsXOffset + buttonWidth*5, tabsButtonsHeight, buttonWidth, 20, "ChorusBot", button -> {
-            System.out.println("TestButtonPressed");
-        }));
-
-        // Testing how it would look, surround the area with the settings for each bot with long button-lines.
-        this.addButton(new Button(tabsButtonsXOffset, tabsButtonsHeight + 30, 5, 500, "", button -> {}));
-        this.addButton(new Button(tabsButtonsXOffset, tabsButtonsHeight + 30, 1000, 5, "", button -> {}));
-        this.addButton(new Button(this.width-10, tabsButtonsHeight + 30, 5, 500, "", button -> {}));
-
+        addTabs();
 
         // Create and add the exit button
         this.addButton(new Button((int)(0.75*this.width), (int)(0.9*this.height), 100, 20, "Exit", button -> {mc.displayGuiScreen(null);}));
@@ -83,6 +57,8 @@ public class MainConfigScreen extends Screen {
     public void render(int mouseX, int mouseY, float partialTicks) {
         renderBackground();
         super.render(mouseX, mouseY, partialTicks);
+
+        // Draw the title centered above the menu
         this.drawCenteredString(mc.fontRenderer, this.title.getFormattedText(), (int)(0.5*this.width), (int)(0.05*this.height), 0xffffff);
     }
 
@@ -90,6 +66,47 @@ public class MainConfigScreen extends Screen {
     @Override
     public void tick() {
         super.tick();
+        tickCheckboxes();
+    }
+
+
+
+    /**
+     * Create and add to the gui all the checkboxes related to enabling or disabling modules:
+     * Things like WhiteList and HideNames, and whatever might be added later.
+     * @param x The X coordinate of the mod checkboxes (they are a column, all have the same x)
+     * @param topY The Y coordinate of the highest checkbox. The rest are directly below.
+     */
+    public void addModCheckboxes(int x, int topY) {
+        int numModCheckBoxes = 0;
+
+        // Checkbox for HideNames module
+        hideNamesCheckBox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "HideNames", ModuleManager.getModule("HideNames").isToggled());
+        this.addButton(hideNamesCheckBox);
+        numModCheckBoxes++;
+
+        // Checkbox for Whitelist module
+        whitelistCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
+        this.addButton(whitelistCheckbox);
+        numModCheckBoxes++;
+
+        // Add an extra space in between (different categories)
+        numModCheckBoxes++;
+
+        // Checkbox for FullBright module
+        fullBrightCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "FullBright", ModuleManager.getModule("FullBright").isToggled());
+        this.addButton(fullBrightCheckbox);
+        numModCheckBoxes++;
+
+
+    }
+
+
+    /**
+     * Go through all the checkboxes, if they are ticked then enable module, if not disable modules.
+     */
+    public void tickCheckboxes() {
+
         Module hideNames = ModuleManager.getModule("HideNames");
         hideNames.toggled = hideNamesCheckBox.isChecked();
 
@@ -119,35 +136,34 @@ public class MainConfigScreen extends Screen {
     }
 
 
-
     /**
-     * Create and add to the gui all the checkboxes related to enabling or disabling modules:
-     * Things like WhiteList and HideNames, and whatever might be added later.
-     * @param x The X coordinate of the mod checkboxes (they are a column, all have the same x)
-     * @param topY The Y coordinate of the highest checkbox. The rest are directly below.
+     * Create buttons for the menu. Add them to the list of widgets
+     * for this menu.
      */
-    public void createAndAddModCheckboxes(int x, int topY) {
-        int numModCheckBoxes = 0;
+    public void addTabs() {
+        int tabsButtonsHeight = (int)(0.09*this.height);
+        int tabsButtonsXOffset = (int)(0.175*this.width);
+        int buttonWidth = 82;
 
-        // Checkbox for HideNames module
-        hideNamesCheckBox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "HideNames", ModuleManager.getModule("HideNames").isToggled());
-        this.addButton(hideNamesCheckBox);
-        numModCheckBoxes++;
-
-        // Checkbox for Whitelist module
-        whitelistCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20,20, "WhiteList", ModuleManager.getModule("WhiteList").isToggled());
-        this.addButton(whitelistCheckbox);
-        numModCheckBoxes++;
-
-        // Add an extra space in between (different categories)
-        numModCheckBoxes++;
-
-        // Checkbox for FullBright module
-        fullBrightCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "FullBright", ModuleManager.getModule("FullBright").isToggled());
-        this.addButton(fullBrightCheckbox);
-        numModCheckBoxes++;
-
-
+        // Add the tabs.
+        this.addButton(new Button(tabsButtonsXOffset, tabsButtonsHeight, buttonWidth, 20, "CropBot", button -> {
+            System.out.println("TestButtonPressed");
+        }));
+        this.addButton(new Button(tabsButtonsXOffset+buttonWidth*1, tabsButtonsHeight, buttonWidth, 20, "SugarcaneBot", button -> {
+            System.out.println("TestButtonPressed");
+        }));
+        this.addButton(new Button(tabsButtonsXOffset+buttonWidth*2, tabsButtonsHeight, buttonWidth, 20, "MelonPumpkinBot", button -> {
+            System.out.println("TestButtonPressed");
+        }));
+        this.addButton(new Button(tabsButtonsXOffset+buttonWidth*3, tabsButtonsHeight, buttonWidth, 20, "SeedsCropBot", button -> {
+            System.out.println("TestButtonPressed");
+        }));
+        this.addButton(new Button(tabsButtonsXOffset + buttonWidth*4, tabsButtonsHeight, buttonWidth, 20, "NetherwartsBot", button -> {
+            System.out.println("TestButtonPressed");
+        }));
+        this.addButton(new Button(tabsButtonsXOffset + buttonWidth*5, tabsButtonsHeight, buttonWidth, 20, "ChorusBot", button -> {
+            System.out.println("TestButtonPressed");
+        }));
     }
 
 
