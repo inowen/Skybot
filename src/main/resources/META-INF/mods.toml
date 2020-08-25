@@ -1,0 +1,42 @@
+
+modLoader="javafml" #mandatory
+
+loaderVersion="[31,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+
+[[mods]] #mandatory
+
+modId="skybot" #mandatory
+
+version="1.15.2_0.4.5" #mandatory
+
+displayName="SkyBotAutomation" #mandatory
+
+logoFile="examplemod.png" #optional
+
+authors="inowen" #optional
+
+description='''
+Minecraft bots and a module (on/off) system for a Skyblock economy based on farming crops. Server: mc.blockdrop.org
+'''
+
+
+
+[[dependencies.skybot]] #optional
+
+    modId="forge" #mandatory
+
+    mandatory=true #mandatory
+
+    versionRange="[31,)" #mandatory
+
+    ordering="NONE"
+
+    side="BOTH"
+
+
+[[dependencies.skybot]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.15.2]"
+    ordering="NONE"
+    side="BOTH"
