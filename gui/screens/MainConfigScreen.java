@@ -1,6 +1,7 @@
 package inowen.gui.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
@@ -72,23 +73,11 @@ public class MainConfigScreen extends Screen {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         renderBackground();
-        renderTabExtensionContainer();
+        renderTabExtensionEnclosure();
         super.render(mouseX, mouseY, partialTicks);
 
         // Draw the title centered above the menu
         this.drawCenteredString(mc.fontRenderer, this.title.getFormattedText(), (int)(0.5*this.width), (int)(0.05*this.height), 0xffffff);
-
-        // Testing
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gui/container/inventory.png"));
-
-        int x = this.tabExtensionMinX;
-        int y = this.tabExtensionMinY;
-        int offsetX = 0;
-        int offsetY = 0;
-        int sizeX = tabExtensionMaxX - tabExtensionMinX;
-        int sizeY = tabExtensionMaxY - tabExtensionMinY;
-        this.blit(x, y, offsetX, offsetY, sizeX, sizeY);
 
     }
 
@@ -204,8 +193,35 @@ public class MainConfigScreen extends Screen {
      * Render the box within which the options for each tab open up
      * when pressing the button to open their page.
      */
-    public void renderTabExtensionContainer() {
-        // Do something here...
+    public void renderTabExtensionEnclosure() {
+        // Draw background
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        getMinecraft().getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "tab_extension_background.png"));
+
+        int x = this.tabExtensionMinX;
+        int y = this.tabExtensionMinY;
+        int offsetX = 0;
+        int offsetY = 0;
+        int sizeX = tabExtensionMaxX - tabExtensionMinX;
+        int sizeY = tabExtensionMaxY - tabExtensionMinY;
+        this.blit(x, y, offsetX, offsetY, sizeX, sizeY);
+
+        // Draw the borders (rectangle)
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        getMinecraft().getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "tab_extension_border.jpg"));
+
+        //... left pillar
+        this.blit(tabExtensionMinX-ENCLOSURE_WIDTH, tabExtensionMinY-ENCLOSURE_WIDTH, 0, 0, ENCLOSURE_WIDTH, tabExtensionMaxY-tabExtensionMinY + 2*ENCLOSURE_WIDTH);
+
+        //... right pillar
+        this.blit(tabExtensionMaxX, tabExtensionMinY-ENCLOSURE_WIDTH, 0, 0, ENCLOSURE_WIDTH, tabExtensionMaxY-tabExtensionMinY+ENCLOSURE_WIDTH);
+
+        //... ceiling
+        this.blit(tabExtensionMinX-ENCLOSURE_WIDTH, tabExtensionMinY-ENCLOSURE_WIDTH, 0, 0, tabExtensionMaxX-tabExtensionMinX+ENCLOSURE_WIDTH, ENCLOSURE_WIDTH);
+
+        //... floor
+        this.blit(tabExtensionMinX, tabExtensionMaxY, 0, 0, tabExtensionMaxX-tabExtensionMinX + ENCLOSURE_WIDTH, ENCLOSURE_WIDTH);
+
     }
 
 
