@@ -1,5 +1,6 @@
 package inowen.gui.screens;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
@@ -7,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.CheckboxButton;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 
@@ -19,6 +21,13 @@ import net.minecraft.util.text.ITextComponent;
 public class MainConfigScreen extends Screen {
 
     protected Minecraft mc = Minecraft.getInstance();
+
+    // Space for the different tab extensions
+    int tabExtensionMinX;
+    int tabExtensionMaxX;
+    int tabExtensionMinY;
+    int tabExtensionMaxY;
+
 
     // Widgets: Checkbox buttons (need to be class-wide to access .isChecked())
     private CheckboxButton hideNamesCheckBox = null;
@@ -37,7 +46,7 @@ public class MainConfigScreen extends Screen {
      */
     public MainConfigScreen(ITextComponent titleIn) { super(titleIn); }
 
-    
+
     @Override
     public void init() {
         super.init();
@@ -48,6 +57,10 @@ public class MainConfigScreen extends Screen {
         // Create and add the buttons to open the different options tabs.
         addTabs();
 
+        // Calculate the position of the enclosure for tab extensions.
+        calculateTabExtEnclosureLimits();
+
+
         // Create and add the exit button
         this.addButton(new Button((int)(0.75*this.width), (int)(0.9*this.height), 100, 20, "Exit", button -> {mc.displayGuiScreen(null);}));
 
@@ -56,10 +69,24 @@ public class MainConfigScreen extends Screen {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         renderBackground();
+        renderTabExtensionContainer();
         super.render(mouseX, mouseY, partialTicks);
 
         // Draw the title centered above the menu
         this.drawCenteredString(mc.fontRenderer, this.title.getFormattedText(), (int)(0.5*this.width), (int)(0.05*this.height), 0xffffff);
+
+        // Testing
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gui/container/inventory.png"));
+
+        int x = this.tabExtensionMinX;
+        int y = this.tabExtensionMinY;
+        int offsetX = tabExtensionMaxX - tabExtensionMaxX;
+        int offsetY = tabExtensionMaxY - tabExtensionMinY;
+        int sizeX = tabExtensionMaxX - tabExtensionMaxX;
+        int sizeY = tabExtensionMaxY - tabExtensionMinY;
+        this.blit(x, y, offsetX, offsetY, sizeX, sizeY);
+
     }
 
 
@@ -68,6 +95,9 @@ public class MainConfigScreen extends Screen {
         super.tick();
         tickCheckboxes();
     }
+
+
+
 
 
 
@@ -166,5 +196,24 @@ public class MainConfigScreen extends Screen {
         }));
     }
 
+
+    /**
+     * Render the box within which the options for each tab open up
+     * when pressing the button to open their page.
+     */
+    public void renderTabExtensionContainer() {
+        // Do something here...
+    }
+
+
+    /**
+     * Find the coordinates where the tab extension enclosure should be rendered.
+     */
+    public void calculateTabExtEnclosureLimits() {
+        tabExtensionMinX = (int)(0.175*this.width);
+        tabExtensionMaxX = (int)(0.95*this.width);
+        tabExtensionMinY = (int)(0.0975*this.height);
+        tabExtensionMaxY = (int)(0.85*this.height);
+    }
 
 }
