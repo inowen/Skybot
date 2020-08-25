@@ -3,6 +3,7 @@ package inowen.gui.screens;
 import com.mojang.blaze3d.systems.RenderSystem;
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
+import inowen.gui.screens.configTabs.*;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import net.minecraft.client.Minecraft;
@@ -11,6 +12,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.CheckboxButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 
 /**
@@ -169,22 +171,22 @@ public class MainConfigScreen extends Screen {
 
         // Add the tabs.
         this.addButton(new Button(tabsButtonsXOffset, tabsButtonsHeight, buttonWidth, 20, "CropBot", button -> {
-            System.out.println("TestButtonPressed");
+            mc.displayGuiScreen(new CropBotConfigScreen(new StringTextComponent("CropBot Settings")));
         }));
         this.addButton(new Button(tabsButtonsXOffset+buttonWidth*1, tabsButtonsHeight, buttonWidth, 20, "SugarcaneBot", button -> {
-            System.out.println("TestButtonPressed");
+            mc.displayGuiScreen((new SugarcaneBotConfigScreen(new StringTextComponent("SugarcaneBot Settings"))));
         }));
         this.addButton(new Button(tabsButtonsXOffset+buttonWidth*2, tabsButtonsHeight, buttonWidth, 20, "MelonPumpkinBot", button -> {
-            System.out.println("TestButtonPressed");
+            mc.displayGuiScreen(new MelonPumpkinBotConfigScreen(new StringTextComponent("MelonPumpkinBot Settings")));
         }));
         this.addButton(new Button(tabsButtonsXOffset+buttonWidth*3, tabsButtonsHeight, buttonWidth, 20, "SeedsCropBot", button -> {
-            System.out.println("TestButtonPressed");
+            mc.displayGuiScreen(new SeedsCropBotConfigScreen(new StringTextComponent("SeedsCropBot Settings")));
         }));
         this.addButton(new Button(tabsButtonsXOffset + buttonWidth*4, tabsButtonsHeight, buttonWidth, 20, "NetherwartsBot", button -> {
-            System.out.println("TestButtonPressed");
+            mc.displayGuiScreen(new NetherwartBotConfigScreen(new StringTextComponent("NetherwartsBot Settings")));
         }));
         this.addButton(new Button(tabsButtonsXOffset + buttonWidth*5, tabsButtonsHeight, buttonWidth, 20, "ChorusBot", button -> {
-            System.out.println("TestButtonPressed");
+            mc.displayGuiScreen(new ChorusBotConfigScreen(new StringTextComponent("ChorusBot Settings")));
         }));
     }
 
