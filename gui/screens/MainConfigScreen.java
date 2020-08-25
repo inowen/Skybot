@@ -23,10 +23,13 @@ public class MainConfigScreen extends Screen {
     protected Minecraft mc = Minecraft.getInstance();
 
     // Space for the different tab extensions
-    int tabExtensionMinX;
-    int tabExtensionMaxX;
-    int tabExtensionMinY;
-    int tabExtensionMaxY;
+    protected int tabExtensionMinX;
+    protected int tabExtensionMaxX;
+    protected int tabExtensionMinY;
+    protected int tabExtensionMaxY;
+
+    // How wide the enclosure for the tab extensions will be
+    public static final int ENCLOSURE_WIDTH = 6;
 
 
     // Widgets: Checkbox buttons (need to be class-wide to access .isChecked())
@@ -81,9 +84,9 @@ public class MainConfigScreen extends Screen {
 
         int x = this.tabExtensionMinX;
         int y = this.tabExtensionMinY;
-        int offsetX = tabExtensionMaxX - tabExtensionMaxX;
-        int offsetY = tabExtensionMaxY - tabExtensionMinY;
-        int sizeX = tabExtensionMaxX - tabExtensionMaxX;
+        int offsetX = 0;
+        int offsetY = 0;
+        int sizeX = tabExtensionMaxX - tabExtensionMinX;
         int sizeY = tabExtensionMaxY - tabExtensionMinY;
         this.blit(x, y, offsetX, offsetY, sizeX, sizeY);
 
@@ -210,10 +213,10 @@ public class MainConfigScreen extends Screen {
      * Find the coordinates where the tab extension enclosure should be rendered.
      */
     public void calculateTabExtEnclosureLimits() {
-        tabExtensionMinX = (int)(0.175*this.width);
-        tabExtensionMaxX = (int)(0.95*this.width);
-        tabExtensionMinY = (int)(0.0975*this.height);
-        tabExtensionMaxY = (int)(0.85*this.height);
+        tabExtensionMinX = (int)(0.175*this.width) + this.ENCLOSURE_WIDTH;
+        tabExtensionMaxX = (int)(0.95*this.width) - this.ENCLOSURE_WIDTH;
+        tabExtensionMinY = (int)(0.0975*this.height) + this.ENCLOSURE_WIDTH + 20;
+        tabExtensionMaxY = (int)(0.85*this.height) - this.ENCLOSURE_WIDTH;
     }
 
 }
