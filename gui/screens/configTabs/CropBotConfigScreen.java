@@ -1,5 +1,6 @@
 package inowen.gui.screens.configTabs;
 
+import inowen.config.SkybotConfig;
 import inowen.gui.screens.MainConfigScreen;
 import net.minecraft.util.text.ITextComponent;
 
@@ -21,6 +22,9 @@ public class CropBotConfigScreen extends MainConfigScreen {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         super.render(mouseX, mouseY, partialTicks);
+
+        // Show the target item
+        mc.fontRenderer.drawString("Target Item: " + SkybotConfig.OldCropBot.FARMED_ITEM.getName().getString(), tabExtensionMinX+3, tabExtensionMinY+3, 0xffffff);
     }
 
     @Override

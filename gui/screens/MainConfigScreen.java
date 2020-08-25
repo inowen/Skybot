@@ -25,7 +25,7 @@ public class MainConfigScreen extends Screen {
 
     protected Minecraft mc = Minecraft.getInstance();
 
-    // Space for the different tab extensions
+    // Coordinates of the different tab extensions
     protected int tabExtensionMinX;
     protected int tabExtensionMaxX;
     protected int tabExtensionMinY;
@@ -39,11 +39,6 @@ public class MainConfigScreen extends Screen {
     private CheckboxButton hideNamesCheckBox = null;
     private CheckboxButton whitelistCheckbox = null;
     private CheckboxButton fullBrightCheckbox = null;
-
-
-    // Widgets: Tabs buttons (settings for one or the other bot).
-    // These lead to another identical gui screen except that there are settings for the chosen bot in the center.
-    // TODO: Create configSectionTab class or something to model these tab guis.
 
 
     /**
@@ -66,10 +61,8 @@ public class MainConfigScreen extends Screen {
         // Calculate the position of the enclosure for tab extensions.
         calculateTabExtEnclosureLimits();
 
-
         // Create and add the exit button
         this.addButton(new Button((int)(0.75*this.width), (int)(0.9*this.height), 100, 20, "Exit", button -> {mc.displayGuiScreen(null);}));
-
     }
 
     @Override
