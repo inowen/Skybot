@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class TestingMelonFarm extends Module {
 
     public MumpkinFarm theFarm = null;
+    public MumpkinInitTracker tracker = null;
 
     public TestingMelonFarm() {
         super("TestingMelonFarm", ForgeKeys.KEY_NONE);
@@ -18,20 +19,20 @@ public class TestingMelonFarm extends Module {
     @Override
     public void onEnable() {
         theFarm = new MumpkinFarm();
-        MumpkinInitTracker tracker = new MumpkinInitTracker();
+        tracker = new MumpkinInitTracker();
         theFarm.init(tracker);
         if (!tracker.isCompletelyInit()) {
             this.toggled = false;
             return;
         }
 
-        theFarm.update();
+        theFarm.update(tracker);
     }
 
 
     @Override
     public void onUpdate() {
-        theFarm.update();
+        theFarm.update(tracker);
     }
 
 

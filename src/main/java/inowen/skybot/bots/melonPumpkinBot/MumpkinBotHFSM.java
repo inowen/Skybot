@@ -26,6 +26,7 @@ public class MumpkinBotHFSM extends StateMachine {
     public MumpkinFarm theFarm = null;
     public Module botModule;
     public Item farmedItem = SkybotConfig.MelonPumpkinBot.FARMED_ITEM;
+    public MumpkinInitTracker tracker = null;
 
     public MumpkinBotHFSM() {
         botModule = ModuleManager.getModule("MumpkinBot");
@@ -33,7 +34,7 @@ public class MumpkinBotHFSM extends StateMachine {
 
     @Override
     public void start() {
-        MumpkinInitTracker tracker = new MumpkinInitTracker();
+        tracker = new MumpkinInitTracker();
         theFarm = new MumpkinFarm();
         theFarm.init(tracker);
 
@@ -42,6 +43,9 @@ public class MumpkinBotHFSM extends StateMachine {
                 System.out.println("Couldn't load farm correctly. Shutting off.");
                 botModule.onDisable();
                 botModule.toggled = false;
+                return;
+            }
+            else {
                 return;
             }
         }
@@ -71,6 +75,13 @@ public class MumpkinBotHFSM extends StateMachine {
             return;
         }
 
+        if (currentState == null) {
+            if (botModule.isToggled()) {
+                botModule.toggle();
+            }
+            return;
+        }
+
         // If there is no player (disconnect or the likes), toggle off the module.
         if (Minecraft.getInstance().player == null) {
             if (botModule.isToggled()) {
@@ -95,7 +106,7 @@ public class MumpkinBotHFSM extends StateMachine {
         }
 
         // Update information about the context (the farm)
-        theFarm.update();
+        theFarm.update(tracker);
 
         // Propagate tick to current state
         currentState.run();
@@ -113,7 +124,7 @@ public class MumpkinBotHFSM extends StateMachine {
 
     @Override
     public void onShutdown() {
-        if(Minecraft.getInstance().player != null) {
+        if(Minecraft.getInstance().player != null && currentState != null) {
             currentState.onExit();
         }
     }

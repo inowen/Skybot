@@ -1,6 +1,8 @@
 package inowen.skybot.bots.melonPumpkinBot.context;
 
 import inowen.config.SkybotConfig;
+import inowen.moduleSystem.Module;
+import inowen.moduleSystem.ModuleManager;
 import inowen.skybot.utils.FarmZoneConstraints;
 import inowen.utils.CoordinateTranslator;
 import inowen.utils.RayTraceHelper;
@@ -51,16 +53,24 @@ public class MumpkinFarm {
             // Get the contents of those farmslots for the first time.
             updateFarmSlots();
         }
+        else {
+            Module botModule = ModuleManager.getModule("MumpkinBot");
+            if (botModule.isToggled()) {
+                botModule.toggle();
+            }
+        }
 
     }
 
     /**
      * Update all information in the farm to use it in this tick.
      */
-    public void update() {
-        if(mc.player != null && mc.world != null) {
-            updateFarmSlots();
-            updateItemsToRecollect();
+    public void update(MumpkinInitTracker tracker) {
+        if (tracker.isCompletelyInit()) {
+            if (mc.player != null && mc.world != null) {
+                updateFarmSlots();
+                updateItemsToRecollect();
+            }
         }
     }
 

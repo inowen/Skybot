@@ -16,6 +16,11 @@ import net.minecraft.item.Items;
  *
  * When something (like the ingame settings GUI that I'll make) changes the values stored in the static fields,
  * to synchronize the file with the new settings: call synchronize function.
+ *
+ *
+ * // --------------------- TALKING TO MYSELF ---------------------
+ * //TODO: 1. Learn to read and write text files. 2. Figure out how to store things like "Blocks.COBBLESTONE" in a txt file. 3. "Database".
+ * As for point 2, blocks have String names in registries. Use those.
  */
 public class SkybotConfig {
 
