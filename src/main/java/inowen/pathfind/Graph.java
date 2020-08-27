@@ -1,7 +1,6 @@
 package inowen.pathfind;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.BlockPos;
@@ -82,6 +81,24 @@ public class Graph {
      */
     private boolean isBlockPassable(Block block) {
         boolean passable = false;
+        if (block instanceof AirBlock) {
+            passable = true;
+        }
+        else if (block instanceof SugarCaneBlock) {
+            passable = true;
+        }
+        else if (block instanceof CropsBlock) {
+            passable = true;
+        }
+        else if (block instanceof BushBlock) {
+            passable = true;
+        }
+        else if (block instanceof RedstoneOreBlock) {
+            passable = true;
+        }
+        else if (block instanceof StandingSignBlock) {
+            passable = true;
+        }
 
         return passable;
     }
@@ -93,8 +110,18 @@ public class Graph {
      * @return
      */
     private boolean canWalkOn(Block block) {
-        boolean canWalkOn = false;
+        boolean canWalk = false;
 
-        return canWalkOn;
+        if (block.isSolid(block.getDefaultState())) {
+            canWalk = true;
+        }
+        else if (block instanceof FarmlandBlock) {
+            canWalk = true;
+        }
+        else if (block instanceof GlassBlock) {
+            canWalk = true;
+        }
+
+        return canWalk;
     }
 }
