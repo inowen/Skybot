@@ -14,12 +14,12 @@ public class TestPathfindGraph extends Module {
 
     @Override
     public void onEnable() {
-        theGraph = new Graph(mc.player.getPosition(), 3, mc.world);
+        theGraph = new Graph(mc.player.getPosition(), 50, mc.world);
     }
 
     @Override
     public void onUpdate() {
-        theGraph = new Graph(mc.player.getPosition(), 3, mc.world);
+        // theGraph = new Graph(mc.player.getPosition(), 3, mc.world);
     }
 
     @Override
