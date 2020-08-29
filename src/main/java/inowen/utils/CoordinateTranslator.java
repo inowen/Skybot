@@ -77,28 +77,4 @@ public class CoordinateTranslator {
         return new BlockPos(bpX, bpY, bpZ);
     }
 
-
-    /**
-     * Translate from number of pixels on the screen to the measure that FontRenderer uses.
-     * (1920 is approximately 600 in FR ?).
-     * @param numPixels
-     * @return
-     */
-    public static int pixelsToFR(int numPixels) {
-        double fRUnitsPerPixel = 422.0D / 836.0D;
-        return (int)(fRUnitsPerPixel * numPixels);
-    }
-
-    /**
-     * Translate from fontRenderer measurements to number of pixels on the screen.
-     * @param fontRendererCoord
-     * @return
-     */
-    public static int fontRendererToPixels(int fontRendererCoord) {
-        double pixelsPerFRUnit = 836.0D / 422.0D;
-        return (int)(pixelsPerFRUnit * fontRendererCoord);
-    }
-
-
-
 }
