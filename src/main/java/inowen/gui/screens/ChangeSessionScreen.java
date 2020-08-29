@@ -73,4 +73,5 @@ public class ChangeSessionScreen extends Screen {
     public void setUsername(String username) {
         System.out.println("Changing username to " + username);
     }
+    
 }
