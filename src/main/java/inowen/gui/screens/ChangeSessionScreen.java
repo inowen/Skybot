@@ -1,5 +1,6 @@
 package inowen.gui.screens;
 
+import inowen.SkyBotMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.OptionSlider;
@@ -63,7 +64,6 @@ public class ChangeSessionScreen extends Screen {
     @Override
     public void tick() {
         super.tick();
-
     }
 
 
@@ -74,18 +74,18 @@ public class ChangeSessionScreen extends Screen {
      * @param username
      */
     public void setUsername(String username) {
-        // Reflection trickery
+        // Get Minecraft Class object.
         Class minecraftClass = Minecraft.getInstance().getClass();
 
-        // Access the Session field
+        // Try to change the private final field session to set new username.
         try {
-            Field field = minecraftClass.getDeclaredField("session");
-            field.setAccessible(true);
-            field.set(Minecraft.getInstance(), new Session(username, "", "", "mojang"));
+            Field sessionField = minecraftClass.getDeclaredField("session");
+            sessionField.setAccessible(true);
+            sessionField.set(mc, new Session(username, "", "", "mojang"));
         }
-        catch (Exception e) {
+        catch (NoSuchFieldException | IllegalAccessException e) {
+            SkyBotMod.LOGGER.error("Reflection problem: Couldn't change Session field in Minecraft.instance.");
             e.printStackTrace();
-            return;
         }
     }
 
