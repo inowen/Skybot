@@ -5,7 +5,10 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.OptionSlider;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.util.Session;
 import net.minecraft.util.text.ITextComponent;
+
+import java.lang.reflect.Field;
 
 public class ChangeSessionScreen extends Screen {
 
@@ -36,7 +39,7 @@ public class ChangeSessionScreen extends Screen {
         this.addButton(desiredUsername);
 
         // Create button to change username to whatever is in the desiredUsername TextFieldWidget (except if it´s empty).
-        this.addButton(new Button((int)(0.5*this.width), (int)(0.2*this.height)+50, 80, 20, "Set Username", button -> {
+        this.addButton(new Button((int)(0.5*this.width), (int)(0.2*this.height)+60, 80, 20, "Set Username", button -> {
             if (desiredUsername.getText() != "") {
                 setUsername(desiredUsername.getText());
             }
@@ -67,11 +70,23 @@ public class ChangeSessionScreen extends Screen {
 
     /**
      * Use reflection to change the Session at runtime.
-     * mc.session is a private final field, changing it is tricky.
+     * mc.session is a private final field, changing it from outside is tricky.
      * @param username
      */
     public void setUsername(String username) {
-        System.out.println("Changing username to " + username);
+        // Reflection trickery
+        Class minecraftClass = Minecraft.getInstance().getClass();
+
+        // Access the Session field
+        try {
+            Field field = minecraftClass.getDeclaredField("session");
+            field.setAccessible(true);
+            field.set(Minecraft.getInstance(), new Session(username, "", "", "mojang"));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
     }
-    
+
 }
