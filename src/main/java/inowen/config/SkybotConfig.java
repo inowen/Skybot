@@ -25,6 +25,7 @@ import net.minecraft.item.Items;
 public class SkybotConfig {
 
     // Global stuff
+    public static boolean guiOverlayShowUsername = true;
 
 
     // Each module gets its own config section
