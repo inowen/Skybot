@@ -1,8 +1,11 @@
 package inowen.gui;
 
 import inowen.SkyBotMod;
+import inowen.gui.screens.ChangeSessionScreen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,7 +26,8 @@ public class ChangeNameBtnMMenu {
             int y = (int)(0.72*event.getGui().height);
             event.addWidget(new Button(x, y, 85, 20, "Change session", button -> {
                 // When the button is pressed
-
+                Minecraft mc = Minecraft.getInstance();
+                mc.displayGuiScreen(new ChangeSessionScreen(new StringTextComponent("Change Session")));
             }));
         }
     }
