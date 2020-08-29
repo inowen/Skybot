@@ -34,6 +34,13 @@ public class ChangeSessionScreen extends Screen {
         // Create the text field to input the new username and add it to the widget list.
         desiredUsername = new TextFieldWidget(mc.fontRenderer, this.width/2-75, (int)(0.2*this.height)+25, 150, 20, "");
         this.addButton(desiredUsername);
+
+        // Create button to change username to whatever is in the desiredUsername TextFieldWidget (except if it´s empty).
+        this.addButton(new Button((int)(0.5*this.width), (int)(0.2*this.height)+50, 80, 20, "Set Username", button -> {
+            if (desiredUsername.getText() != "") {
+                setUsername(desiredUsername.getText());
+            }
+        }));
     }
 
     @Override
@@ -54,5 +61,16 @@ public class ChangeSessionScreen extends Screen {
     public void tick() {
         super.tick();
 
+    }
+
+
+
+    /**
+     * Use reflection to change the Session at runtime.
+     * mc.session is a private final field, changing it is tricky.
+     * @param username
+     */
+    public void setUsername(String username) {
+        System.out.println("Changing username to " + username);
     }
 }
