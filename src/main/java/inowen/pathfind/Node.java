@@ -97,6 +97,9 @@ public class Node {
             // If they are at different heights but can be traversed jumping / falling one block, do additional checks.
             else if (Math.abs(this.globalPosition.getY()-otherNode.globalPosition.getY()) == 1) {
                 // The node that is lower than the other has to have 3 free blocks above it.
+                Node lowest = globalPosition.getY()<otherNode.globalPosition.getY() ? this : otherNode;
+                BlockPos thirdAboveLowestPos = lowest.getGlobalPosition().up(3);
+                areAdjacent = Graph.isBlockPassable(worldIn.getBlockState(thirdAboveLowestPos).getBlock());
             }
         }
 
