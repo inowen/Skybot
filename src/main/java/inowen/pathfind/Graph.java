@@ -1,5 +1,6 @@
 package inowen.pathfind;
 
+import inowen.SkyBotMod;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
@@ -72,6 +73,43 @@ public class Graph {
     }
 
 
+    /**
+     * Based on adjacency between nodes, set each node´s neighbours.
+     * (Pre-computation before starting the algorithm).
+     * The neighbour relationships between nodes represent the edges of the graph.
+     * PRECOND: Currently inside a Minecraft world.
+     */
+    public void calcNeighbours(ClientWorld worldIn) {
+        // It can´t be known whether two positions are neighbours without a context (world).
+        if (worldIn == null) {
+            SkyBotMod.LOGGER.error("Cannot identify neighbouring graph nodes without non-null ClientWorld");
+            return;
+        }
+
+        if (nodes == null) {
+            nodes = new ArrayList<>();
+        }
+
+        // Go through the nodes, get each one's neighbours.
+        for (Node node : nodes) {
+            // If there is no neighbour list, make one.
+            if (node.neighbours == null) {
+                node.neighbours = new ArrayList<>();
+            }
+            // Clear the list
+            node.clearNeighbours();
+            // Find all the neighbours of the node
+            for (Node potentialNeighbour : nodes) {
+                if (node != potentialNeighbour) {
+                    // With two non-equal given nodes in the graph
+                    if (node.adjacentTo(potentialNeighbour, worldIn)) {
+                        node.addNeighbour(potentialNeighbour);
+                    }
+                }
+            }
+        }
+    }
+
 
 
     /**
@@ -97,6 +135,9 @@ public class Graph {
             passable = true;
         }
         else if (block instanceof StandingSignBlock) {
+            passable = true;
+        }
+        else if (block instanceof TorchBlock) {
             passable = true;
         }
 
