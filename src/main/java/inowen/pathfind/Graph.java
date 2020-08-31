@@ -117,7 +117,7 @@ public class Graph {
      * Helps to find out whether the block below is an acceptable graph node.
      * @return
      */
-    private boolean isBlockPassable(Block block) {
+    static boolean isBlockPassable(Block block) {
         boolean passable = false;
         if (block instanceof AirBlock) {
             passable = true;
@@ -150,7 +150,7 @@ public class Graph {
      * @param block
      * @return
      */
-    private boolean canWalkOn(Block block) {
+    static boolean canWalkOn(Block block) {
         boolean canWalk = false;
 
         if (block.isSolid(block.getDefaultState())) {
