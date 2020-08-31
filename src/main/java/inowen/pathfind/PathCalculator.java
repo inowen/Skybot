@@ -3,6 +3,8 @@ package inowen.pathfind;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.InputMismatchException;
+
 /**
  * The main class that runs the Dijkstra / AStar algorithm
  * on a given graph, knowing the starting point and the end-point (nodes).
@@ -35,8 +37,20 @@ public class PathCalculator {
      * @param startPos
      * @throws Exception
      */
-    public void setStartingPos(BlockPos startPos) throws Exception {
+    public void setStartingPos(BlockPos startPos) throws InputMismatchException {
+        Node sNode = null;
+        for (int i=0; i<theGraph.nodes.size() && sNode==null; i++) {
+            if (areEqual(startPos, theGraph.nodes.get(i).globalPosition)) {
+                sNode = theGraph.nodes.get(i);
+            }
+        }
 
+        // There has to be a node in the graph that matches startPos
+        if (sNode == null) {
+            throw new InputMismatchException("Starting node not found in the graph.");
+        }
+
+        startNode = sNode;
     }
 
     /**
@@ -45,8 +59,13 @@ public class PathCalculator {
      * @param startNode
      * @throws Exception
      */
-    public void setStartingNode(Node startNode) throws Exception {
-
+    public void setStartingNode(Node startNode) throws InputMismatchException {
+        if (theGraph.nodes.contains(startNode)) {
+            this.startNode = startNode;
+        }
+        else {
+            throw new InputMismatchException("Given starting node is not contained in the graph.");
+        }
     }
 
 
@@ -61,6 +80,15 @@ public class PathCalculator {
     }
 
 
+    /**
+     * Whether 2 BlockPos refer to the same location.
+     * @param bp1
+     * @param bp2
+     * @return
+     */
+    private boolean areEqual(BlockPos bp1, BlockPos bp2) {
+        return (bp1.getX()==bp2.getX() && bp1.getY()==bp2.getY() && bp1.getZ()==bp2.getZ());
+    }
 
 
 }
