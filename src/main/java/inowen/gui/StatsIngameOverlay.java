@@ -33,8 +33,7 @@ public class StatsIngameOverlay {
      */
     @SubscribeEvent
     public static void showUsernameIngame(RenderGameOverlayEvent event) {
-        if (SkybotConfig.guiOverlayShowUsername) {
-
+        if (SkybotConfig.showNameIngameConfig.value) {
             // Display username ingame
             String username = mc.getSession().getUsername();
             mc.fontRenderer.drawString(username,0, 330, 0xFF9933);
