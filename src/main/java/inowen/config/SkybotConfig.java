@@ -29,10 +29,10 @@ public class SkybotConfig {
 
 
     // Each module gets its own config section
+
+    // ------------- OLD CROP BOT ---------------------
     public static class OldCropBot extends ConfigSection {
-        static {
-            instance = new OldCropBot();
-        }
+
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static net.minecraft.item.Item FARMED_ITEM = Items.CARROT;
         public static int MAX_FARM_RADIUS = 200;
@@ -44,30 +44,26 @@ public class SkybotConfig {
     }
 
 
+    // ----------- MELON PUMPKIN BOT ---------------------
     public static class MelonPumpkinBot extends ConfigSection{
-        static {
-            instance = new MelonPumpkinBot();
-        }
+
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Item FARMED_ITEM = Items.MELON;
         public static int MIN_ITEMS_SELL;
     }
 
+    // ----------- SUGARCANE BOT ---------------------
     public static class SugarcaneBot extends ConfigSection{
-        static {
-            instance = new SugarcaneBot();
-        }
+
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Block HOME_ROW_BLOCK = Blocks.LAPIS_BLOCK;
         public static Block INIT_LANE_BLOCK = Blocks.COAL_BLOCK;
         public static int MIN_ITEMS_SELL;
     }
 
-
+    // ----------- SEEDS CROP BOT ---------------------
     public static class SeedsCropBot extends ConfigSection {
-        static {
-            instance = new SeedsCropBot();
-        }
+
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Item FARMED_ITEM = Items.BEETROOT;
         public static Item SEEDS_FARMED_ITEM = Items.BEETROOT_SEEDS;
@@ -143,10 +139,8 @@ public class SkybotConfig {
 
 
     /**
-     * Each one of the subsections is a child of ConfigSection.
+     * Each one of the subsections is a child of ConfigSection (just to check that they are related to config).
      */
-    public abstract static class ConfigSection {
-        public static ConfigSection instance;
-    }
+    public abstract static class ConfigSection { }
 
 }
