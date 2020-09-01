@@ -10,17 +10,19 @@ public class ConfigOptionTest extends Module {
 
 
     public ConfigOptionTest() {
-        super(ConfigOptionTest.class.getCanonicalName(), ForgeKeys.KEY_T);
+        super(ConfigOptionTest.class.getCanonicalName(), ForgeKeys.KEY_NONE);
     }
 
      @Override
     public void onEnable() {
          System.out.println("---------------------------------------");
          System.out.println("---------------------------------------");
+
         System.out.println("Config fields in SkybotConfig:");
         for (Object opt : SkybotConfig.getConfigOptions()) {
-            System.out.println("\t" + ((ConfigOption<?>)opt).name + " ::: " + ((ConfigOption<?>)opt).value);
+            System.out.println("\t" + ((ConfigOption<?>)opt).name + " :--: " + ((ConfigOption<?>)opt).value);
         }
+
 
         System.out.println("---------------------------------------");
         System.out.println("---------------------------------------");
