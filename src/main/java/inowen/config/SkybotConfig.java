@@ -12,22 +12,15 @@ import java.util.ArrayList;
 
 
 /**
- * Handles all the options that could be changed around in Skybot.
- * The static fields are set to default values. When setting up the client (in SkyBotMod),
- * there are 2 options:
- * a) If there is a file in FMLPaths.GAMEDIR/config for Skybot, the fields take the values stored in the file.
- * b) If there's no config file, one is made with the default values.
- *
- * When something (like the ingame settings GUI that I'll make) changes the values stored in the static fields,
- * to synchronize the file with the new settings: call synchronize function.
- *
- *
- * // --------------------- TALKING TO MYSELF ---------------------
- * //TODO: 1. Learn to read and write text files. 2. Figure out how to store things like "Blocks.COBBLESTONE" in a txt file. 3. "Database".
- * As for point 2, blocks have String names in registries. Use those.
+ * A list of ConfigOption fields, one for each of the options that can be changed around.
+ * Textfile format...
+ *      ConfigOption.name : ConfigOption.value (as string).
+ *      ConfigOption.name : ConfigOption.value (as string).
+ *      ...................................................
  */
 public class SkybotConfig {
 
+    // Reflection functions need an object passed to them as parameters.
     public static SkybotConfig instance = new SkybotConfig();
 
     // Global stuff
@@ -104,6 +97,8 @@ public class SkybotConfig {
         catch (Exception e) {
             SkyBotMod.LOGGER.error("Error reading config options from fields in SkybotConfig class.");
         }
+
+        
 
         return oList;
     }

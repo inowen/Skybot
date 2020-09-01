@@ -1,10 +1,7 @@
 package inowen.moduleSystem;
 
 import inowen.moduleSystem.mods.*;
-import inowen.testing.mods.TestPathfindGraph;
-import inowen.testing.mods.TestSeedsCropFarm;
-import inowen.testing.mods.TestSugarcaneContext;
-import inowen.testing.mods.TestingMelonFarm;
+import inowen.testing.mods.*;
 
 import java.util.ArrayList;
 
@@ -27,6 +24,7 @@ public class ModuleManager {
         addMod(new TestingMelonFarm());
         addMod(new TestSeedsCropFarm());
         addMod(new TestPathfindGraph());
+        addMod(new ConfigOptionTest());
 
     }
 
