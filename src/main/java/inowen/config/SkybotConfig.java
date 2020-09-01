@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import sun.security.krb5.Config;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,7 +29,10 @@ public class SkybotConfig {
 
 
     // Each module gets its own config section
-    public static class OldCropBot {
+    public static class OldCropBot extends ConfigSection {
+        static {
+            instance = new OldCropBot();
+        }
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static net.minecraft.item.Item FARMED_ITEM = Items.CARROT;
         public static int MAX_FARM_RADIUS = 200;
@@ -39,14 +43,20 @@ public class SkybotConfig {
 
     }
 
-    public static class MelonPumpkinBot {
+
+    public static class MelonPumpkinBot extends ConfigSection{
+        static {
+            instance = new MelonPumpkinBot();
+        }
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Item FARMED_ITEM = Items.MELON;
         public static int MIN_ITEMS_SELL;
     }
 
-
-    public static class SugarcaneBot {
+    public static class SugarcaneBot extends ConfigSection{
+        static {
+            instance = new SugarcaneBot();
+        }
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Block HOME_ROW_BLOCK = Blocks.LAPIS_BLOCK;
         public static Block INIT_LANE_BLOCK = Blocks.COAL_BLOCK;
@@ -54,7 +64,10 @@ public class SkybotConfig {
     }
 
 
-    public static class SeedsCropBot {
+    public static class SeedsCropBot extends ConfigSection {
+        static {
+            instance = new SeedsCropBot();
+        }
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Item FARMED_ITEM = Items.BEETROOT;
         public static Item SEEDS_FARMED_ITEM = Items.BEETROOT_SEEDS;
@@ -62,8 +75,8 @@ public class SkybotConfig {
 
     }
 
-
     // ------------ HIDE NAMES MODULE ------------------
+
     public static ConfigOption<String> HIDE_NAMES_SUBSTITUTE = new ConfigOption<>("Hide_Names_Substitute", "Skybot_Hidden_Name", "Skybot_Hidden_Name");
 
 
@@ -77,7 +90,6 @@ public class SkybotConfig {
     // -----------------  For Saving / Reading Options -----------------
     // -----------------------------------------------------------------
     // -----------------------------------------------------------------
-
     /**
      * Get a list of all the ConfigOption in the fields of this class.
      * @return
@@ -98,10 +110,43 @@ public class SkybotConfig {
             SkyBotMod.LOGGER.error("Error reading config options from fields in SkybotConfig class.");
         }
 
-        
+        // Go through the inner classes (max depth: 1), and all the fields there too.
+        Class[] innerClasses = SkybotConfig.class.getClasses();
+
+        try {
+            for (Class cls : innerClasses) {
+                // Look for ConfigOption fields in the inner subsection classes.
+                if (ConfigSection.class.isAssignableFrom(cls)) {
+                    Field[] fields = cls.getFields();
+
+                    // Get the fields from the current inner class that are config sections.
+                    for (Field field : fields) {
+                        if (field.get(null) instanceof ConfigOption) {
+                            oList.add(field.get(null));
+                        }
+                    }
+                }
+
+            }
+        }
+        catch (Exception e) {
+            SkyBotMod.LOGGER.error("Could not read ConfigOption fields from SkybotConfig inner class fields.");
+        }
+
+
 
         return oList;
     }
 
+
+
+
+
+    /**
+     * Each one of the subsections is a child of ConfigSection.
+     */
+    public abstract static class ConfigSection {
+        public static ConfigSection instance;
+    }
 
 }
