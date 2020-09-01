@@ -33,6 +33,7 @@ whitelist.txt
 build/
 options.txt
 *.ini
+cmd.lnk
 
 
 
