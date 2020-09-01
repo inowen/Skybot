@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
 public class HideNames extends Module {
 
-    public static final String SUBSTITUTE = SkybotConfig.HideNames.NAMES_SUBSTITUTE;
+    public static final String SUBSTITUTE = SkybotConfig.HIDE_NAMES_SUBSTITUTE.value;
 
     /**
      * Create the module. Done in the ModuleManager, addMod.

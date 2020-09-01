@@ -6,6 +6,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
+import java.util.ArrayList;
+
 
 /**
  * Handles all the options that could be changed around in Skybot.
@@ -24,8 +26,10 @@ import net.minecraft.item.Items;
  */
 public class SkybotConfig {
 
+    public static SkybotConfig instance = new SkybotConfig();
+
     // Global stuff
-    public static boolean guiOverlayShowUsername = true;
+    public static ConfigOption<Boolean> showNameIngameConfig = new ConfigOption<>("ShowNameIngame", true, true);
 
 
     // Each module gets its own config section
@@ -64,7 +68,8 @@ public class SkybotConfig {
     }
 
 
-    public static class HideNames {
-        public static String NAMES_SUBSTITUTE = "Skybot_Hidden_Name";
-    }
+    // ------------ HIDE NAMES MODULE ------------------
+    public static ConfigOption<String> HIDE_NAMES_SUBSTITUTE = new ConfigOption<>("Hide_Names_Substitute", "Skybot_Hidden_Name", "Skybot_Hidden_Name");
+
+
 }
