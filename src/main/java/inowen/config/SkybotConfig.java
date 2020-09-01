@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import sun.security.krb5.Config;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class SkybotConfig {
 
 
     // ----------- MELON PUMPKIN BOT ---------------------
-    public static class MelonPumpkinBot extends ConfigSection{
+    public static class MelonPumpkinBot extends ConfigSection {
 
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Item FARMED_ITEM = Items.MELON;
@@ -53,7 +52,7 @@ public class SkybotConfig {
     }
 
     // ----------- SUGARCANE BOT ---------------------
-    public static class SugarcaneBot extends ConfigSection{
+    public static class SugarcaneBot extends ConfigSection {
 
         public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
         public static Block HOME_ROW_BLOCK = Blocks.LAPIS_BLOCK;
@@ -74,8 +73,6 @@ public class SkybotConfig {
     // ------------ HIDE NAMES MODULE ------------------
 
     public static ConfigOption<String> HIDE_NAMES_SUBSTITUTE = new ConfigOption<>("Hide_Names_Substitute", "Skybot_Hidden_Name", "Skybot_Hidden_Name");
-
-
 
 
 
@@ -128,7 +125,6 @@ public class SkybotConfig {
         catch (Exception e) {
             SkyBotMod.LOGGER.error("Could not read ConfigOption fields from SkybotConfig inner class fields.");
         }
-
 
 
         return oList;
