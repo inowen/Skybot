@@ -15,6 +15,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * The Hierarchical Finite State Machine that runs the Melon-Pumpkin (Mumpkin) bot.
@@ -25,7 +27,7 @@ public class MumpkinBotHFSM extends StateMachine {
 
     public MumpkinFarm theFarm = null;
     public Module botModule;
-    public Item farmedItem = SkybotConfig.MelonPumpkinBot.FARMED_ITEM;
+    public Item farmedItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(SkybotConfig.MelonPumpkinBot.FARMED_ITEM.value));
     public MumpkinInitTracker tracker = null;
 
     public MumpkinBotHFSM() {

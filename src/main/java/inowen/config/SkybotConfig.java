@@ -45,10 +45,11 @@ public class SkybotConfig {
     // ----------- MELON PUMPKIN BOT ---------------------
     public static class MelonPumpkinBot extends ConfigSection {
 
-        public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
-        public static Item FARMED_ITEM = Items.MELON;
-        public static int MIN_ITEMS_SELL;
+        public static ConfigOption<String> BARRIER_BLOCK = new ConfigOption<>("MUMPKIN_BOT_BARRIER_BLOCK", "cobblestone", "cobblestone");
+        public static ConfigOption<String> FARMED_ITEM = new ConfigOption<>("MUMPKIN_BOT_BARRIER_BLOCK", "melon", "melon");
+        public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("MUMPKIN_BARRIER_BLOCK", 64, 64);
     }
+
 
     // ----------- SUGARCANE BOT ---------------------
     public static class SugarcaneBot extends ConfigSection {
@@ -59,6 +60,7 @@ public class SkybotConfig {
         public static int MIN_ITEMS_SELL;
     }
 
+
     // ----------- SEEDS CROP BOT ---------------------
     public static class SeedsCropBot extends ConfigSection {
 
@@ -68,6 +70,7 @@ public class SkybotConfig {
         public static int MIN_ITEMS_SELL;
 
     }
+
 
     // ------------ HIDE NAMES MODULE ------------------
 

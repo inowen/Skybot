@@ -1,5 +1,6 @@
 package inowen.skybot.bots.melonPumpkinBot.states;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.State;
 import inowen.skybot.utils.BdSellshopHelper;
@@ -18,7 +19,7 @@ public class SellState extends State {
     // Minimum amount of items in the inventory to keep selling.
     // If limit is 128 and there are 200, it would sell 2 stacks and have 72 left. Then it would leave the sellshop.
     // Use this so it doesn't sell items one by one until it has 0 and triggers the spam filter (also speeds up).
-    public static final int MIN_ITEMS_TO_SELL = 64;
+    public static final int MIN_ITEMS_TO_SELL = SkybotConfig.MelonPumpkinBot.MIN_ITEMS_SELL.value;
     public static final long DELAY_BETWEEN_ACTIONS = 2500;
 
     public MumpkinFarm theFarm;

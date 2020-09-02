@@ -12,9 +12,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 
@@ -27,8 +29,8 @@ public class MumpkinFarm {
 
     private static Minecraft mc = Minecraft.getInstance();
     // The kind of block with which the farm enclosure is made.
-    public static final Block BARRIER_BLOCK = SkybotConfig.MelonPumpkinBot.BARRIER_BLOCK;
-    public static final Item itemBeingFarmed = SkybotConfig.MelonPumpkinBot.FARMED_ITEM;
+    public static final Block BARRIER_BLOCK = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.MelonPumpkinBot.BARRIER_BLOCK.value));
+    public static final Item itemBeingFarmed = ForgeRegistries.ITEMS.getValue(new ResourceLocation(SkybotConfig.MelonPumpkinBot.FARMED_ITEM.value));
 
     public FarmZoneConstraints zoneConstraints = null;
     public FarmSlot[][] farmSlots = null;
