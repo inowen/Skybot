@@ -11,7 +11,7 @@ public class TestPathfindGraph extends Module {
     public int numNeighbors = 0;
 
     public TestPathfindGraph() {
-        super("TestPathfindGraph", ForgeKeys.KEY_G);
+        super("TestPathfindGraph", ForgeKeys.KEY_NONE);
     }
 
     @Override

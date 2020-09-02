@@ -25,6 +25,7 @@ public class ModuleManager {
         addMod(new TestSeedsCropFarm());
         addMod(new TestPathfindGraph());
         addMod(new ConfigOptionTest());
+        addMod(new RegistryNamesTest());
 
     }
 

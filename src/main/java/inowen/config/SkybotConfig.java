@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * A list of ConfigOption fields, one for each of the options that can be changed around.
- * Textfile format...
+ * Text file format...
  *      ConfigOption.name : ConfigOption.value (as string).
  *      ConfigOption.name : ConfigOption.value (as string).
  *      ...................................................
@@ -32,13 +32,12 @@ public class SkybotConfig {
     // ------------- OLD CROP BOT ---------------------
     public static class OldCropBot extends ConfigSection {
 
-        public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
-        public static net.minecraft.item.Item FARMED_ITEM = Items.CARROT;
-        public static int MAX_FARM_RADIUS = 200;
-        public static int MIN_ITEMS_SELL;
-        // State specific
-        public static double BREAK_REACH = 3.0D;
-        public static double PLANT_REACH = 3.0D;
+        public static ConfigOption<String> BARRIER_BLOCK = new ConfigOption<>("OLD_CROP_BOT_BARRIER_BLOCK", "cobblestone", "cobblestone");
+        public static ConfigOption<String> FARMED_ITEM = new ConfigOption<>("OLD_CROP_BOT_FARMED_ITEM", "carrot", "carrot");
+        public static ConfigOption<Integer> MAX_FARM_RADIUS = new ConfigOption<>("OLD_CROP_BOT_MAX_FARM_RADIUS", 200, 200);
+        public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("OLD_CROP_BOT_MIN_ITEMS_SELL", 64, 64);
+        public static ConfigOption<Double> BREAK_REACH = new ConfigOption<>("OLD_CROP_BOT_BREAK_REACH", 3.2, 3.2);
+        public static ConfigOption<Double> PLANT_REACH = new ConfigOption<>("OLD_CROP_BOT_PLANT_REACH", 3.2, 3.2);
 
     }
 

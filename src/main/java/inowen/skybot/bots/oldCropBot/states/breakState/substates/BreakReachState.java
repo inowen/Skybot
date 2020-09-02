@@ -17,7 +17,7 @@ import net.minecraft.util.math.Vec3d;
  */
 public class BreakReachState extends State {
 	
-	public static final double MAX_REACH = SkybotConfig.OldCropBot.BREAK_REACH;
+	public static final double MAX_REACH = SkybotConfig.OldCropBot.BREAK_REACH.value;
 
 	public static final long MAX_TIME_IN_THIS_STATE = 15000;
 	

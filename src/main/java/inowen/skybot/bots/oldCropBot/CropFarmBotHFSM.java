@@ -16,7 +16,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 
@@ -44,7 +46,8 @@ public class CropFarmBotHFSM {
     public CropFarmBotHFSM() {
 
         // Which item is to be farmed
-        ContextManager.farmedItem = SkybotConfig.OldCropBot.FARMED_ITEM;
+        String farmedItemName = SkybotConfig.OldCropBot.FARMED_ITEM.value;
+        ContextManager.farmedItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(farmedItemName));
 
         // Initiate the "sensors" of the bot (the things that filter relevant information from the environment)
         ContextManager.init();

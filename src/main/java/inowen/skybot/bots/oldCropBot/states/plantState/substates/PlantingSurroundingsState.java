@@ -19,7 +19,7 @@ public class PlantingSurroundingsState extends State {
 	private boolean isStuckInThisState = false;
 	
 	// How far the player can reach to plant something (to calculate what is in range and what isn't)
-	private static final double MAX_REACH = SkybotConfig.OldCropBot.PLANT_REACH;
+	private static final double MAX_REACH = SkybotConfig.OldCropBot.PLANT_REACH.value;
 	
 	// Delay that should be respected when planting (in ms)
 	private static final long TIME_AFTER_PLANT_TO_LOOK = 75;

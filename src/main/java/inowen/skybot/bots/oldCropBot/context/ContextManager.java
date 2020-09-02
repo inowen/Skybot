@@ -11,9 +11,11 @@ import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * CONTAINER CLASS FOR INFORMATION Sort of the interface between the world and
@@ -38,7 +40,7 @@ public class ContextManager {
 	// The item that the bot should be farming (that is dropped when breaking
 	// crops).
 	public static Item farmedItem = null; // The HFSM module sets this.
-	public static Block BARRIER_BLOCK = SkybotConfig.OldCropBot.BARRIER_BLOCK;
+	public static Block BARRIER_BLOCK = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.OldCropBot.BARRIER_BLOCK.value));
 
 	// The information about the farm in general (how big, contents).
 	public static FarmSlot[][] farmSlots = null; // x , z

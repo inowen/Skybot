@@ -24,7 +24,7 @@ public class CropBotConfigScreen extends MainConfigScreen {
         super.render(mouseX, mouseY, partialTicks);
 
         // Show the target item
-        mc.fontRenderer.drawString("Target Item: " + SkybotConfig.OldCropBot.FARMED_ITEM.getName().getString(), tabExtensionMinX+3, tabExtensionMinY+3, 0xffffff);
+        mc.fontRenderer.drawString("Target Item: " + SkybotConfig.OldCropBot.FARMED_ITEM.value, tabExtensionMinX+3, tabExtensionMinY+3, 0xffffff);
     }
 
     @Override

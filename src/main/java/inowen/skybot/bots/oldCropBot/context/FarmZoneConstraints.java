@@ -18,7 +18,7 @@ import net.minecraft.world.World;
  */
 public class FarmZoneConstraints {
 	
-	public static int MAX_FARM_SIZE = SkybotConfig.OldCropBot.MAX_FARM_RADIUS;
+	public static int MAX_FARM_SIZE = SkybotConfig.OldCropBot.MAX_FARM_RADIUS.value;
 	
 	// Four corners of the zone.
 	public int minX = 0;

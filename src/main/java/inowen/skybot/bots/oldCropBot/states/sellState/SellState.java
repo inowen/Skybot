@@ -1,5 +1,6 @@
 package inowen.skybot.bots.oldCropBot.states.sellState;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.skybot.bots.oldCropBot.states.State;
 import inowen.utils.InventoryHelper;
@@ -17,7 +18,7 @@ import net.minecraft.item.Items;
 public class SellState extends State {
 
 	public static final long DELAY_BETWEEN_ACTIONS = 1500;
-	public static final int MIN_ITEMS_SELL = 16;
+	public static final int MIN_ITEMS_SELL = SkybotConfig.OldCropBot.MIN_ITEMS_SELL.value;
 	public static final int SLOT_ID_BACK_CHEST = 53;
 
 	public long timeLastAction = 0;
@@ -28,10 +29,9 @@ public class SellState extends State {
 		// Set the name
 		this.name = "SellState";
 		
-		// Atomic state (at least I'm trying)
+		// Atomic state
 		this.subStates = null;
 		this.currentState = null;
-
 	}
 	
 	
