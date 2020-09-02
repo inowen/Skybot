@@ -2,10 +2,7 @@ package inowen.config;
 
 
 import inowen.SkyBotMod;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -127,8 +124,34 @@ public class SkybotConfig {
             SkyBotMod.LOGGER.error("Could not read ConfigOption fields from SkybotConfig inner class fields.");
         }
 
-
         return oList;
+    }
+
+
+    /**
+     * Get all the current configs as strings in the format Name:value.
+     * This is how configs are stored in a text file, each one on a line.
+     * @return
+     */
+    public static ArrayList<String> getConfigsAsStrings() {
+        ArrayList<String> configs = new ArrayList<>();
+
+        for (Object option : getConfigOptions()) {
+            ConfigOption<?> configOption = (ConfigOption<?>)option;
+            configs.add(configOption.name + ":" + configOption.value);
+        }
+
+        return configs;
+    }
+
+
+    /**
+     * Write the options with their current values to a text file.
+     * @param
+     */
+    public static void writeConfigFile(String fileFromConfigDir) {
+        FMLPaths.CONFIGDIR.toString();
+
     }
 
 
