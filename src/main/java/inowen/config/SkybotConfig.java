@@ -54,10 +54,10 @@ public class SkybotConfig {
     // ----------- SUGARCANE BOT ---------------------
     public static class SugarcaneBot extends ConfigSection {
 
-        public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
-        public static Block HOME_ROW_BLOCK = Blocks.LAPIS_BLOCK;
-        public static Block INIT_LANE_BLOCK = Blocks.COAL_BLOCK;
-        public static int MIN_ITEMS_SELL;
+        public static ConfigOption<String> BARRIER_BLOCK = new ConfigOption<>("SUGARCANE_BOT_BARRIER_BLOCK", "cobblestone", "cobblestone");
+        public static ConfigOption<String> HOME_ROW_BLOCK = new ConfigOption<>("SUGARCANE_BOT_HOME_ROW_BLOCK", "lapis_block", "lapis_block");
+        public static ConfigOption<String> INIT_LANE_BLOCK = new ConfigOption<>("SUGARCANE_BOT_INIT_LANE_BLOCK", "coal_block", "coal_block");
+        public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("SUGARCANE_BOT_MIN_ITEMS_SELL", 64, 64);
     }
 
 

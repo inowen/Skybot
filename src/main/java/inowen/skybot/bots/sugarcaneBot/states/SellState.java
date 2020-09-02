@@ -1,5 +1,6 @@
 package inowen.skybot.bots.sugarcaneBot.states;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.bots.sugarcaneBot.context.SugarcaneFarm;
 import inowen.skybot.hfsmBase.State;
 
@@ -18,7 +19,7 @@ public class SellState extends State {
     public SugarcaneFarm theFarm;
 
     public static final long DELAY_BETWEEN_ACTIONS = 1500;
-    public static final int MIN_ITEMS_SELL = 16;
+    public static final int MIN_ITEMS_SELL = SkybotConfig.SugarcaneBot.MIN_ITEMS_SELL.value;
     public static final int SLOT_ID_BACK_CHEST = 53;
 
     public long timeLastAction = 0;

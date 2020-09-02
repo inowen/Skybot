@@ -8,8 +8,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 
@@ -17,9 +19,9 @@ public class SugarcaneFarm {
     // Reference to the singleton Minecraft instance.
     private Minecraft mc = Minecraft.getInstance();
 
-    public static final Block BARRIER_BLOCK = SkybotConfig.SugarcaneBot.BARRIER_BLOCK;
-    public static final Block HOMEROW_BLOCK = SkybotConfig.SugarcaneBot.HOME_ROW_BLOCK;
-    public static final Block INIT_LANE_BLOCK = SkybotConfig.SugarcaneBot.INIT_LANE_BLOCK;
+    public static final Block BARRIER_BLOCK = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.SugarcaneBot.BARRIER_BLOCK.value));
+    public static final Block HOMEROW_BLOCK = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.SugarcaneBot.HOME_ROW_BLOCK.value));
+    public static final Block INIT_LANE_BLOCK = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.SugarcaneBot.INIT_LANE_BLOCK.value));
 
     public FarmZoneConstraints zoneConstraints;
     public ArrayList<SugarcaneLane> lanes;
