@@ -8,6 +8,9 @@ import inowen.skybot.hfsmBase.State;
 import inowen.skybot.hfsmBase.StateMachine;
 import inowen.utils.PlayerMovementHelper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SeedsCropBotHFSM extends StateMachine {
 
@@ -17,7 +20,9 @@ public class SeedsCropBotHFSM extends StateMachine {
     private SeedsCropInitTracker tracker = null;
 
     public SeedsCropBotHFSM() {
-        theFarm = new SeedCropFarm(SkybotConfig.SeedsCropBot.FARMED_ITEM, SkybotConfig.SeedsCropBot.SEEDS_FARMED_ITEM);
+        Item farmedItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(SkybotConfig.SeedsCropBot.FARMED_ITEM.value));
+        Item farmedItemSeeds = ForgeRegistries.ITEMS.getValue(new ResourceLocation(SkybotConfig.SeedsCropBot.SEEDS_FARMED_ITEM.value));
+        theFarm = new SeedCropFarm(farmedItem, farmedItemSeeds);
     }
 
     @Override

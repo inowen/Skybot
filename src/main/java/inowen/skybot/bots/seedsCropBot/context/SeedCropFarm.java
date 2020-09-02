@@ -1,20 +1,23 @@
 package inowen.skybot.bots.seedsCropBot.context;
 
+import inowen.config.SkybotConfig;
 import inowen.skybot.utils.FarmZoneConstraints;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 
 public class SeedCropFarm {
 
     private static Minecraft mc = Minecraft.getInstance();
-    private static Block FARM_WALLS = Blocks.COBBLESTONE;
+    private static Block FARM_WALLS = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.SeedsCropBot.BARRIER_BLOCK.value));
 
     private FarmZoneConstraints zoneConstraints = null;
     private FarmSlot[][] farmSlots = null;

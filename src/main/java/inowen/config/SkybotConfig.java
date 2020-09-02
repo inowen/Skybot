@@ -64,11 +64,10 @@ public class SkybotConfig {
     // ----------- SEEDS CROP BOT ---------------------
     public static class SeedsCropBot extends ConfigSection {
 
-        public static Block BARRIER_BLOCK = Blocks.COBBLESTONE;
-        public static Item FARMED_ITEM = Items.BEETROOT;
-        public static Item SEEDS_FARMED_ITEM = Items.BEETROOT_SEEDS;
-        public static int MIN_ITEMS_SELL;
-
+        public static ConfigOption<String> BARRIER_BLOCK = new ConfigOption<>("SEEDS_CROP_BOT_BARRIER_BLOCK", "cobblestone", "cobblestone");
+        public static ConfigOption<String> FARMED_ITEM = new ConfigOption<>("SEEDS_CROP_BOT_FARMED_ITEM", "beetroot", "beetroot");
+        public static ConfigOption<String> SEEDS_FARMED_ITEM = new ConfigOption<>("SEEDS_CROP_BOT_SEEDS_FARMED_ITEM", "beetroot_seeds", "beetroot_seeds");
+        public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("SEEDS_CROP_BOT_MIN_ITEMS_SELL", 64, 64);
     }
 
 
