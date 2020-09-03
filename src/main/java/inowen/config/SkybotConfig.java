@@ -246,8 +246,8 @@ public class SkybotConfig {
     public static void assimilateConfigLine(String configLine, ArrayList<Object> configOptions) {
 
         // Split the string in its two parts.
-        String configName = configLine.split(":")[0];
-        String configValue = configLine.split(":")[1];
+        String configName = configLine.split(":")[0].trim();
+        String configValue = configLine.split(":")[1].trim();
 
         // Find a ConfigOption<> with matching name.
         ConfigOption<?> matching = null;
@@ -255,7 +255,7 @@ public class SkybotConfig {
         for (Object object : configOptions) {
             ConfigOption<?> option = (ConfigOption<?>)object;
 
-            if (option.name == configName) {
+            if (option.name.equals(configName)) {
                 matching = option;
             }
 
