@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class SkybotConfig {
 
-    public static final String configTextFile = "skybot_config.txt";
+    public static final String CONFIG_TEXT_FILE_NAME = "skybot_config.txt";
 
     // Reflection functions need an object passed to them as parameters.
     public static SkybotConfig instance = new SkybotConfig();
@@ -86,7 +86,7 @@ public class SkybotConfig {
     // -----------------------------------------------------------------
     /**
      * Get a list of all the ConfigOption in the fields of this class.
-     * @return
+     * @return ArrayList<Object>
      */
     public static ArrayList<Object> getConfigOptions() {
         ArrayList<Object> oList = new ArrayList<>();
@@ -192,7 +192,13 @@ public class SkybotConfig {
      * Write config to default config file.
      */
     public static void writeConfigFile() {
-        writeConfigFile(configTextFile);
+        writeConfigFile(CONFIG_TEXT_FILE_NAME);
+    }
+
+
+    // Whether the file with name $CONFIG_TEXT_FILE_NAME exists in the config folder.
+    public static boolean defaultConfigFileExists() {
+        return (new File(FMLPaths.CONFIGDIR.get().toFile(), CONFIG_TEXT_FILE_NAME)).exists();
     }
 
 
@@ -285,7 +291,7 @@ public class SkybotConfig {
      * Get the config values from the default config file and adjust the ConfigOptions.
      */
     public static void setConfigsFromDefaultFile() {
-        setConfigsFromFile(configTextFile);
+        setConfigsFromFile(CONFIG_TEXT_FILE_NAME);
     }
 
 
