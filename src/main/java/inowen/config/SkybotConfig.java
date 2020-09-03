@@ -4,6 +4,7 @@ package inowen.config;
 import inowen.SkyBotMod;
 import net.minecraftforge.fml.loading.FMLPaths;
 
+import java.io.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -150,10 +151,73 @@ public class SkybotConfig {
      * @param
      */
     public static void writeConfigFile(String fileFromConfigDir) {
-        FMLPaths.CONFIGDIR.toString();
+        File configFolder = FMLPaths.CONFIGDIR.get().toFile();
+        File textFile = new File(configFolder, "skybot_config.txt");
+        if (!textFile.exists()) {
+            try {
+                textFile.createNewFile();
+            }
+            catch(Exception e) {
+                SkyBotMod.LOGGER.error("Could not create new file in " + configFolder.toString());
+            }
+        }
+
+        // If the file exists now, write the config strings to it
+        if (textFile.exists()) {
+            try {
+                // Create a writer
+                FileWriter writer = new FileWriter(textFile);
+                BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+                // Write the config strings to the writer.
+                for (String s : getConfigsAsStrings()) {
+                    bufferedWriter.write(s + "\n");
+                }
+
+                // Finish writing before continuing
+                bufferedWriter.flush();
+                bufferedWriter.close();
+            }
+            catch (Exception e) {
+                SkyBotMod.LOGGER.error("Could not write to file " + textFile.toString());
+            }
+        }
 
     }
 
+
+    /**
+     * Read a file inside the ConfigFolder, return the lines.
+     * @param fileName
+     * @return ArrayList<String>
+     */
+    public static ArrayList<String> readConfigFile(String fileName) {
+        ArrayList<String> lines = new ArrayList<>();
+
+        // Read
+        try {
+            // File from which to read.
+            File configFolder = FMLPaths.CONFIGDIR.get().toFile();
+            File configFile = new File(configFolder, fileName);
+
+            // Create a reader
+            BufferedReader reader = new BufferedReader(new FileReader(configFile));
+
+            // Read the lines
+            while(reader.ready()) {
+                String line = reader.readLine();
+                if (line.length() > 0) {
+                    lines.add(line);
+                }
+            }
+
+        }
+        catch (Exception e) {
+            SkyBotMod.LOGGER.error("Couldn't read config from " + fileName + ".");
+        }
+
+        return lines;
+    }
 
 
 
