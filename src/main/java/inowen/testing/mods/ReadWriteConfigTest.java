@@ -13,7 +13,7 @@ public class ReadWriteConfigTest extends Module {
 
     @Override
     public void onEnable() {
-        SkybotConfig.writeConfigFile("");
-        SkyBotMod.LOGGER.info("Configuration written to config file.");
+        SkybotConfig.writeConfigFile();
+        SkyBotMod.LOGGER.info("Configuration written to default config file.");
     }
 }

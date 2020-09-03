@@ -18,6 +18,8 @@ import java.util.ArrayList;
  */
 public class SkybotConfig {
 
+    public static final String configTextFile = "skybot_config.txt";
+
     // Reflection functions need an object passed to them as parameters.
     public static SkybotConfig instance = new SkybotConfig();
 
@@ -152,7 +154,7 @@ public class SkybotConfig {
      */
     public static void writeConfigFile(String fileFromConfigDir) {
         File configFolder = FMLPaths.CONFIGDIR.get().toFile();
-        File textFile = new File(configFolder, "skybot_config.txt");
+        File textFile = new File(configFolder, fileFromConfigDir);
         if (!textFile.exists()) {
             try {
                 textFile.createNewFile();
@@ -183,6 +185,14 @@ public class SkybotConfig {
             }
         }
 
+    }
+
+
+    /**
+     * Write config to default config file.
+     */
+    public static void writeConfigFile() {
+        writeConfigFile(configTextFile);
     }
 
 
@@ -220,6 +230,63 @@ public class SkybotConfig {
     }
 
 
+
+    /**
+     * Find the option with the same name as the left side of the config string.
+     * Then give it the value on the right side.
+     * @param configLine
+     * @param configOptions the options that the line will be matched to
+     */
+    public static void assimilateConfigLine(String configLine, ArrayList<Object> configOptions) {
+
+        // Split the string in its two parts.
+        String configName = configLine.split(":")[0];
+        String configValue = configLine.split(":")[1];
+
+        // Find a ConfigOption<> with matching name.
+        ConfigOption<?> matching = null;
+
+        for (Object object : configOptions) {
+            ConfigOption<?> option = (ConfigOption<?>)object;
+
+            if (option.name == configName) {
+                matching = option;
+            }
+
+            // Exit the for loop if a match was found.
+            if (matching != null) {
+                break;
+            }
+        }
+
+        // Set the new value if a matching ConfigOption was found
+        if (matching != null) {
+            matching.setValue(configValue);
+        }
+
+    }
+
+
+    /**
+     * Set the ConfigOption fields from data gathered from file.
+     */
+    public static void setConfigsFromFile(String fileName) {
+        ArrayList<String> configLines = readConfigFile(fileName);
+        ArrayList<Object> configOptions = getConfigOptions();
+
+        // Assimilate all the lines in the config file.
+        for (String line : configLines) {
+            assimilateConfigLine(line, configOptions);
+        }
+    }
+
+
+    /**
+     * Get the config values from the default config file and adjust the ConfigOptions.
+     */
+    public static void setConfigsFromDefaultFile() {
+        setConfigsFromFile(configTextFile);
+    }
 
 
     /**
