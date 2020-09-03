@@ -26,7 +26,7 @@ public class ModuleManager {
         addMod(new TestPathfindGraph());
         addMod(new ConfigOptionTest());
         addMod(new RegistryNamesTest());
-
+        addMod(new ReadWriteConfigTest());
     }
 
     // Add a mod to the list.

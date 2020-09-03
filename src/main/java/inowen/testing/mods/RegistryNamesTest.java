@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RegistryNamesTest extends Module {
 
     public RegistryNamesTest() {
-        super(RegistryNamesTest.class.getSimpleName(), ForgeKeys.KEY_G);
+        super(RegistryNamesTest.class.getSimpleName(), ForgeKeys.KEY_NONE);
     }
 
     @Override
