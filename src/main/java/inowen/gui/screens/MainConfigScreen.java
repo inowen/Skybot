@@ -61,6 +61,9 @@ public class MainConfigScreen extends Screen {
         // Calculate the position of the enclosure for tab extensions.
         calculateTabExtEnclosureLimits();
 
+        // Create and add save button
+        this.addButton(new Button((int)(0.75*this.width)-100, (int)(0.9*this.height), 98, 20, "Save", button -> SkybotConfig.writeConfigFile()));
+
         // Create and add the exit button
         this.addButton(new Button((int)(0.75*this.width), (int)(0.9*this.height), 100, 20, "Exit", button -> {mc.displayGuiScreen(null);}));
     }
