@@ -8,7 +8,7 @@ import inowen.utils.ForgeKeys;
 public class ReadWriteConfigTest extends Module {
 
     public ReadWriteConfigTest() {
-        super("ReadWriteConfigTest", ForgeKeys.KEY_N);
+        super("ReadWriteConfigTest", ForgeKeys.KEY_NONE);
     }
 
     @Override

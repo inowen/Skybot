@@ -21,12 +21,7 @@ public class ModuleManager {
         addMod(new FullBright());
 
         // Testing
-        addMod(new TestingMelonFarm());
-        addMod(new TestSeedsCropFarm());
-        addMod(new TestPathfindGraph());
-        addMod(new ConfigOptionTest());
-        addMod(new RegistryNamesTest());
-        addMod(new ReadWriteConfigTest());
+        
     }
 
     // Add a mod to the list.
