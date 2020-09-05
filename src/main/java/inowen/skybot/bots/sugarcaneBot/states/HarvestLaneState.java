@@ -73,12 +73,6 @@ public class HarvestLaneState extends State {
     public State getNextState() {
         State nextState = null;
 
-        //DEBUG
-        if (theFarm.getLaneWithInitPos(laneInitPos) == null) {
-            System.out.println("No line found with initPos: " + laneInitPos);
-        }
-        //END_DEBUG
-
         boolean shouldTransition = (theFarm.getLaneWithInitPos(laneInitPos)==null || mc.player.getPositionVector().getZ() > theFarm.getLaneWithInitPos(laneInitPos).endingZ);
 
         if (shouldTransition) {
