@@ -22,7 +22,6 @@ public class ModuleManager {
 
         // Testing
 
-
     }
 
     // Add a mod to the list.

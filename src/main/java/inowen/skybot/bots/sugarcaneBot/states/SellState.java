@@ -20,7 +20,7 @@ public class SellState extends State {
 
     public static final long DELAY_BETWEEN_ACTIONS = 1500;
     public static final int SLOT_ID_BACK_CHEST = 53;
-    public int MIN_ITEMS_SELL; // Making it static and initializing here causes errors. Static initializers, no clue
+    public static final int MIN_ITEMS_SELL = SkybotConfig.SugarcaneBot.MIN_ITEMS_SELL.value;
 
     public long timeLastAction = 0;
     public Action action = Action.SELLING;
@@ -29,27 +29,6 @@ public class SellState extends State {
         this.name = "SellState";
         this.theFarm = theFarm;
         this.currentState = null;
-        System.out.println("Debug: Testing if there is a problem loading this: " + SkybotConfig.SugarcaneBot.MIN_ITEMS_SELL.value); // This line alone does not cause the error (if hardcoding this.MIN_ITEMS_SELL to 64)
-        this.MIN_ITEMS_SELL = 64;
-
-        SkybotConfig.SugarcaneBot.MIN_ITEMS_SELL.setValue("6000");
-
-        System.out.println("Value after setting to 6000: " + SkybotConfig.SugarcaneBot.MIN_ITEMS_SELL.value);
-
-        Object theInteger = SkybotConfig.SugarcaneBot.MIN_ITEMS_SELL.value;
-        if (theInteger instanceof Integer) {
-            System.out.println("Debug: entering if theInteger instanceof Integer");
-            this.MIN_ITEMS_SELL = ((Integer) theInteger);
-        }
-        else if (theInteger instanceof String) {
-            System.out.println("theInteger is instanceof string, even though the IDE is convinced that that's never the case.");
-        }
-        else {
-            System.out.println("theInteger isn´t instanceof Integer or String.");
-        }
-        System.out.println("Debug: After if.");
-
-
     }
 
 
