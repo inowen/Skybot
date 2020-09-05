@@ -30,5 +30,7 @@ public class ConfigOption<T> {
         }
     }
 
+    public T getValue() { return value; }
+
 
 }
