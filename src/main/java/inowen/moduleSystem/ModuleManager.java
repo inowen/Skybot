@@ -21,7 +21,7 @@ public class ModuleManager {
         addMod(new FullBright());
 
         // Testing
-        
+
 
     }
 
