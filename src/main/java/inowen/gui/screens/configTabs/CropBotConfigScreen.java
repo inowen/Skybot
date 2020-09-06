@@ -6,6 +6,8 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.ITextComponent;
 
+import java.awt.*;
+
 
 public class CropBotConfigScreen extends MainConfigScreen {
 
@@ -23,8 +25,11 @@ public class CropBotConfigScreen extends MainConfigScreen {
     public void init() {
         super.init();
 
-        // Add the input field for target item:
+        // Add the input field for target item, and the button to accept the input
         addTargetInputField("Target Item: " + SkybotConfig.OldCropBot.FARMED_ITEM.value);
+
+        // Add input fields for planting and breaking range
+        addRangeInputFields();
     }
 
     @Override
@@ -57,6 +62,47 @@ public class CropBotConfigScreen extends MainConfigScreen {
                 SkybotConfig.OldCropBot.FARMED_ITEM.setValue(newTargetItem.getText());
             }
         }));
+    }
+
+
+    /**
+     * Add the input fields for how far the bot should reach to plant things and to break things.
+     */
+    private void addRangeInputFields() {
+        int xIn = this.tabExtensionMinX + 3; // Where the rangeInputFields start.
+        int yIn = this.tabExtensionMinY + 30;
+        int inputFieldWidth = 100; // How wide the input fields are.
+        int spaceBetweenInputAndButton = 8; // Button to accept input is next to the input widget.
+        int inputFieldsHeight = 20; // Height of each one of the input fields.
+        int spaceBetweenInputFields = 5; // How much vertical space there is between the fields.
+
+        // Input field for breaking range
+        double breakingRangeNow = SkybotConfig.OldCropBot.BREAK_REACH.value;
+        TextFieldWidget breakingRangeInput = new TextFieldWidget(mc.fontRenderer, xIn, yIn, inputFieldWidth, inputFieldsHeight, ""+breakingRangeNow);
+
+        // Button to process value in input field.
+        this.addButton(new Button(xIn + inputFieldWidth + spaceBetweenInputAndButton, yIn, 120, inputFieldsHeight, "Accept Break Range", button -> {
+            try {
+                if (breakingRangeInput.getText().length() > 0) {
+                    SkybotConfig.OldCropBot.BREAK_REACH.setValue(breakingRangeInput.getText());
+                }
+            } catch (Exception ignored) { }
+        }));
+
+        // Input field for planting range
+        double plantingRangeNow = SkybotConfig.OldCropBot.PLANT_REACH.value;
+        TextFieldWidget plantingRangeInput = new TextFieldWidget(mc.fontRenderer, xIn, yIn + inputFieldsHeight+spaceBetweenInputFields, inputFieldWidth, inputFieldsHeight, ""+plantingRangeNow);
+
+        // Button to process value in planting input field
+        this.addButton(new Button(xIn + inputFieldWidth + spaceBetweenInputAndButton, yIn + inputFieldsHeight+spaceBetweenInputFields, 120, inputFieldsHeight, "Accept plant range", button -> {
+            if (plantingRangeInput.getText().length() > 0) {
+                try {
+                    SkybotConfig.OldCropBot.PLANT_REACH.setValue(plantingRangeInput.getText());
+                } catch (Exception ignore) { }
+            }
+        }));
+
+
     }
 
 
