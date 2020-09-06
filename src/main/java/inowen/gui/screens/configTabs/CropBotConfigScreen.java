@@ -79,6 +79,8 @@ public class CropBotConfigScreen extends MainConfigScreen {
         // Input field for breaking range
         double breakingRangeNow = SkybotConfig.OldCropBot.BREAK_REACH.value;
         TextFieldWidget breakingRangeInput = new TextFieldWidget(mc.fontRenderer, xIn, yIn, inputFieldWidth, inputFieldsHeight, ""+breakingRangeNow);
+        breakingRangeInput.setText(String.valueOf(breakingRangeNow));
+        this.addButton(breakingRangeInput);
 
         // Button to process value in input field.
         this.addButton(new Button(xIn + inputFieldWidth + spaceBetweenInputAndButton, yIn, 120, inputFieldsHeight, "Accept Break Range", button -> {
@@ -92,6 +94,8 @@ public class CropBotConfigScreen extends MainConfigScreen {
         // Input field for planting range
         double plantingRangeNow = SkybotConfig.OldCropBot.PLANT_REACH.value;
         TextFieldWidget plantingRangeInput = new TextFieldWidget(mc.fontRenderer, xIn, yIn + inputFieldsHeight+spaceBetweenInputFields, inputFieldWidth, inputFieldsHeight, ""+plantingRangeNow);
+        plantingRangeInput.setText(String.valueOf(plantingRangeNow));
+        this.addButton(plantingRangeInput);
 
         // Button to process value in planting input field
         this.addButton(new Button(xIn + inputFieldWidth + spaceBetweenInputAndButton, yIn + inputFieldsHeight+spaceBetweenInputFields, 120, inputFieldsHeight, "Accept plant range", button -> {
