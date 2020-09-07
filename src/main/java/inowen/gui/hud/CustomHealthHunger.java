@@ -1,9 +1,17 @@
 package inowen.gui.hud;
 
+import inowen.SkyBotMod;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -11,8 +19,13 @@ import net.minecraftforge.fml.common.Mod;
  * and be replaced with weird characters. This cancels it and shows a new stats bar.
  */
 @Mod.EventBusSubscriber
-public class CustomHealthHunger {
+public class CustomHealthHunger extends Screen {
     protected static Minecraft mc = Minecraft.getInstance();
+    public static CustomHealthHunger instance = new CustomHealthHunger(new StringTextComponent("CustomHealthHungerInfo"));
+
+    protected CustomHealthHunger(ITextComponent titleIn) {
+        super(titleIn);
+    }
 
     @SubscribeEvent
     public static void replaceHud(RenderGameOverlayEvent event) {
@@ -24,7 +37,7 @@ public class CustomHealthHunger {
 
             // Show the new health bar
             int healthBarWidth = 100;
-            renderHealthBar(xIn, yIn, healthBarWidth);
+            renderHealthBar(xIn, yIn-2, healthBarWidth);
 
             // Show the new hunger level
             int hungerX = xIn + healthBarWidth + 10;
@@ -33,7 +46,7 @@ public class CustomHealthHunger {
 
             // Show xp level
             int xpLevel = mc.player.experienceLevel;
-            mc.fontRenderer.drawString("XP: " + xpLevel, hungerX, yIn+8, 0xcc00aa);
+            mc.fontRenderer.drawString("XP: " + xpLevel, hungerX, yIn+8, 0x006900);
 
 
             // Cancel event to remove old HUD
@@ -46,6 +59,27 @@ public class CustomHealthHunger {
      * Render the health bar, with current health.
      */
     public static void renderHealthBar(int x, int y, int healthBarWidth) {
+        // Render the black enclosure
+        ResourceLocation enclosureBlack = new ResourceLocation(SkyBotMod.MOD_ID, "black.png");
+        mc.getTextureManager().bindTexture(enclosureBlack);
+        instance.blit(x, y, 0, 0, healthBarWidth, 16);
+
+        // Exact location of the health bar
+        int innerMinX = x+1;
+        int innerMinY = y+1;
+        int insideHpBarWidth = healthBarWidth-2;
+        int innerBarHeight = 14;
+
+        // Render the grey background
+        ResourceLocation greyBackground = new ResourceLocation(SkyBotMod.MOD_ID, "grey.png");
+        mc.getTextureManager().bindTexture(greyBackground);
+        instance.blit(innerMinX, innerMinY, 0, 0, insideHpBarWidth, innerBarHeight);
+
+        // Render the health point bar
+        ResourceLocation barTexture = new ResourceLocation(SkyBotMod.MOD_ID, "green.png");
+        mc.getTextureManager().bindTexture(barTexture);
+        double healthFraction = mc.player.getHealth()/mc.player.getMaxHealth();
+        instance.blit(innerMinX, innerMinY, 0, 0, (int)(healthFraction*(double)insideHpBarWidth), innerBarHeight);
 
     }
 
