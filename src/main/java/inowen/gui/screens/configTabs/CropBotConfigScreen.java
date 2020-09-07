@@ -68,6 +68,7 @@ public class CropBotConfigScreen extends MainConfigScreen {
 
         int textBoxWidth = 100;
         newTargetItem = new TextFieldWidget(mc.fontRenderer, xIn, yIn, textBoxWidth, 20, "");
+        newTargetItem.setText(SkybotConfig.OldCropBot.FARMED_ITEM.value);
         this.addButton(newTargetItem);
         this.addButton(new Button(xIn+textBoxWidth + 5, yIn, 80, 20, "Switch target", button -> {
             if (newTargetItem.getText().length()>0) {
@@ -125,7 +126,7 @@ public class CropBotConfigScreen extends MainConfigScreen {
      * @param previousMessage The string to show current barrier type (to know how much space to leave at its left).
      */
     private void addBarrierBlockInput(String previousMessage) {
-        int xIn = this.tabExtensionMinX + mc.fontRenderer.getStringWidth(previousMessage);
+        int xIn = this.tabExtensionMinX + mc.fontRenderer.getStringWidth(previousMessage) + 10;
         int yIn = this.tabExtensionMinY + 120;
         int textFieldWidth = 100;
         int widgetsHeight = 20;
