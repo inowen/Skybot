@@ -27,17 +27,15 @@ public class StatsIngameOverlay {
     }
 
     /**
-     * Show username in bottom left corner. Only works in fullscreen on 1080p...
-     * TODO: Fix this. (I´m going to bed been here for 2 hours :L)
-     * @param event
+     * Show username in bottom left corner.
      */
     @SubscribeEvent
     public static void showUsernameIngame(RenderGameOverlayEvent event) {
         if (SkybotConfig.showNameIngameConfig.value) {
-            // Display username ingame
-            String username = mc.getSession().getUsername();
-            mc.fontRenderer.drawString(username,0, 330, 0xFF9933);
 
+            // Display username ingame
+            String username = "Username: " + mc.getSession().getUsername();
+            mc.fontRenderer.drawString(username, 0, event.getWindow().getScaledHeight()-10, 0xFF9933);
         }
     }
 
