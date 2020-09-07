@@ -1,4 +1,4 @@
-package inowen.gui;
+package inowen.gui.hud;
 
 
 import inowen.SkyBotMod;
