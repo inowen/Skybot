@@ -15,7 +15,7 @@ public class CustomHealthHunger {
     protected static Minecraft mc = Minecraft.getInstance();
 
     @SubscribeEvent
-    public static void removeOldHud(RenderGameOverlayEvent event) {
+    public static void replaceHud(RenderGameOverlayEvent event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
 
             int xIn = (int)(0.3575*event.getWindow().getScaledWidth());
@@ -23,16 +23,20 @@ public class CustomHealthHunger {
             mc.fontRenderer.drawString("Health bar here.", xIn, yIn, 0xaa0000);
 
             // Show the new health bar
-            renderHealthBar(xIn, yIn);
+            int healthBarWidth = 100;
+            renderHealthBar(xIn, yIn, healthBarWidth);
 
-            // Show the new hunger bar
+            // Show the new hunger level
+            int hungerX = xIn + healthBarWidth + 10;
+            showHungerLevel(hungerX, yIn-1);
 
 
             // Show xp level
             int xpLevel = mc.player.experienceLevel;
-            mc.fontRenderer.drawString("XP: " + xpLevel, (int)(0.482*event.getWindow().getScaledWidth()), (int)(0.8925*event.getWindow().getScaledHeight()), 0x00aa00);
+            mc.fontRenderer.drawString("XP: " + xpLevel, hungerX, yIn+8, 0xcc00aa);
 
 
+            // Cancel event to remove old HUD
             event.setCanceled(true);
         }
     }
@@ -41,7 +45,18 @@ public class CustomHealthHunger {
     /**
      * Render the health bar, with current health.
      */
-    public static void renderHealthBar(int x, int y) {
-        
+    public static void renderHealthBar(int x, int y, int healthBarWidth) {
+
+    }
+
+
+    /**
+     * Show the hunger level at given coordinates.
+     * @param x
+     * @param y
+     */
+    public static void showHungerLevel(int x, int y) {
+        String hungerInfo = "Hunger: " + mc.player.getFoodStats().getFoodLevel() + "/20";
+        mc.fontRenderer.drawString(hungerInfo, x, y, 0xcc6600);
     }
 }
