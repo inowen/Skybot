@@ -30,6 +30,10 @@ public class CropBotConfigScreen extends MainConfigScreen {
 
         // Add input fields for planting and breaking range
         addRangeInputFields();
+
+        // Add input field and accept button for barrier block
+        // (the String is only given to it to know how much space to leave to its left).
+        addBarrierBlockInput("Barrier Block: " + SkybotConfig.OldCropBot.BARRIER_BLOCK.value);
     }
 
     @Override
@@ -38,6 +42,14 @@ public class CropBotConfigScreen extends MainConfigScreen {
 
         // Show the target item
         mc.fontRenderer.drawString("Target Item: " + SkybotConfig.OldCropBot.FARMED_ITEM.value, tabExtensionMinX+3, tabExtensionMinY+3, 0xffffff);
+
+        // Render separation below which the BARRIER_BLOCK is chosen
+        String msg = "------------------ Farm Enclosure type ---------------";
+        this.drawString(mc.fontRenderer, msg, tabExtensionMinX, tabExtensionMinY+100, 0x1111cc);
+
+        // Show current BARRIER_BLOCK
+        String msg2 = "Barrier Block: " + SkybotConfig.OldCropBot.BARRIER_BLOCK.value;
+        this.drawString(mc.fontRenderer, msg2, tabExtensionMinX+3, tabExtensionMinY+120, 0xffffff);
     }
 
     @Override
@@ -105,8 +117,36 @@ public class CropBotConfigScreen extends MainConfigScreen {
                 } catch (Exception ignore) { }
             }
         }));
+    }
 
 
+    /**
+     * Add TextFieldWidget to read the type of block to expect as farm enclosure.
+     * @param previousMessage The string to show current barrier type (to know how much space to leave at its left).
+     */
+    private void addBarrierBlockInput(String previousMessage) {
+        int xIn = this.tabExtensionMinX + mc.fontRenderer.getStringWidth(previousMessage);
+        int yIn = this.tabExtensionMinY + 120;
+        int textFieldWidth = 100;
+        int widgetsHeight = 20;
+        int buttonWidth = 80;
+        int spaceBtwButtonAndField = 8;
+
+        // The input field
+        TextFieldWidget blockInput = new TextFieldWidget(mc.fontRenderer, xIn, yIn, textFieldWidth, widgetsHeight, "");
+        blockInput.setText(SkybotConfig.OldCropBot.BARRIER_BLOCK.value);
+        this.addButton(blockInput);
+
+        // The accept button
+        int btnX = xIn+textFieldWidth+spaceBtwButtonAndField;
+        this.addButton(new Button(btnX, yIn, 120, widgetsHeight, "Accept barrier block", button -> {
+            if (blockInput.getText().length() > 0) {
+                try {
+                    SkybotConfig.OldCropBot.BARRIER_BLOCK.setValue(blockInput.getText());
+                }
+                catch (Exception ignore) { }
+            }
+        }));
     }
 
 
