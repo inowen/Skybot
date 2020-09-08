@@ -21,6 +21,7 @@ import javax.annotation.Resource;
  */
 @Mod.EventBusSubscriber
 public class CustomHealthHunger extends Screen {
+
     protected static Minecraft mc = Minecraft.getInstance();
     public static CustomHealthHunger instance = new CustomHealthHunger(new StringTextComponent("CustomHealthHungerInfo"));
 

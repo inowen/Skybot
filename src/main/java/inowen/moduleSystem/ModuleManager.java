@@ -21,6 +21,7 @@ public class ModuleManager {
         addMod(new FullBright());
 
         // Testing
+        addMod(new TestClickTypes());
 
     }
 
