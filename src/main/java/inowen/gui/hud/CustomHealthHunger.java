@@ -1,6 +1,7 @@
 package inowen.gui.hud;
 
 import inowen.SkyBotMod;
+import inowen.config.SkybotConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
@@ -29,7 +30,7 @@ public class CustomHealthHunger extends Screen {
 
     @SubscribeEvent
     public static void replaceHud(RenderGameOverlayEvent event) {
-        if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH && SkybotConfig.OVERRIDE_HEALTH_ARMOR.value) {
 
             int xIn = (int)(0.3575*event.getWindow().getScaledWidth());
             int yIn = (int)(0.87*event.getWindow().getScaledHeight());

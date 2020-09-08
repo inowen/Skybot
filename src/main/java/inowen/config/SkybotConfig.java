@@ -25,6 +25,7 @@ public class SkybotConfig {
 
     // Global stuff
     public static ConfigOption<Boolean> showNameIngameConfig = new ConfigOption<>("ShowNameIngame", true, true);
+    public static ConfigOption<Boolean> OVERRIDE_HEALTH_ARMOR = new ConfigOption<>("OverrideHealthAndArmor", true, true);
 
 
     // Each module gets its own config section
