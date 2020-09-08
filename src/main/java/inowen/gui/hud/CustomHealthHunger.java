@@ -81,6 +81,12 @@ public class CustomHealthHunger extends Screen {
         double healthFraction = mc.player.getHealth()/mc.player.getMaxHealth();
         instance.blit(innerMinX, innerMinY, 0, 0, (int)(healthFraction*(double)insideHpBarWidth), innerBarHeight);
 
+        // Render golden bar for over-protection (like from golden apples)
+        ResourceLocation protectionBarTexture = new ResourceLocation(SkyBotMod.MOD_ID, "gold.png");
+        mc.getTextureManager().bindTexture(protectionBarTexture);
+        double protectionFraction = mc.player.getAbsorptionAmount()/mc.player.getMaxHealth();
+        instance.blit(innerMinX, innerMinY, 0, 0, (int)(protectionFraction*(double)insideHpBarWidth), innerBarHeight);
+
     }
 
 
