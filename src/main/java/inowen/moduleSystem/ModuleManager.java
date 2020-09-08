@@ -17,7 +17,7 @@ public class ModuleManager {
         addMod(new MumpkinBot());
         addMod(new WhiteList());
         addMod(new HideNames());
-        addMod(new SeedsCropBot());
+        // addMod(new SeedsCropBot());
         addMod(new FullBright());
 
         // Testing
