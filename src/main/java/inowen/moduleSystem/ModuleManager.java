@@ -19,6 +19,7 @@ public class ModuleManager {
         addMod(new HideNames());
         // addMod(new SeedsCropBot());
         addMod(new FullBright());
+        addMod(new PvpEnhancer());
 
         // Testing
         addMod(new TestClickTypes());
