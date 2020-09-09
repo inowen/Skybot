@@ -77,6 +77,10 @@ public class SkybotConfig {
     public static ConfigOption<String> HIDE_NAMES_SUBSTITUTE = new ConfigOption<>("Hide_Names_Substitute", "Skybot_Hidden_Name", "Skybot_Hidden_Name");
 
 
+    // ------------ PVP ENHANCEMENT ----------------------
+    public static ConfigOption<Boolean> SHOW_PLAYER_HP_NAMETAG = new ConfigOption<>("SHOW_PLAYER_HP_NAMETAG", true, true);
+
+
 
 
 

@@ -1,5 +1,6 @@
 package inowen.moduleSystem.mods;
 
+import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
 import net.minecraft.entity.Entity;
@@ -35,7 +36,7 @@ public class PvpEnhancer extends Module {
      */
     @SubscribeEvent
     public void showPlayerHealthInNameTag(RenderNameplateEvent event) {
-        if (this.isToggled()) {
+        if (this.isToggled() && SkybotConfig.SHOW_PLAYER_HP_NAMETAG.value) {
 
             if (event.getEntity() instanceof PlayerEntity) {
                 float health = ((PlayerEntity) event.getEntity()).getHealth();
