@@ -29,4 +29,18 @@ public class PvpEnhancer extends Module {
     }
 
 
+    /**
+     * When rendering a player nameplate, add the player's hp.
+     * @param event
+     */
+    @SubscribeEvent
+    public void showPlayerHealthInNameTag(RenderNameplateEvent event) {
+        if (this.isToggled()) {
+
+            if (event.getEntity() instanceof PlayerEntity) {
+                float health = ((PlayerEntity) event.getEntity()).getHealth();
+                event.setContent(event.getContent() + " - " + health);
+            }
+        }
+    }
 }
