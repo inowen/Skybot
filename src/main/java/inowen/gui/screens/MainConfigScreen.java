@@ -39,6 +39,7 @@ public class MainConfigScreen extends Screen {
     private CheckboxButton hideNamesCheckBox = null;
     private CheckboxButton whitelistCheckbox = null;
     private CheckboxButton fullBrightCheckbox = null;
+    private CheckboxButton pvpEnhancerCheckbox = null;
 
 
     /**
@@ -118,6 +119,11 @@ public class MainConfigScreen extends Screen {
         this.addButton(fullBrightCheckbox);
         numModCheckBoxes++;
 
+        // Add extra space
+        numModCheckBoxes++;
+
+        // Checkbox for pvp enhancer module
+        pvpEnhancerCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "PvpEnhancer", ModuleManager.getModule("PvpEnhancer").isToggled());
 
     }
 
@@ -153,6 +159,9 @@ public class MainConfigScreen extends Screen {
                 whitelist.toggled = false;
             }
         }
+
+        Module pvpEnhancer = ModuleManager.getModule("PvpEnhancer");
+        pvpEnhancer.toggled = pvpEnhancerCheckbox.isChecked();
     }
 
 
