@@ -111,14 +111,4 @@ public class PvpEnhancer extends Module {
         }
     }
 
-
-    /**
-     * Warning if not completely equipped for pvp (missing armor pieces).
-     */
-    public static void missingArmorWarning(RenderGameOverlayEvent event) {
-        if (mc.player.getArmorCoverPercentage() < 0.9999) {
-            // Render the warning symbol
-        }
-    }
-
 }
