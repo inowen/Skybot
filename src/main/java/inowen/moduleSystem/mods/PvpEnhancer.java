@@ -1,10 +1,17 @@
 package inowen.moduleSystem.mods;
 
+import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
+import inowen.moduleSystem.ModuleManager;
 import inowen.utils.ForgeKeys;
+import net.minecraft.client.MainWindow;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,8 +29,11 @@ import net.minecraftforge.fml.common.Mod;
  *
  *   Also keep a record of the last player hitting the player, and a display of how much damage they are doing.
  */
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
 public class PvpEnhancer extends Module {
+
+    // Use this to render things on screen
+    public static Screen screenInstance = new Screen(new StringTextComponent("Screen")) { };
 
     public PvpEnhancer() {
         super("PvpEnhancer", ForgeKeys.KEY_NONE);
@@ -35,8 +45,10 @@ public class PvpEnhancer extends Module {
      * @param event
      */
     @SubscribeEvent
-    public void showPlayerHealthInNameTag(RenderNameplateEvent event) {
-        if (this.isToggled() && SkybotConfig.SHOW_PLAYER_HP_NAMETAG.value) {
+    public static void showPlayerHealthInNameTag(RenderNameplateEvent event) {
+        Module thisModule = ModuleManager.getModule("PvpEnhancer");
+
+        if (thisModule != null && thisModule.isToggled() && SkybotConfig.SHOW_PLAYER_HP_NAMETAG.value) {
 
             if (event.getEntity() instanceof PlayerEntity) {
                 float health = ((PlayerEntity) event.getEntity()).getHealth();
@@ -44,4 +56,7 @@ public class PvpEnhancer extends Module {
             }
         }
     }
+
+    
+
 }

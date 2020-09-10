@@ -124,6 +124,8 @@ public class MainConfigScreen extends Screen {
 
         // Checkbox for pvp enhancer module
         pvpEnhancerCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "PvpEnhancer", ModuleManager.getModule("PvpEnhancer").isToggled());
+        this.addButton(pvpEnhancerCheckbox);
+        numModCheckBoxes++;
 
     }
 
