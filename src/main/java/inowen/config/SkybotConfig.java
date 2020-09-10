@@ -78,7 +78,11 @@ public class SkybotConfig {
 
 
     // ------------ PVP ENHANCEMENT ----------------------
-    public static ConfigOption<Boolean> SHOW_PLAYER_HP_NAMETAG = new ConfigOption<>("SHOW_PLAYER_HP_NAMETAG", true, true);
+    public static class PvpEnhancer {
+
+        public static ConfigOption<Boolean> SHOW_PLAYER_HP_NAMETAG = new ConfigOption<>("SHOW_PLAYER_HP_NAMETAG", true, true);
+        public static ConfigOption<Boolean> SHOW_ARMOR_PERCENTAGES = new ConfigOption<>("PVP_SHOW_ARMOR_PERCENTAGES", true, true);
+    }
 
 
 
