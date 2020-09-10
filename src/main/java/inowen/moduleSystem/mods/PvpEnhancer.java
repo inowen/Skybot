@@ -153,12 +153,14 @@ public class PvpEnhancer extends Module {
 
         int i = 0;
         for (EffectInstance effect : effectsList) {
-            mc.fontRenderer.drawString(effect.getEffectName() + " -- " + effect.getAmplifier() + " -- " + effect.getDuration(), 100, 100+i, 0xffffff);
+            mc.fontRenderer.drawString(effect.getEffectName() + " -- Power: " + (effect.getAmplifier()+1) + " -- " + effect.getDuration()/20, 100, 100+i, 0xffffff);
             i += 10;
         }
 
-        
+        // Show effects
 
     }
+
+
 
 }
