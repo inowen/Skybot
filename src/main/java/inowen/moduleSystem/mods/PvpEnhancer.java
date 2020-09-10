@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
@@ -60,10 +61,16 @@ public class PvpEnhancer extends Module {
     @SubscribeEvent
     public static void renderArmorInfo(RenderGameOverlayEvent event) {
         MainWindow window = mc.getMainWindow();
-        int armorX = (int)(0.725*window.getScaledWidth());
-        int armorY = (int)(0.9*window.getScaledHeight());
+        int armorX = (int)(0.65*window.getScaledWidth());
+        int armorY = (int)(0.87*window.getScaledHeight());
+        int textColor = 0x000066;
 
-        mc.fontRenderer.drawString("X", armorX, armorY, 0xffffff);
+        
+
+        mc.fontRenderer.drawString(TextFormatting.BOLD + "H: ", armorX, armorY, textColor);
+        mc.fontRenderer.drawString(TextFormatting.BOLD + "C: ", armorX, armorY+10, textColor);
+        mc.fontRenderer.drawString(TextFormatting.BOLD + "L: ", armorX, armorY+20, textColor);
+        mc.fontRenderer.drawString(TextFormatting.BOLD + "B: ", armorX, armorY+30, textColor);
     }
 
 }
