@@ -13,16 +13,19 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -111,6 +114,51 @@ public class PvpEnhancer extends Module {
             mc.fontRenderer.drawString(TextFormatting.BOLD + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken), armorX, armorY + 20, textColor);
             mc.fontRenderer.drawString(TextFormatting.BOLD + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken), armorX, armorY + 30, textColor);
         }
+    }
+
+
+
+
+    // Use this once I understand more about rendering? For now just put it in the nametag...
+    /*
+    @SubscribeEvent
+    public static void showOpponentWeapon(RenderPlayerEvent event) {
+        // Get item that the player is holding
+        PlayerEntity player = event.getPlayer();
+        Item heldItem = player.getHeldItemMainhand().getItem();
+        System.out.println("Held item: " + heldItem);
+
+    }
+    */
+
+    @SubscribeEvent
+    public static void showSharpnessInName(RenderNameplateEvent event) {
+
+        if (event.getEntity() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) event.getEntity();
+            ItemStack itemHeld = player.getHeldItemMainhand();
+
+            int sharpness = 0;
+        }
+    }
+
+
+    /**
+     * Show the active effects on bottom left side when rendering HUD
+     */
+    @SubscribeEvent
+    public static void showEffects(RenderGameOverlayEvent event) {
+        Collection<EffectInstance> effectsCollection = mc.player.getActivePotionEffects();
+        List<EffectInstance> effectsList = ImmutableList.copyOf(effectsCollection);
+
+        int i = 0;
+        for (EffectInstance effect : effectsList) {
+            mc.fontRenderer.drawString(effect.getEffectName() + " -- " + effect.getAmplifier() + " -- " + effect.getDuration(), 100, 100+i, 0xffffff);
+            i += 10;
+        }
+
+        
+
     }
 
 }
