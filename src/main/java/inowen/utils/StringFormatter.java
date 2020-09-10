@@ -13,10 +13,10 @@ public class StringFormatter {
         int readPos = original.length()-1;
 
         while(readPos>=0 && original.charAt(readPos)!='.') {
-            result.concat(String.valueOf(original.charAt(readPos)));
+            result = result.concat(String.valueOf(original.charAt(readPos)));
             readPos--;
         }
 
-        return result;
+        return new StringBuilder(result).reverse().toString();
     }
 }

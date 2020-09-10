@@ -6,14 +6,17 @@ import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.utils.ForgeKeys;
+import inowen.utils.StringFormatter;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -150,14 +153,16 @@ public class PvpEnhancer extends Module {
     public static void showEffects(RenderGameOverlayEvent event) {
         Collection<EffectInstance> effectsCollection = mc.player.getActivePotionEffects();
         List<EffectInstance> effectsList = ImmutableList.copyOf(effectsCollection);
+        Screen screenInstance = new Screen(new StringTextComponent("screen")) {};
 
-        int i = 0;
-        for (EffectInstance effect : effectsList) {
-            mc.fontRenderer.drawString(effect.getEffectName() + " -- Power: " + (effect.getAmplifier()+1) + " -- " + effect.getDuration()/20, 100, 100+i, 0xffffff);
-            i += 10;
-        }
+        ArrayList<String> ignorableEffects = new ArrayList<>();
+        ignorableEffects.add("fire_resistance");
+        ignorableEffects.add("absorption");
+        ignorableEffects.add("resistance");
 
         // Show effects
+        int displayX = 50;
+        int displayY = mc.getMainWindow().getScaledHeight()-50;
 
     }
 
