@@ -57,6 +57,13 @@ public class PvpEnhancer extends Module {
         }
     }
 
-    
+    @SubscribeEvent
+    public static void renderArmorInfo(RenderGameOverlayEvent event) {
+        MainWindow window = mc.getMainWindow();
+        int armorX = (int)(0.725*window.getScaledWidth());
+        int armorY = (int)(0.9*window.getScaledHeight());
+
+        mc.fontRenderer.drawString("X", armorX, armorY, 0xffffff);
+    }
 
 }
