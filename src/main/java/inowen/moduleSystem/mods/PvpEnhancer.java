@@ -1,5 +1,6 @@
 package inowen.moduleSystem.mods;
 
+import com.google.common.collect.ImmutableList;
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
@@ -9,6 +10,9 @@ import net.minecraft.client.MainWindow;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,6 +20,10 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Adds a series of useful enhancements to the client that improve pvp experience (just as an extra, not really part of the bot).
@@ -68,12 +76,38 @@ public class PvpEnhancer extends Module {
             int armorY = (int) (0.87 * window.getScaledHeight());
             int textColor = 0x000066;
 
-            // Durabilities
+            // Durabilities (0=boots, 1=leggings, 2=chest_plate, 3=helmet)
+            Iterable<ItemStack> armorIterator = mc.player.getArmorInventoryList();
+            List<ItemStack> armorList = ImmutableList.copyOf(armorIterator);
 
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "H: ", armorX, armorY, textColor);
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "C: ", armorX, armorY + 10, textColor);
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "L: ", armorX, armorY + 20, textColor);
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "B: ", armorX, armorY + 30, textColor);
+            Item boots = armorList.get(0).getItem();
+            float bootsDurability = (boots instanceof ArmorItem) ? 1-(float) ((ArmorItem) boots).getDurabilityForDisplay(armorList.get(0)) : 0.0F;
+            bootsDurability *= 100; // percentage
+
+            Item pants = armorList.get(1).getItem();
+            float leggingsDurability = (pants instanceof ArmorItem) ? (float)(1-((ArmorItem)pants).getDurabilityForDisplay(armorList.get(1))) : 0.0F;
+            leggingsDurability *= 100;
+
+            Item chest = armorList.get(2).getItem();
+            float chestDurability = (chest instanceof ArmorItem) ? (float)(1-((ArmorItem)chest).getDurabilityForDisplay(armorList.get(2))) : 0.0F;
+            chestDurability *= 100;
+
+            Item helmet = armorList.get(3).getItem();
+            float helmetDurability = (helmet instanceof ArmorItem) ? (float)(1-((ArmorItem)helmet).getDurabilityForDisplay(armorList.get(3))) : 0.0F;
+            helmetDurability *= 100;
+
+
+            // Message to indicate that a piece of armor is broken (not present)
+            String msgBroken = TextFormatting.DARK_RED + "BROKEN";
+
+            // Format to avoid long decimal numbers
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(1);
+
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "H: " + (helmetDurability>0 ? df.format(helmetDurability) : msgBroken), armorX, armorY, textColor);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "C: " + (chestDurability>0 ? df.format(chestDurability) : msgBroken), armorX, armorY + 10, textColor);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken), armorX, armorY + 20, textColor);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken), armorX, armorY + 30, textColor);
         }
     }
 
