@@ -61,7 +61,9 @@ public class PvpEnhancer extends Module {
 
             if (event.getEntity() instanceof PlayerEntity) {
                 float health = ((PlayerEntity) event.getEntity()).getHealth();
-                event.setContent(event.getContent() + " - " + health);
+                DecimalFormat df = new DecimalFormat();
+                df.setMaximumFractionDigits(1);
+                event.setContent(event.getContent() + " - " + TextFormatting.RED + df.format(health));
             }
         }
     }
