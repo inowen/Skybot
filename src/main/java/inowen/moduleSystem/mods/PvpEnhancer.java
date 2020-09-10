@@ -49,7 +49,7 @@ public class PvpEnhancer extends Module {
     public static void showPlayerHealthInNameTag(RenderNameplateEvent event) {
         Module thisModule = ModuleManager.getModule("PvpEnhancer");
 
-        if (thisModule != null && thisModule.isToggled() && SkybotConfig.SHOW_PLAYER_HP_NAMETAG.value) {
+        if (thisModule != null && thisModule.isToggled() && SkybotConfig.PvpEnhancer.SHOW_PLAYER_HP_NAMETAG.value) {
 
             if (event.getEntity() instanceof PlayerEntity) {
                 float health = ((PlayerEntity) event.getEntity()).getHealth();
@@ -60,17 +60,31 @@ public class PvpEnhancer extends Module {
 
     @SubscribeEvent
     public static void renderArmorInfo(RenderGameOverlayEvent event) {
-        MainWindow window = mc.getMainWindow();
-        int armorX = (int)(0.65*window.getScaledWidth());
-        int armorY = (int)(0.87*window.getScaledHeight());
-        int textColor = 0x000066;
 
-        
+        Module theMod = ModuleManager.getModule("PvpEnhancer");
+        if (theMod.isToggled() && SkybotConfig.PvpEnhancer.SHOW_ARMOR_PERCENTAGES.value) {
+            MainWindow window = mc.getMainWindow();
+            int armorX = (int) (0.65 * window.getScaledWidth());
+            int armorY = (int) (0.87 * window.getScaledHeight());
+            int textColor = 0x000066;
 
-        mc.fontRenderer.drawString(TextFormatting.BOLD + "H: ", armorX, armorY, textColor);
-        mc.fontRenderer.drawString(TextFormatting.BOLD + "C: ", armorX, armorY+10, textColor);
-        mc.fontRenderer.drawString(TextFormatting.BOLD + "L: ", armorX, armorY+20, textColor);
-        mc.fontRenderer.drawString(TextFormatting.BOLD + "B: ", armorX, armorY+30, textColor);
+            // Durabilities
+
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "H: ", armorX, armorY, textColor);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "C: ", armorX, armorY + 10, textColor);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "L: ", armorX, armorY + 20, textColor);
+            mc.fontRenderer.drawString(TextFormatting.BOLD + "B: ", armorX, armorY + 30, textColor);
+        }
+    }
+
+
+    /**
+     * Warning if not completely equipped for pvp (missing armor pieces).
+     */
+    public static void missingArmorWarning(RenderGameOverlayEvent event) {
+        if (mc.player.getArmorCoverPercentage() < 0.9999) {
+            // Render the warning symbol
+        }
     }
 
 }
