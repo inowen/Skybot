@@ -40,6 +40,7 @@ public class MainConfigScreen extends Screen {
     private CheckboxButton whitelistCheckbox = null;
     private CheckboxButton fullBrightCheckbox = null;
     private CheckboxButton pvpEnhancerCheckbox = null;
+    private CheckboxButton showUsernameIngameCheckbox = null;
 
 
     /**
@@ -111,6 +112,11 @@ public class MainConfigScreen extends Screen {
         this.addButton(whitelistCheckbox);
         numModCheckBoxes++;
 
+        // Checkbox: show name in lower left corner?
+        showUsernameIngameCheckbox = new CheckboxButton(x, topY + numModCheckBoxes*20, 20, 20, "Show name", SkybotConfig.showNameIngameConfig.value);
+        this.addButton(showUsernameIngameCheckbox);
+        numModCheckBoxes++;
+
         // Add an extra space in between (different categories)
         numModCheckBoxes++;
 
@@ -135,9 +141,11 @@ public class MainConfigScreen extends Screen {
      */
     public void tickCheckboxes() {
 
+        // Read hideNames checkbox
         Module hideNames = ModuleManager.getModule("HideNames");
         hideNames.toggled = hideNamesCheckBox.isChecked();
 
+        // Read fullBright checkbox
         Module fullBright = ModuleManager.getModule("FullBright");
         if (fullBrightCheckbox.isChecked() && !fullBright.isToggled()) {
             fullBright.toggle();
@@ -146,6 +154,7 @@ public class MainConfigScreen extends Screen {
             fullBright.toggle();
         }
 
+        // Read whitelist checkbox
         Module whitelist = ModuleManager.getModule("WhiteList");
         if (whitelistCheckbox.isChecked()) {
             // Enable module if it isn't already
@@ -162,8 +171,12 @@ public class MainConfigScreen extends Screen {
             }
         }
 
+        // Read pvp enhancer checkbox
         Module pvpEnhancer = ModuleManager.getModule("PvpEnhancer");
         pvpEnhancer.toggled = pvpEnhancerCheckbox.isChecked();
+
+        // Read showUsernameIngame checkbox
+        SkybotConfig.showNameIngameConfig.value = showUsernameIngameCheckbox.isChecked();
     }
 
 
