@@ -21,9 +21,7 @@ public class SkyBotMod {
 
     public SkyBotMod() {
 
-        // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         // Register ourselves for server and other game events we are interested in
@@ -36,7 +34,8 @@ public class SkyBotMod {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         ModuleManager.init();
-        // Config stuff here.
+
+        // Read in configuration from text file (or ignore if there is no file).
         readModConfigFile(SkybotConfig.CONFIG_TEXT_FILE_NAME);
     }
 
