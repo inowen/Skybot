@@ -16,16 +16,6 @@ public class StatsIngameOverlay {
 
     private static Minecraft mc = Minecraft.getInstance();
 
-    @SubscribeEvent
-    public static void drawHungerAndHealth(RenderGameOverlayEvent event) {
-        if (mc.currentScreen == null) {
-            float health = mc.player.getHealth();
-            int foodLevel = mc.player.getFoodStats().getFoodLevel();
-
-            //TODO: Complete this when I find out how to scale height and width.
-        }
-    }
-
     /**
      * Show username in bottom left corner.
      */
