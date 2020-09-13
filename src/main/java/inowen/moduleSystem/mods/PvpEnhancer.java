@@ -10,11 +10,15 @@ import inowen.utils.StringFormatter;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.texture.SimpleTexture;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
@@ -30,6 +34,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Adds a series of useful enhancements to the client that improve pvp experience (just as an extra, not really part of the bot).
@@ -141,7 +146,18 @@ public class PvpEnhancer extends Module {
             PlayerEntity player = (PlayerEntity) event.getEntity();
             ItemStack itemHeld = player.getHeldItemMainhand();
 
+            // Get the list of enchantments on the held item
+            Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(itemHeld);
+
+            // If the enchantments list contains the sharpness enchantment, show level, else show 0.
             int sharpness = 0;
+            if (enchantments.containsKey(Enchantments.SHARPNESS)) {
+                sharpness = enchantments.get(Enchantments.SHARPNESS);
+            }
+
+            // Show sharpness at the beginning of the nameplate.
+            String nameWithSharpness = "S" + sharpness + " # " + event.getContent();
+            event.setContent(nameWithSharpness);
         }
     }
 
