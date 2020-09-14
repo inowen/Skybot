@@ -75,17 +75,25 @@ public class ChangeSessionScreen extends Screen {
      */
     public void setUsername(String username) {
         // Get Minecraft Class object.
-        Class minecraftClass = Minecraft.getInstance().getClass();
+        Class minecraftClass = Minecraft.class;
 
         // Try to change the private final field session to set new username.
         try {
-            Field sessionField = minecraftClass.getDeclaredField("session");
+            Field sessionField = minecraftClass.getDeclaredField("field_71449_j");
             sessionField.setAccessible(true);
             sessionField.set(mc, new Session(username, "", "", "mojang"));
         }
         catch (NoSuchFieldException | IllegalAccessException e) {
-            SkyBotMod.LOGGER.error("Reflection problem: Couldn't change Session field in Minecraft.instance.");
-            e.printStackTrace();
+            try {
+                Field sessionField = minecraftClass.getDeclaredField("session");
+                sessionField.setAccessible(true);
+                sessionField.set(mc, new Session(username, "", "", "mojang"));
+            }
+            catch(NoSuchFieldException | IllegalAccessException e2) {
+                SkyBotMod.LOGGER.error("Reflection problem: Couldn't change Session field in Minecraft.instance.");
+                e.printStackTrace();
+            }
+
         }
     }
 
