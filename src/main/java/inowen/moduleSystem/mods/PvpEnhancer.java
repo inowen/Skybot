@@ -182,15 +182,36 @@ public class PvpEnhancer extends Module {
         ignorableEffects.add("resistance");
 
         // Show effects
-        int displayX = 50;
-        int displayY = mc.getMainWindow().getScaledHeight()-50;
+        int displayX = 100;
+        int displayY = mc.getMainWindow().getScaledHeight()-28;
 
         // Render the icon for testing
-        ResourceLocation texture = new ResourceLocation(SkyBotMod.MOD_ID, "strength_icon.png");
+        int iconSize = 27;
+
+        ResourceLocation texture = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/strength.png");
         mc.getTextureManager().bindTexture(texture);
-        screenInstance.blit(displayX, displayY, 0, 0, 20, 20);
+        screenInstance.blit(displayX, displayY, 0, 0, 4*iconSize, iconSize, iconSize, iconSize);
+
+        mc.getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/timer_enclosure.png"));
+        screenInstance.blit(displayX, displayY-11, 0, 0, 4*iconSize, 11, iconSize, 11);
+
+        for (int numEffects=0; numEffects<4; numEffects++) {
+            mc.fontRenderer.drawString("2:22", displayX+numEffects*iconSize + 4, displayY-9, 0x00aa00);
+        }
+
+
+
+        // Bind transparent texture to avoid random characters over the HUD.
         mc.getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "transparent.png"));
 
+    }
+
+
+    @SubscribeEvent
+    public static void moveChat(RenderGameOverlayEvent event) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.CHAT) {
+
+        }
     }
 
 
