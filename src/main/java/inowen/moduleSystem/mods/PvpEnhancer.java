@@ -205,15 +205,5 @@ public class PvpEnhancer extends Module {
         mc.getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "transparent.png"));
 
     }
-
-
-    @SubscribeEvent
-    public static void moveChat(RenderGameOverlayEvent event) {
-        if (event.getType() == RenderGameOverlayEvent.ElementType.CHAT) {
-
-        }
-    }
-
-
-
+    
 }
