@@ -142,22 +142,27 @@ public class PvpEnhancer extends Module {
     @SubscribeEvent
     public static void showSharpnessInName(RenderNameplateEvent event) {
 
-        if (event.getEntity() instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) event.getEntity();
-            ItemStack itemHeld = player.getHeldItemMainhand();
+        Module thisMod = ModuleManager.getModule("PvpEnhancer");
+        boolean shouldShowSharpness = thisMod.isToggled() && SkybotConfig.PvpEnhancer.SHOW_SHARPNESS_IN_NAME.value;
 
-            // Get the list of enchantments on the held item
-            Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(itemHeld);
+        if (shouldShowSharpness) {
+            if (event.getEntity() instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) event.getEntity();
+                ItemStack itemHeld = player.getHeldItemMainhand();
 
-            // If the enchantments list contains the sharpness enchantment, show level, else show 0.
-            int sharpness = 0;
-            if (enchantments.containsKey(Enchantments.SHARPNESS)) {
-                sharpness = enchantments.get(Enchantments.SHARPNESS);
+                // Get the list of enchantments on the held item
+                Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(itemHeld);
+
+                // If the enchantments list contains the sharpness enchantment, show level, else show 0.
+                int sharpness = 0;
+                if (enchantments.containsKey(Enchantments.SHARPNESS)) {
+                    sharpness = enchantments.get(Enchantments.SHARPNESS);
+                }
+
+                // Show sharpness at the beginning of the nameplate.
+                String nameWithSharpness = "S" + sharpness + " # " + event.getContent();
+                event.setContent(nameWithSharpness);
             }
-
-            // Show sharpness at the beginning of the nameplate.
-            String nameWithSharpness = "S" + sharpness + " # " + event.getContent();
-            event.setContent(nameWithSharpness);
         }
     }
 
