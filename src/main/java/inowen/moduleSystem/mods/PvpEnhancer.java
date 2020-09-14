@@ -185,6 +185,12 @@ public class PvpEnhancer extends Module {
         int displayX = 50;
         int displayY = mc.getMainWindow().getScaledHeight()-50;
 
+        // Render the icon for testing
+        ResourceLocation texture = new ResourceLocation(SkyBotMod.MOD_ID, "strength_icon.png");
+        mc.getTextureManager().bindTexture(texture);
+        screenInstance.blit(displayX, displayY, 0, 0, 20, 20);
+        mc.getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "transparent.png"));
+
     }
 
 
