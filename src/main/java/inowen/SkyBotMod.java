@@ -49,6 +49,9 @@ public class SkyBotMod {
         if (configFile.exists()) {
             SkybotConfig.setConfigsFromFile(fileName);
         }
+        else {
+            SkybotConfig.writeConfigFile(fileName);
+        }
     }
 
 }
