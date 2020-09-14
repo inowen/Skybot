@@ -160,7 +160,7 @@ public class PvpEnhancer extends Module {
                 }
 
                 // Show sharpness at the beginning of the nameplate.
-                String nameWithSharpness = "S" + sharpness + " # " + event.getContent();
+                String nameWithSharpness = TextFormatting.GREEN + "S" + sharpness + TextFormatting.RESET + " # " + TextFormatting.BOLD + event.getContent();
                 event.setContent(nameWithSharpness);
             }
         }
