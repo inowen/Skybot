@@ -176,18 +176,29 @@ public class PvpEnhancer extends Module {
         List<EffectInstance> effectsList = ImmutableList.copyOf(effectsCollection);
         Screen screenInstance = new Screen(new StringTextComponent("screen")) {};
 
-        ArrayList<String> ignorableEffects = new ArrayList<>();
-        ignorableEffects.add("fire_resistance");
-        ignorableEffects.add("absorption");
-        ignorableEffects.add("resistance");
 
         // Show effects
         int displayX = 100;
         int displayY = mc.getMainWindow().getScaledHeight()-28;
-
-        // Render the icon for testing
         int iconSize = 27;
 
+        // Go through all the effects and show them.
+        for(EffectInstance effect : effectsList) {
+            String name = effect.getEffectName();
+            if (name == "strength") {
+
+            }
+            else if (name == "regeneration") {
+
+            }
+            else if (name == "speed") { // Might be swiftness? Not sure about the name.
+
+            }
+        }
+
+
+        // -------------------- TESTING -----------------------------
+        // Render the icon for testing
         ResourceLocation texture = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/strength.png");
         mc.getTextureManager().bindTexture(texture);
         screenInstance.blit(displayX, displayY, 0, 0, 4*iconSize, iconSize, iconSize, iconSize);
@@ -198,6 +209,8 @@ public class PvpEnhancer extends Module {
         for (int numEffects=0; numEffects<4; numEffects++) {
             mc.fontRenderer.drawString("2:22", displayX+numEffects*iconSize + 4, displayY-9, 0x00aa00);
         }
+        // --------------------- TESTING END --------------------------
+
 
 
 
