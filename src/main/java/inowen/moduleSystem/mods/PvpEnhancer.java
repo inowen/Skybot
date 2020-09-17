@@ -186,7 +186,7 @@ public class PvpEnhancer extends Module {
 
 
         // Where to display the icons.
-        int displayMaxX = (int)(mc.getMainWindow().getScaledWidth()*0.45);
+        int displayMaxX = (int)(mc.getMainWindow().getScaledWidth()*0.35);
         int displayY = mc.getMainWindow().getScaledHeight()-28;
 
         int iconSize = 27;
