@@ -30,6 +30,7 @@ import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.annotation.Resource;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,6 +55,12 @@ public class PvpEnhancer extends Module {
 
     // Use this to render things on screen
     public static Screen screenInstance = new Screen(new StringTextComponent("Screen")) { };
+
+    // Resource locations for effect icons
+    public static final ResourceLocation TIMER_BACKGROUND = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/timer_enclosure.png");
+    public static final ResourceLocation STRENGTH_ICON = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/strength.png");
+    public static final ResourceLocation SPEED_ICON = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/speed.png");
+    public static final ResourceLocation REGENERATION_ICON = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/golden_apple.png");
 
     public PvpEnhancer() {
         super("PvpEnhancer", ForgeKeys.KEY_NONE);
@@ -177,40 +184,51 @@ public class PvpEnhancer extends Module {
         Screen screenInstance = new Screen(new StringTextComponent("screen")) {};
 
 
-        // Show effects
-        int displayX = 100;
+        // Where to display the icons.
+        int displayMaxX = (int)(mc.getMainWindow().getScaledWidth()*0.34);
         int displayY = mc.getMainWindow().getScaledHeight()-28;
+
         int iconSize = 27;
+        int timerHeight = 11; // 11 high with borders, 9 for letter size?
+
+        // How far left the effects have to start.
+        int currentX = displayMaxX - iconSize*effectsList.size();
 
         // Go through all the effects and show them.
         for(EffectInstance effect : effectsList) {
-            String name = effect.getEffectName();
-            if (name == "strength") {
+            String name = StringFormatter.removePointPath(effect.getEffectName());
 
+            // Set the ResourceLocation for the icon
+            ResourceLocation effectIcon = null;
+
+            if (name.equals("strength")) {
+                effectIcon = STRENGTH_ICON;
             }
-            else if (name == "regeneration") {
-
+            else if (name.equals("regeneration")) {
+                effectIcon = REGENERATION_ICON;
             }
-            else if (name == "speed") { // Might be swiftness? Not sure about the name.
+            else if (name.equals("speed")) {
+                effectIcon = SPEED_ICON;
+            }
 
+            // Draw the effect if there is an icon for it
+            if (effectIcon != null) {
+
+                // Draw the effect icon at the given coordinates, with size iconSize, scaling the image to the exact size to fit in its square.
+                mc.getTextureManager().bindTexture(effectIcon);
+                screenInstance.blit(currentX, displayY, 0, 0, iconSize, iconSize, iconSize, iconSize);
+
+                // Draw the timer background
+                mc.getTextureManager().bindTexture(TIMER_BACKGROUND);
+                screenInstance.blit(currentX, displayY-timerHeight, 0, 0, iconSize, timerHeight, iconSize, timerHeight);
+
+                // Draw the timer itself
+                mc.fontRenderer.drawString(String.valueOf(effect.getDuration()), currentX+4, displayY-timerHeight+1, 0x008500);
+
+                // Move x to the right to display the next icon there.
+                currentX += iconSize;
             }
         }
-
-
-        // -------------------- TESTING -----------------------------
-        // Render the icon for testing
-        ResourceLocation texture = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/strength.png");
-        mc.getTextureManager().bindTexture(texture);
-        screenInstance.blit(displayX, displayY, 0, 0, 4*iconSize, iconSize, iconSize, iconSize);
-
-        mc.getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/timer_enclosure.png"));
-        screenInstance.blit(displayX, displayY-11, 0, 0, 4*iconSize, 11, iconSize, 11);
-
-        for (int numEffects=0; numEffects<4; numEffects++) {
-            mc.fontRenderer.drawString("2:22", displayX+numEffects*iconSize + 4, displayY-9, 0x00aa00);
-        }
-        // --------------------- TESTING END --------------------------
-
 
 
 
