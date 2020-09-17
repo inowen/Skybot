@@ -185,7 +185,7 @@ public class PvpEnhancer extends Module {
 
 
         // Where to display the icons.
-        int displayMaxX = (int)(mc.getMainWindow().getScaledWidth()*0.34);
+        int displayMaxX = (int)(mc.getMainWindow().getScaledWidth()*0.45);
         int displayY = mc.getMainWindow().getScaledHeight()-28;
 
         int iconSize = 27;
@@ -223,7 +223,7 @@ public class PvpEnhancer extends Module {
                 screenInstance.blit(currentX, displayY-timerHeight, 0, 0, iconSize, timerHeight, iconSize, timerHeight);
 
                 // Draw the timer itself
-                mc.fontRenderer.drawString(String.valueOf(effect.getDuration()), currentX+4, displayY-timerHeight+1, 0x008500);
+                mc.fontRenderer.drawString(formatSecondsTimer(effect.getDuration()/20), currentX+4, displayY-timerHeight+2, 0x008500);
 
                 // Move x to the right to display the next icon there.
                 currentX += iconSize;
@@ -235,6 +235,12 @@ public class PvpEnhancer extends Module {
         // Bind transparent texture to avoid random characters over the HUD.
         mc.getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "transparent.png"));
 
+    }
+
+
+
+    private static String formatSecondsTimer(int seconds) {
+        return (seconds/60 + ":" + seconds%60);
     }
     
 }
