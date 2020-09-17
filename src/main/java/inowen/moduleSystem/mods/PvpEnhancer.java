@@ -1,6 +1,7 @@
 package inowen.moduleSystem.mods;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
@@ -191,8 +192,9 @@ public class PvpEnhancer extends Module {
         int iconSize = 27;
         int timerHeight = 11; // 11 high with borders, 9 for letter size?
 
-        // How far left the effects have to start.
-        int currentX = displayMaxX - iconSize*effectsList.size();
+        // How many icons have been displayed so far (for positioning)
+        int iconsDisplayed = 0;
+
 
         // Go through all the effects and show them.
         for(EffectInstance effect : effectsList) {
@@ -216,17 +218,16 @@ public class PvpEnhancer extends Module {
 
                 // Draw the effect icon at the given coordinates, with size iconSize, scaling the image to the exact size to fit in its square.
                 mc.getTextureManager().bindTexture(effectIcon);
-                screenInstance.blit(currentX, displayY, 0, 0, iconSize, iconSize, iconSize, iconSize);
+                screenInstance.blit(displayMaxX-(iconsDisplayed+1)*iconSize, displayY, 0, 0, iconSize, iconSize, iconSize, iconSize);
 
                 // Draw the timer background
                 mc.getTextureManager().bindTexture(TIMER_BACKGROUND);
-                screenInstance.blit(currentX, displayY-timerHeight, 0, 0, iconSize, timerHeight, iconSize, timerHeight);
+                screenInstance.blit(displayMaxX-(iconsDisplayed+1)*iconSize, displayY-timerHeight, 0, 0, iconSize, timerHeight, iconSize, timerHeight);
 
                 // Draw the timer itself
-                mc.fontRenderer.drawString(formatSecondsTimer(effect.getDuration()/20), currentX+4, displayY-timerHeight+2, 0x008500);
+                mc.fontRenderer.drawString(formatSecondsTimer(effect.getDuration()/20), displayMaxX-(iconsDisplayed+1)*iconSize+4, displayY-timerHeight+2, 0x008500);
 
-                // Move x to the right to display the next icon there.
-                currentX += iconSize;
+                iconsDisplayed++;
             }
         }
 
@@ -240,7 +241,7 @@ public class PvpEnhancer extends Module {
 
 
     private static String formatSecondsTimer(int seconds) {
-        return (seconds/60 + ":" + seconds%60);
+        return (seconds/60 + ":" + (seconds%60 >= 10 ? "" : "0") + seconds%60);
     }
     
 }
