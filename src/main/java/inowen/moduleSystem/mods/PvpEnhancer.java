@@ -181,8 +181,8 @@ public class PvpEnhancer extends Module {
     @SubscribeEvent
     public static void showEffects(RenderGameOverlayEvent event) {
 
-        // Only show effects if it's enabled in the settings.
-        if (!SkybotConfig.PvpEnhancer.SHOW_EFFECTS_BELOW_CHAT.value) {
+        // Only show effects if it's enabled in the settings, and if PvpEnhancer is enabled.
+        if (!SkybotConfig.PvpEnhancer.SHOW_EFFECTS_BELOW_CHAT.value || !ModuleManager.getModule("PvpEnhancer").isToggled()) {
             return;
         }
 
