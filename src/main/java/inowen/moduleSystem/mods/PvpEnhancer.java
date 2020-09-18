@@ -180,6 +180,12 @@ public class PvpEnhancer extends Module {
      */
     @SubscribeEvent
     public static void showEffects(RenderGameOverlayEvent event) {
+
+        // Only show effects if it's enabled in the settings.
+        if (!SkybotConfig.PvpEnhancer.SHOW_EFFECTS_BELOW_CHAT.value) {
+            return;
+        }
+
         Collection<EffectInstance> effectsCollection = mc.player.getActivePotionEffects();
         List<EffectInstance> effectsList = ImmutableList.copyOf(effectsCollection);
         Screen screenInstance = new Screen(new StringTextComponent("screen")) {};
