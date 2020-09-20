@@ -14,6 +14,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
 
+/**
+ * TODO: The bot get stuck in this state, picking up the buttons in the sellshop (by clicking on them) because of server error. Fix.
+ */
 public class SellState extends State {
 
     public SugarcaneFarm theFarm;
