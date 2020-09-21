@@ -20,7 +20,7 @@ public class TestClickTypes extends Module {
     private final ClickType cType = ClickType.SWAP;
 
     public TestClickTypes() {
-        super("TestClickTypes", ForgeKeys.KEY_N);
+        super("TestClickTypes", ForgeKeys.KEY_NONE);
     }
 
     @Override public void onEnable() {
