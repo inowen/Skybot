@@ -118,6 +118,10 @@ public class PvpEnhancer extends Module {
             helmetDurability *= 100;
 
 
+            // Some servers allow stacking armor pieces. If the option is enabled, show how many items are left on the stack per spot
+            // (next to the durability report). TODO: Implement this.
+
+
             // Message to indicate that a piece of armor is broken (not present)
             String msgBroken = TextFormatting.DARK_RED + "BROKEN";
 
