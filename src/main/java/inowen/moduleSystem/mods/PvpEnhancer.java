@@ -92,6 +92,8 @@ public class PvpEnhancer extends Module {
 
         Module theMod = ModuleManager.getModule("PvpEnhancer");
         if (theMod.isToggled() && SkybotConfig.PvpEnhancer.SHOW_ARMOR_PERCENTAGES.value) {
+
+            // Find out where to position the display
             MainWindow window = mc.getMainWindow();
             int armorX = (int) (0.65 * window.getScaledWidth());
             int armorY = (int) (0.87 * window.getScaledHeight());
@@ -130,7 +132,7 @@ public class PvpEnhancer extends Module {
             // Message to indicate that a piece of armor is broken (not present)
             String msgBroken = TextFormatting.DARK_RED + "BROKEN";
 
-            // Format to avoid long decimal numbers
+            // Format to avoid distracting long decimal numbers
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(1);
 
