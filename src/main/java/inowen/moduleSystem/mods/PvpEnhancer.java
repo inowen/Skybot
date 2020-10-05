@@ -137,11 +137,12 @@ public class PvpEnhancer extends Module {
             df.setMaximumFractionDigits(1);
 
             // Messages for each piece
-            String helmetMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(helmetStackSize) : "") + "H: " + (helmetDurability>0 ? df.format(helmetDurability) : msgBroken);
-            String chestMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(chestStackSize) : "") + "C: " + (chestDurability>0 ? df.format(chestDurability) : msgBroken);
-            String pantsMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(leggingsStackSize) : "") + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken);
-            String bootsMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(bootsStackSize) : "") + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken);
+            String helmetMsg = TextFormatting.BOLD + (showArmorCount ? helmetStackSize +"-" : "") + "H: " + (helmetDurability>0 ? df.format(helmetDurability) : msgBroken);
+            String chestMsg = TextFormatting.BOLD + (showArmorCount ? chestStackSize +"-" : "") + "C: " + (chestDurability>0 ? df.format(chestDurability) : msgBroken);
+            String pantsMsg = TextFormatting.BOLD + (showArmorCount ? leggingsStackSize +"-" : "") + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken);
+            String bootsMsg = TextFormatting.BOLD + (showArmorCount ? bootsStackSize +"-" : "") + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken);
 
+            // Display messages on screen
             mc.fontRenderer.drawString(helmetMsg, armorX, armorY, textColor);
             mc.fontRenderer.drawString(chestMsg, armorX, armorY + 10, textColor);
             mc.fontRenderer.drawString(pantsMsg, armorX, armorY + 20, textColor);
