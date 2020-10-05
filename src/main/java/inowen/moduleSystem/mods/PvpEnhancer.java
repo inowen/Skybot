@@ -119,7 +119,11 @@ public class PvpEnhancer extends Module {
 
 
             // Some servers allow stacking armor pieces. If the option is enabled, show how many items are left on the stack per spot
-            // (next to the durability report). TODO: Implement this.
+            // (next to the durability report).
+            int helmetStackSize = armorList.get(3).getCount();
+            int chestStackSize = armorList.get(2).getCount();
+            int leggingsStackSize = armorList.get(1).getCount();
+            int bootsStackSize = armorList.get(0).getCount();
 
 
             // Message to indicate that a piece of armor is broken (not present)
@@ -129,10 +133,16 @@ public class PvpEnhancer extends Module {
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(1);
 
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "H: " + (helmetDurability>0 ? df.format(helmetDurability) : msgBroken), armorX, armorY, textColor);
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "C: " + (chestDurability>0 ? df.format(chestDurability) : msgBroken), armorX, armorY + 10, textColor);
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken), armorX, armorY + 20, textColor);
-            mc.fontRenderer.drawString(TextFormatting.BOLD + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken), armorX, armorY + 30, textColor);
+            // Messages for each piece
+            String helmetMsg = TextFormatting.BOLD + String.valueOf(helmetStackSize) + "H: " + (helmetDurability>0 ? df.format(helmetDurability) : msgBroken);
+            String chestMsg = TextFormatting.BOLD + String.valueOf(chestStackSize) + "C: " + (chestDurability>0 ? df.format(chestDurability) : msgBroken);
+            String pantsMsg = TextFormatting.BOLD + String.valueOf(leggingsStackSize) + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken);
+            String bootsMsg = TextFormatting.BOLD + String.valueOf(bootsStackSize) + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken);
+
+            mc.fontRenderer.drawString(helmetMsg, armorX, armorY, textColor);
+            mc.fontRenderer.drawString(chestMsg, armorX, armorY + 10, textColor);
+            mc.fontRenderer.drawString(pantsMsg, armorX, armorY + 20, textColor);
+            mc.fontRenderer.drawString(bootsMsg, armorX, armorY + 30, textColor);
         }
     }
 
