@@ -120,6 +120,7 @@ public class PvpEnhancer extends Module {
 
             // Some servers allow stacking armor pieces. If the option is enabled, show how many items are left on the stack per spot
             // (next to the durability report).
+            boolean showArmorCount = SkybotConfig.PvpEnhancer.SHOW_ARMOR_STACKS_COUNT.getValue();
             int helmetStackSize = armorList.get(3).getCount();
             int chestStackSize = armorList.get(2).getCount();
             int leggingsStackSize = armorList.get(1).getCount();
@@ -134,10 +135,10 @@ public class PvpEnhancer extends Module {
             df.setMaximumFractionDigits(1);
 
             // Messages for each piece
-            String helmetMsg = TextFormatting.BOLD + String.valueOf(helmetStackSize) + "H: " + (helmetDurability>0 ? df.format(helmetDurability) : msgBroken);
-            String chestMsg = TextFormatting.BOLD + String.valueOf(chestStackSize) + "C: " + (chestDurability>0 ? df.format(chestDurability) : msgBroken);
-            String pantsMsg = TextFormatting.BOLD + String.valueOf(leggingsStackSize) + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken);
-            String bootsMsg = TextFormatting.BOLD + String.valueOf(bootsStackSize) + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken);
+            String helmetMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(helmetStackSize) : "") + "H: " + (helmetDurability>0 ? df.format(helmetDurability) : msgBroken);
+            String chestMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(chestStackSize) : "") + "C: " + (chestDurability>0 ? df.format(chestDurability) : msgBroken);
+            String pantsMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(leggingsStackSize) : "") + "L: " + (leggingsDurability>0 ? df.format(leggingsDurability) : msgBroken);
+            String bootsMsg = TextFormatting.BOLD + (showArmorCount ? String.valueOf(bootsStackSize) : "") + "B: " + (bootsDurability>0 ? df.format(bootsDurability) : msgBroken);
 
             mc.fontRenderer.drawString(helmetMsg, armorX, armorY, textColor);
             mc.fontRenderer.drawString(chestMsg, armorX, armorY + 10, textColor);

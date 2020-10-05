@@ -84,6 +84,7 @@ public class SkybotConfig {
         public static ConfigOption<Boolean> SHOW_SHARPNESS_IN_NAME = new ConfigOption<>("SHOW_SHARPNESS_IN_NAME", true, true);
         public static ConfigOption<Boolean> SHOW_ARMOR_PERCENTAGES = new ConfigOption<>("PVP_SHOW_ARMOR_PERCENTAGES", true, true);
         public static ConfigOption<Boolean> SHOW_EFFECTS_BELOW_CHAT = new ConfigOption<>("PVP_SHOW_EFFECTS", true, true);
+        public static ConfigOption<Boolean> SHOW_ARMOR_STACKS_COUNT = new ConfigOption<>("PVP_SHOW_ARMOR_STACKS_COUNT", true, true);
     }
 
 
