@@ -8,18 +8,19 @@ This mod is meant to automate ingame farming: Potatoes, carrots, sugarcane, beet
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 
-## Farming carrots gif 
+### Farming carrots gifs
 
 
-## Pathfinding gif 
+### Pathfinding gifs
 
 
-## Ingame options
+### Ingame options
 
 
-## Config stuff
+### Config stuff
 
 
+## How to install it
 
 How to build and run it: From a console or terminal, go into the folder with the gradlew file in it. Then use "gradlew build" (or "./gradlew build") to build the mod. After that, go into build/libs. The build command from before will have generated a .jar file (by default called skybot-x.xx.x.jar).
 
