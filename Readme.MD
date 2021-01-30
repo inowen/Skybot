@@ -15,7 +15,7 @@ This mod is meant to automate ingame farming: Potatoes, carrots, sugarcane, beet
 
 
 ### Ingame options
-
+![](github_resources/skybot_settings.PNG)
 
 ### Config stuff
 
