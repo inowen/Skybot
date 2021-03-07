@@ -1,11 +1,32 @@
 package inowen.utils.avltree;
 
+import com.google.common.primitives.Ints;
+
 public class AvlNode<T> {
 
-    private T value = null;
-    private AvlNode<T> parent = null;
-    private AvlNode<T> left = null;
-    private AvlNode<T> right = null;
+    private T value;
+    private AvlNode<T> parent;
+    private AvlNode<T> left;
+    private AvlNode<T> right;
+
+    /**
+     * Initializes the node as a null node, as well as its parent and children.
+     */
+    public AvlNode() {
+        value = null;
+        parent = new AvlNode<>();
+        left = new AvlNode<>();
+        right = new AvlNode<>();
+    }
+
+    /**
+     * Initialize the node with something to contain.
+     * @param value
+     */
+    public AvlNode(T value) {
+        this();
+        this.value = value;
+    }
 
     /**
      * Returns the parent of this node.
@@ -55,7 +76,9 @@ public class AvlNode<T> {
      * @return
      */
     private int height() {
-
+        if (isNull())
+            return -1;
+        return (1+ Ints.max(left.height(), right.height()));
     }
 
 }
