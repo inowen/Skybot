@@ -14,9 +14,9 @@ public class AvlNode<T> {
      */
     public AvlNode() {
         value = null;
-        parent = new AvlNode<>();
-        left = new AvlNode<>();
-        right = new AvlNode<>();
+        parent = new AvlNode<>(); // ALERT! This is an infinite loop.
+        left = new AvlNode<>();   // INFINITE LOOP ALERT!!!
+        right = new AvlNode<>(); // TODO: For real, replace this somehow!
     }
 
     /**
