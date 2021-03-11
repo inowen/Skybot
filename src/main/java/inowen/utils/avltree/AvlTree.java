@@ -14,17 +14,34 @@ package inowen.utils.avltree;
  */
 public class AvlTree<T> {
 
-    private AvlNode<T> root = null;
+    private AvlNode<T> root = null; // NEVER NULL.
 
-    public AvlTree() {
-        root = new AvlNode<>();
+    /**
+     * Create a tree based on a value for the root.
+     */
+    public AvlTree(T value) {
+        root = new AvlNode<>(value);
     }
 
     // Insert
+    public void insert(T value) {
+
+    }
 
     // Delete
+    public void delete(AvlNode<T> node) {
+
+    }
 
     // Retrieve (find)
+    public AvlNode<T> find(T value) {
+
+    }
+
+    // Check if contained
+    public boolean contains(T value) {
+        
+    }
 
 
 
