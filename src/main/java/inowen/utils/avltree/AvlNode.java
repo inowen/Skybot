@@ -4,23 +4,22 @@ import com.google.common.primitives.Ints;
 
 public class AvlNode<T> {
 
+    private NodeWrapper<T> wrapper;
+
     /**
-     * Initializes the node as a null node, as well as its parent and children.
+     * Initializes the node as a null node.
      */
     public AvlNode() {
-        value = null;
-        parent = new AvlNode<>(); // ALERT! This is an infinite loop.
-        left = new AvlNode<>();   // INFINITE LOOP ALERT!!!
-        right = new AvlNode<>(); // TODO: For real, replace this somehow!
+        wrapper = null;
     }
 
     /**
      * Initialize the node with something to contain.
+     * Parent and children will be null nodes.
      * @param value
      */
     public AvlNode(T value) {
-        this();
-        this.value = value;
+        wrapper = new NodeWrapper<>(value);
     }
 
     /**
@@ -28,7 +27,7 @@ public class AvlNode<T> {
      * @return Parent
      */
     public AvlNode<T> parent() {
-        return parent;
+        return isNull() ? new AvlNode<>() : wrapper.parent;
     }
 
     /**
@@ -36,7 +35,7 @@ public class AvlNode<T> {
      * @return Left child
      */
     public AvlNode<T> left() {
-        return left;
+        return isNull() ? new AvlNode<>() : wrapper.left;
     }
 
     /**
@@ -44,7 +43,7 @@ public class AvlNode<T> {
      * @return Right child
      */
     public AvlNode<T> right() {
-        return right;
+        return isNull() ? new AvlNode<>() : wrapper.right;
     }
 
     /**
@@ -52,7 +51,7 @@ public class AvlNode<T> {
      * @return
      */
     public T getValue() {
-        return value;
+        return isNull() ? null : wrapper.value;
     }
 
     /**
@@ -60,7 +59,7 @@ public class AvlNode<T> {
      * @return Boolean
      */
     public boolean isNull() {
-        return value == null;
+        return wrapper == null;
     }
 
 
@@ -73,7 +72,7 @@ public class AvlNode<T> {
     private int height() {
         if (isNull())
             return -1;
-        return (1+ Ints.max(left.height(), right.height()));
+        return (1+ Ints.max(wrapper.left.height(), wrapper.right.height()));
     }
 
 
@@ -88,6 +87,18 @@ public class AvlNode<T> {
      * @param <T> Type of the value contained in the node.
      */
     private class NodeWrapper<T> {
+
+        /**
+         * Initialize with a value.
+         * @param value What the node should contain
+         */
+        NodeWrapper(T value) {
+            this.value = value;
+            parent = new AvlNode<>();
+            left = new AvlNode<>();
+            right = new AvlNode<>();
+        }
+
         T value;
         AvlNode<T> parent;
         AvlNode<T> left;
