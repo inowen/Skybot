@@ -1,5 +1,7 @@
 package inowen.utils.avltree;
 
+import java.util.function.Predicate;
+
 /**
  * AVL-Tree.
  * O(log2(n)) insertion, deletion, retrieval.
@@ -12,7 +14,7 @@ package inowen.utils.avltree;
  *
  * @author Noah Wenck (inowen)
  */
-public class AvlTree<T> {
+public class AvlTree<T extends Comparable<T>> {
 
     private AvlNode<T> root = null; // NEVER NULL.
 
@@ -35,12 +37,24 @@ public class AvlTree<T> {
 
     // Retrieve (find)
     public AvlNode<T> find(T value) {
+        AvlNode<T> current = root;
+        while(!current.isNull()) {
+            if (current.getValue() == value) {
+                return current;
+            }
+            AvlNode<T> left = current.left();
+            AvlNode<T> right = current.right();
 
+            // How to compare the values?
+            if (/* Use the compareTo method. And find out how that would work with BlockPos before continuing here. */) {
+
+            }
+        }
     }
 
     // Check if contained
     public boolean contains(T value) {
-        
+        return find(value) != null;
     }
 
 
