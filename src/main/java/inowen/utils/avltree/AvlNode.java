@@ -4,11 +4,6 @@ import com.google.common.primitives.Ints;
 
 public class AvlNode<T> {
 
-    private T value;
-    private AvlNode<T> parent;
-    private AvlNode<T> left;
-    private AvlNode<T> right;
-
     /**
      * Initializes the node as a null node, as well as its parent and children.
      */
@@ -79,6 +74,24 @@ public class AvlNode<T> {
         if (isNull())
             return -1;
         return (1+ Ints.max(left.height(), right.height()));
+    }
+
+
+    /**
+     * Contains everything that makes a node.
+     * The reason for this class is to avoid returning null when asking
+     * for a node that doesn't exist (for example, children of a leaf),
+     * and instead return a node with a null value for the wrapper.
+     *
+     * That way, even on null (empty) nodes the isNull() function works.
+     *
+     * @param <T> Type of the value contained in the node.
+     */
+    private class NodeWrapper<T> {
+        T value;
+        AvlNode<T> parent;
+        AvlNode<T> left;
+        AvlNode<T> right;
     }
 
 }
