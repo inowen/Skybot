@@ -35,26 +35,44 @@ public class AvlTree<T extends Comparable<T>> {
 
     }
 
-    // Retrieve (find)
-    public AvlNode<T> find(T value) {
+    /**
+     * Check if the tree contains a node with a value equal to the given one.
+     * (Equal means it returns true for item.equals(value))
+     * @param value
+     * @return Node, or null if none matches the criterion.
+     */
+    public AvlNode<T> findEqual(T value) {
+
         AvlNode<T> current = root;
         while(!current.isNull()) {
-            if (current.getValue() == value) {
+            if (current.getValue().equals(value)) {
                 return current;
             }
             AvlNode<T> left = current.left();
             AvlNode<T> right = current.right();
 
-            // How to compare the values?
-            if (/* Use the compareTo method. And find out how that would work with BlockPos before continuing here. */) {
-
+            if (value.compareTo(current.getValue()) == 0) {
+                return current;
+            }
+            // a.compareTo(b)<0 <=> a<b
+            else if (value.compareTo(current.getValue()) < 0) {
+                current = current.left();
+            }
+            else {
+                current = current.right();
             }
         }
+
+        return null;
     }
 
-    // Check if contained
-    public boolean contains(T value) {
-        return find(value) != null;
+    /**
+     * Check if the tree contains a node with equal value to the given one.
+     * @param value Value to compare it to.
+     * @return
+     */
+    public boolean containsEqual(T value) {
+        return findEqual(value) != null;
     }
 
 
