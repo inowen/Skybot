@@ -25,9 +25,23 @@ public class AvlTree<T extends Comparable<T>> {
         root = new AvlNode<>(value);
     }
 
-    // Insert
+    /**
+     * Inserts an element into the tree and readjusts the tree.
+     * @param value
+     */
     public void insert(T value) {
 
+        AvlNode<T> current = root;
+        while (!current.isNull()) {
+            // If lesser
+                // If left node is null put it there
+
+                // Else, 
+        }
+
+        // Readjust heights
+
+        // Optional rotation
     }
 
     // Delete
@@ -77,6 +91,14 @@ public class AvlTree<T extends Comparable<T>> {
 
 
 
+    // Rotations: Simple right, simple left, double right, double left
+
+
+
+    // <=
+    private boolean lesserThan(T a, T b) {
+        return (a.compareTo(b) < 0);
+    }
 
 
     // Test
