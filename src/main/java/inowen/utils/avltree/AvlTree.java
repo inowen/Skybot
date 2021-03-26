@@ -30,6 +30,7 @@ public class AvlTree<T extends Comparable<T>> {
      * @param value
      */
     public void insert(T value) {
+        AvlNode<T> insertMe = new AvlNode<>(value);
 
         AvlNode<T> current = root;
         while (!current.isNull()) {
@@ -37,19 +38,29 @@ public class AvlTree<T extends Comparable<T>> {
             if (lesserEqualThan(value, current.getValue())) {
                 // If left node is null put it there and make current null
                 if (current.left().isNull()) {
-
+                    current.setLeft(insertMe);
+                    insertMe.setParent(current);
+                    current = null;
                 }
                 // Else, current = left child
                 else {
-
+                    current = current.left();
                 }
             }
 
             // If it is greater, it goes to the right
             else {
                 // If right node is null put it there and make current null
+                if (current.right().isNull()) {
+                    current.setRight(insertMe);
+                    insertMe.setParent(current);
+                    current = null;
+                }
 
                 // Else, current = right child
+                else {
+                    current = current.right();
+                }
             }
         }
 
