@@ -33,10 +33,24 @@ public class AvlTree<T extends Comparable<T>> {
 
         AvlNode<T> current = root;
         while (!current.isNull()) {
-            // If lesser
-                // If left node is null put it there
+            // If lesser or equal, it goes left
+            if (lesserEqualThan(value, current.getValue())) {
+                // If left node is null put it there and make current null
+                if (current.left().isNull()) {
 
-                // Else, 
+                }
+                // Else, current = left child
+                else {
+
+                }
+            }
+
+            // If it is greater, it goes to the right
+            else {
+                // If right node is null put it there and make current null
+
+                // Else, current = right child
+            }
         }
 
         // Readjust heights
@@ -96,13 +110,16 @@ public class AvlTree<T extends Comparable<T>> {
 
 
     // <=
-    private boolean lesserThan(T a, T b) {
-        return (a.compareTo(b) < 0);
+    private boolean lesserEqualThan(T a, T b) {
+        return (a.compareTo(b) <= 0);
     }
 
 
     // Test
     public static void main(String[] args) {
         System.out.println("This is the AVL test!");
+
+
+
     }
 }
