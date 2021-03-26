@@ -64,6 +64,32 @@ public class AvlNode<T> {
 
 
     /**
+     * Make the given node the current node's left child.
+     * (Doesn't change any parental links)
+     * @param node
+     */
+    public void setLeft(AvlNode<T> node) { wrapper.left = node; }
+
+    /**
+     * Make the given node the current node's left child
+     * (Doesn't change any parental links)
+     * @param node
+     */
+    public void setRight(AvlNode<T> node) { wrapper.right = node; }
+
+    /**
+     * Make the given node the current node's parent
+     * @param node
+     */
+    public void setParent(AvlNode<T> node) { wrapper.parent = node; }
+
+    // Unlink
+    public void unlinkLeft() { wrapper.left = null; }
+    public void unlinkRight() { wrapper.right = null; }
+    public void unlinkParent() { wrapper.parent = null; }
+
+
+    /**
      * Height of this node from the bottom of the tree.
      * Length of the longest path to a leaf.
      * Leaf heights are 0, null nodes would have -1 height.
