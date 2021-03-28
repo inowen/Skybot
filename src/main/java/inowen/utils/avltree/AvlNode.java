@@ -117,15 +117,15 @@ public class AvlNode<T> {
     // Unlink
     public void unlinkLeft() {
         if (!isNull())
-            wrapper.left = null;
+            wrapper.left = new AvlNode<>();
     }
     public void unlinkRight() {
         if (!isNull())
-            wrapper.right = null;
+            wrapper.right = new AvlNode<>();
     }
     public void unlinkParent() {
         if (!isNull())
-            wrapper.parent = null;
+            wrapper.parent = new AvlNode<>();
     }
 
     /**
