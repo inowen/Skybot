@@ -60,11 +60,7 @@ public class AvlTree<T extends Comparable<T>> {
         }
 
         // Readjust heights
-        current = insertMe.parent();
-        while(!current.isNull()) {
-            current.setHeight(1 + Ints.max(current.left().getHeight(), current.right().getHeight()));
-            current = current.parent();
-        }
+        recalculateHeightChain(insertMe.parent());
 
         // Optional rotation: go up from insertMe, find a node with more than 1 height diff btw its children, rotate it and end.
         int heightDiff = 0;
@@ -123,14 +119,47 @@ public class AvlTree<T extends Comparable<T>> {
     // below it is B, and B's relevant child is C.
 
     private void simpleRotationRight(AvlNode<T> node) {
+        AvlNode<T> A = node;
+        AvlNode<T> AsParent = A.parent();
+        boolean aIsLeftChild = AsParent.left() == A; // Remember: A might be the root.
+        AvlNode<T> B = A.left();
+        AvlNode<T> C = B.right();
 
+        B.unlinkParent();
+        B.setParent(AsParent);
+        if (aIsLeftChild) { AsParent.setLeft(B); } else { AsParent.setRight(B); }
+        if (AsParent.isNull()) { root = B; }
+
+        B.setRight(A);
+        A.setParent(B);
+
+        A.unlinkLeft();
+        A.setLeft(C);
+        C.setParent(A);
+
+        recalculateHeightChain(A);
     }
+
     private void simpleRotationLeft(AvlNode<T> node) {
         AvlNode<T> A = node;
         AvlNode<T> B = A.right();
         AvlNode<T> C = B.left();
         AvlNode<T> AsParent = A.parent();
         boolean aIsLeftChild = AsParent.left() == A; // Remember: A might be the root.
+
+        B.unlinkParent();
+        B.setParent(AsParent);
+        if (aIsLeftChild) { AsParent.setLeft(B); } else { AsParent.setRight(B); }
+        if (AsParent.isNull()) { root = B; } // If the rotated node was the root, update root.
+
+        B.setLeft(A);
+        A.setParent(B);
+
+        A.unlinkRight();
+        A.setRight(C);
+        C.setParent(A);
+
+        recalculateHeightChain(A);
     }
 
     private void doubleRotateRight(AvlNode<T> node) {
@@ -140,7 +169,6 @@ public class AvlTree<T extends Comparable<T>> {
     private void doubleRotateLeft(AvlNode<T> node) {
 
     }
-
 
 
     // <=
@@ -153,6 +181,16 @@ public class AvlTree<T extends Comparable<T>> {
         root.printPreorder();
     }
 
+    // Helper to recalculate heights after rotations / insertions
+    private void recalculateHeightChain(AvlNode<T> node) {
+        AvlNode<T> current = node;
+        while(!current.isNull()) {
+            System.out.println("Recalculation");
+            current.setHeight(1 + Ints.max(current.left().getHeight(), current.right().getHeight()));
+            current = current.parent();
+        }
+    }
+
 
     // Test
     public static void main(String[] args) {
@@ -160,14 +198,28 @@ public class AvlTree<T extends Comparable<T>> {
 
         AvlTree<Integer> testTree = new AvlTree<>(10);
         testTree.insert(11);
-        testTree.insert(9);
-        testTree.insert(8);
         testTree.insert(12);
 
         System.out.println("Preorder: ");
         testTree.printPreorder();
         System.out.println("Contains a 10? " + (testTree.containsEqual(10) ? "Yes" : "No"));
         System.out.println("Contains a 15? " + (testTree.containsEqual(15) ? "Yes" : "No"));
+        System.out.println("");
+
+        System.out.println("Rotating left");
+        testTree.simpleRotationLeft(testTree.root);
+        System.out.println("New preorder:");
+        testTree.printPreorder();
+
+        AvlTree<Integer> testRotateRight = new AvlTree<>(2);
+        testRotateRight.insert(1);
+        testRotateRight.insert(0);
+        System.out.println("");
+        System.out.println("Tree is ");
+        testRotateRight.printPreorder();
+        System.out.println("After rotating right: ");
+        testRotateRight.simpleRotationRight(testRotateRight.root);
+        testRotateRight.printPreorder();
 
     }
 }
