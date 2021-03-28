@@ -113,7 +113,7 @@ public class AvlNode<T> {
     void printPreorder() {
         if (!isNull()) {
             wrapper.left.printPreorder();
-            System.out.println(wrapper.value);
+            System.out.println("Value=" + wrapper.value.toString() + ", height=" + wrapper.height);
             wrapper.right.printPreorder();
         }
     }
