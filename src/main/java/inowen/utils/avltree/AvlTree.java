@@ -63,6 +63,7 @@ public class AvlTree<T extends Comparable<T>> {
         recalculateHeightChain(insertMe.parent());
 
         // Optional rotation: go up from insertMe, find a node with more than 1 height diff btw its children, rotate it and end.
+        // -- This should be extracted to a function, I'll have to do the same thing again when I'm deleting.
         int heightDiff = 0;
         current = insertMe;
 
@@ -200,15 +201,15 @@ public class AvlTree<T extends Comparable<T>> {
     public static void main(String[] args) {
         System.out.println("This is the AVL test!");
 
-        AvlTree<Integer> testTree = new AvlTree<>(10);
-        testTree.insert(5);
-        testTree.insert(8);
+        AvlTree<Integer> testTree = new AvlTree<>(11);
+        testTree.insert(99);
+        testTree.insert(55);
 
         System.out.println("Preorder now");
         testTree.printPreorder();
 
-        testTree.doubleRotateRight(testTree.root);
-        System.out.println("After rotating double right");
+        testTree.doubleRotateLeft(testTree.root);
+        System.out.println("After rotating double left");
         testTree.printPreorder();
 
     }
