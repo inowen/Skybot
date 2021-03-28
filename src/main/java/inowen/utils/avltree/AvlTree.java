@@ -226,6 +226,20 @@ public class AvlTree<T extends Comparable<T>> {
     public static void main(String[] args) {
         System.out.println("Testing if rotations are applied automatically when needed");
 
+        // Harder test, to definitely check if it does this right.
+        AvlTree<Integer> testTree = new AvlTree<>(10);
+        testTree.insert(20);
+        testTree.insert(0);
+        testTree.insert(5);
+        testTree.insert(3);
+        testTree.insert(8);
+
+        testTree.printPreorder();
+
+    }
+
+
+    private void testAllRotationsViaInsertion() {
         AvlTree<Integer> testSimpleRight = new AvlTree<>(11);
         testSimpleRight.insert(10);
         testSimpleRight.insert(9);
@@ -253,7 +267,5 @@ public class AvlTree<T extends Comparable<T>> {
         System.out.println("Should have rotated double left, return 10 15 20, max height 1");
         testDoubleLeft.printPreorder();
         System.out.println("");
-
-
     }
 }
