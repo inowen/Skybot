@@ -16,7 +16,7 @@ import java.util.function.Predicate;
  */
 public class AvlTree<T extends Comparable<T>> {
 
-    private AvlNode<T> root = null; // NEVER NULL.
+    private AvlNode<T> root; // NEVER NULL.
 
     /**
      * Create a tree based on a value for the root.
@@ -36,28 +36,22 @@ public class AvlTree<T extends Comparable<T>> {
         while (!current.isNull()) {
             // If lesser or equal, it goes left
             if (lesserEqualThan(value, current.getValue())) {
-                // If left node is null put it there and make current null
                 if (current.left().isNull()) {
                     current.setLeft(insertMe);
                     insertMe.setParent(current);
-                    current = null;
+                    current = new AvlNode<>(); // Sets current to a null node
                 }
-                // Else, current = left child
                 else {
                     current = current.left();
                 }
             }
-
             // If it is greater, it goes to the right
             else {
-                // If right node is null put it there and make current null
                 if (current.right().isNull()) {
                     current.setRight(insertMe);
                     insertMe.setParent(current);
-                    current = null;
+                    current = new AvlNode<>();
                 }
-
-                // Else, current = right child
                 else {
                     current = current.right();
                 }
@@ -87,8 +81,6 @@ public class AvlTree<T extends Comparable<T>> {
             if (current.getValue().equals(value)) {
                 return current;
             }
-            AvlNode<T> left = current.left();
-            AvlNode<T> right = current.right();
 
             if (value.compareTo(current.getValue()) == 0) {
                 return current;
@@ -125,12 +117,24 @@ public class AvlTree<T extends Comparable<T>> {
         return (a.compareTo(b) <= 0);
     }
 
+    // For testing purposes
+    private void printPreorder() {
+        root.printPreorder();
+    }
+
 
     // Test
     public static void main(String[] args) {
         System.out.println("This is the AVL test!");
 
+        AvlTree<Integer> testTree = new AvlTree<>(10);
+        testTree.insert(11);
+        testTree.insert(9);
+        testTree.insert(8);
+        testTree.insert(12);
 
+        System.out.println("Preorder: ");
+        testTree.printPreorder();
 
     }
 }

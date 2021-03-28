@@ -88,6 +88,17 @@ public class AvlNode<T> {
     public void unlinkRight() { wrapper.right = null; }
     public void unlinkParent() { wrapper.parent = null; }
 
+    /**
+     * Print the subtree whose root is this node.
+     */
+    void printPreorder() {
+        if (!isNull()) {
+            wrapper.left.printPreorder();
+            System.out.println(wrapper.value);
+            wrapper.right.printPreorder();
+        }
+    }
+
 
     /**
      * Height of this node from the bottom of the tree.
