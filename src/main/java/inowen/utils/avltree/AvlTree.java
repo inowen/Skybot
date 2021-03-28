@@ -2,7 +2,6 @@ package inowen.utils.avltree;
 
 import com.google.common.primitives.Ints;
 
-import java.util.function.Predicate;
 
 /**
  * AVL-Tree.
@@ -68,6 +67,9 @@ public class AvlTree<T extends Comparable<T>> {
         }
 
         // Optional rotation: go up from insertMe, find a node with more than 1 height diff btw its children, rotate it and end.
+        int heightDiff = 0;
+        current = insertMe;
+
     }
 
     // Delete
@@ -156,6 +158,8 @@ public class AvlTree<T extends Comparable<T>> {
 
         System.out.println("Preorder: ");
         testTree.printPreorder();
+        System.out.println("Contains a 10? " + (testTree.containsEqual(10) ? "Yes" : "No"));
+        System.out.println("Contains a 15? " + (testTree.containsEqual(15) ? "Yes" : "No"));
 
     }
 }

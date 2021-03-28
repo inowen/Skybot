@@ -84,28 +84,49 @@ public class AvlNode<T> {
 
     /**
      * Make the given node the current node's left child.
+     * Won't link if given a null node.
      * (Doesn't change any parental links)
      * @param node
      */
-    public void setLeft(AvlNode<T> node) { wrapper.left = node; }
+    public void setLeft(AvlNode<T> node) {
+        if (!node.isNull())
+            wrapper.left = node;
+    }
 
     /**
-     * Make the given node the current node's left child
+     * Make the given node the current node's left child.
+     * Won't link if given a null node.
      * (Doesn't change any parental links)
      * @param node
      */
-    public void setRight(AvlNode<T> node) { wrapper.right = node; }
+    public void setRight(AvlNode<T> node) {
+        if (!node.isNull())
+            wrapper.right = node;
+    }
 
     /**
-     * Make the given node the current node's parent
+     * Make the given node the current node's parent.
+     * Won't link if given a null node.
      * @param node
      */
-    public void setParent(AvlNode<T> node) { wrapper.parent = node; }
+    public void setParent(AvlNode<T> node) {
+        if (!node.isNull())
+            wrapper.parent = node;
+    }
 
     // Unlink
-    public void unlinkLeft() { wrapper.left = null; }
-    public void unlinkRight() { wrapper.right = null; }
-    public void unlinkParent() { wrapper.parent = null; }
+    public void unlinkLeft() {
+        if (!isNull())
+            wrapper.left = null;
+    }
+    public void unlinkRight() {
+        if (!isNull())
+            wrapper.right = null;
+    }
+    public void unlinkParent() {
+        if (!isNull())
+            wrapper.parent = null;
+    }
 
     /**
      * Print the subtree whose root is this node.
@@ -156,11 +177,11 @@ public class AvlNode<T> {
             height = 0; // Initially it's a leaf, it it is given children it has to be manually readjusted
         }
 
-        T value;
-        int height;
-        AvlNode<T> parent;
-        AvlNode<T> left;
-        AvlNode<T> right;
+        private T value;
+        private int height;
+        private AvlNode<T> parent;
+        private AvlNode<T> left;
+        private AvlNode<T> right;
     }
 
 }
