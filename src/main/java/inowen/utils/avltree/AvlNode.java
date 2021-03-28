@@ -47,6 +47,25 @@ public class AvlNode<T> {
     }
 
     /**
+     * Returns the stored height of this node in the tree
+     * @return Height (-1 if null node).
+     */
+    public int getHeight() {
+        return isNull() ? -1 : wrapper.height;
+    }
+
+    /**
+     * Set value for the height of this node.
+     * Null is protected: it will always have -1 height.
+     * @param h
+     */
+    public void setHeight(int h) {
+        if (!isNull()) {
+            wrapper.height = h;
+        }
+    }
+
+    /**
      * Returns the value that this node contains.
      * @return
      */
@@ -106,10 +125,10 @@ public class AvlNode<T> {
      * Leaf heights are 0, null nodes would have -1 height.
      * @return
      */
-    private int height() {
+    private int recursiveHeight() {
         if (isNull())
             return -1;
-        return (1+ Ints.max(wrapper.left.height(), wrapper.right.height()));
+        return (1+ Ints.max(wrapper.left.recursiveHeight(), wrapper.right.recursiveHeight()));
     }
 
 
@@ -134,9 +153,11 @@ public class AvlNode<T> {
             parent = new AvlNode<>();
             left = new AvlNode<>();
             right = new AvlNode<>();
+            height = 0; // Initially it's a leaf, it it is given children it has to be manually readjusted
         }
 
         T value;
+        int height;
         AvlNode<T> parent;
         AvlNode<T> left;
         AvlNode<T> right;

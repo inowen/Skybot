@@ -1,5 +1,7 @@
 package inowen.utils.avltree;
 
+import com.google.common.primitives.Ints;
+
 import java.util.function.Predicate;
 
 /**
@@ -59,12 +61,17 @@ public class AvlTree<T extends Comparable<T>> {
         }
 
         // Readjust heights
+        current = insertMe.parent();
+        while(!current.isNull()) {
+            current.setHeight(1 + Ints.max(current.left().getHeight(), current.right().getHeight()));
+            current = current.parent();
+        }
 
-        // Optional rotation
+        // Optional rotation: go up from insertMe, find a node with more than 1 height diff btw its children, rotate it and end.
     }
 
     // Delete
-    public void delete(AvlNode<T> node) {
+    public void deleteEqual(AvlNode<T> node) {
 
     }
 
@@ -108,7 +115,21 @@ public class AvlTree<T extends Comparable<T>> {
 
 
 
-    // Rotations: Simple right, simple left, double right, double left
+    // ROTATIONS
+    private void simpleRotationRight(AvlNode<T> node) {
+
+    }
+    private void simpleRotationLeft(AvlNode<T> node) {
+
+    }
+
+    private void doubleRotateRight(AvlNode<T> node) {
+
+    }
+
+    private void doubleRotateLeft(AvlNode<T> node) {
+
+    }
 
 
 
