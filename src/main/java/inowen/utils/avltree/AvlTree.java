@@ -118,11 +118,19 @@ public class AvlTree<T extends Comparable<T>> {
 
 
     // ROTATIONS
+    // Both simple rotations work with nodes on 3 different levels,
+    // the notation: the node to rotate will be A, the relevant node on the level
+    // below it is B, and B's relevant child is C.
+
     private void simpleRotationRight(AvlNode<T> node) {
 
     }
     private void simpleRotationLeft(AvlNode<T> node) {
-
+        AvlNode<T> A = node;
+        AvlNode<T> B = A.right();
+        AvlNode<T> C = B.left();
+        AvlNode<T> AsParent = A.parent();
+        boolean aIsLeftChild = AsParent.left() == A; // Remember: A might be the root.
     }
 
     private void doubleRotateRight(AvlNode<T> node) {

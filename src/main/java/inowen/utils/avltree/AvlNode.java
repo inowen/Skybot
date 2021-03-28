@@ -84,33 +84,33 @@ public class AvlNode<T> {
 
     /**
      * Make the given node the current node's left child.
-     * Won't link if given a null node.
+     * Won't link if given a null node (or if this node is null).
      * (Doesn't change any parental links)
      * @param node
      */
     public void setLeft(AvlNode<T> node) {
-        if (!node.isNull())
+        if (!node.isNull() && !isNull())
             wrapper.left = node;
     }
 
     /**
      * Make the given node the current node's left child.
-     * Won't link if given a null node.
+     * Won't link if given a null node (or if this node is null).
      * (Doesn't change any parental links)
      * @param node
      */
     public void setRight(AvlNode<T> node) {
-        if (!node.isNull())
+        if (!node.isNull() && !isNull())
             wrapper.right = node;
     }
 
     /**
      * Make the given node the current node's parent.
-     * Won't link if given a null node.
+     * Won't link if given a null node (or if this node is null).
      * @param node
      */
     public void setParent(AvlNode<T> node) {
-        if (!node.isNull())
+        if (!node.isNull() && !isNull())
             wrapper.parent = node;
     }
 
