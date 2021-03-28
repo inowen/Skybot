@@ -9,7 +9,6 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import sun.misc.Queue;
 
 import java.util.Deque;
 import java.util.LinkedList;

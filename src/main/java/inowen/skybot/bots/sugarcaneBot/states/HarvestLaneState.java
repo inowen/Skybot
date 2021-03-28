@@ -7,7 +7,7 @@ import inowen.utils.CoordinateTranslator;
 import inowen.utils.InventoryHelper;
 import inowen.utils.PlayerMovementHelper;
 import net.minecraft.item.Items;
-import net.minecraft.util.math.;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class HarvestLaneState extends State {
