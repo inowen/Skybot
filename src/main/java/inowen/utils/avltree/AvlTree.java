@@ -163,11 +163,15 @@ public class AvlTree<T extends Comparable<T>> {
     }
 
     private void doubleRotateRight(AvlNode<T> node) {
-
+        AvlNode<T> leftChild = node.left();
+        simpleRotationLeft(leftChild);
+        simpleRotationRight(node);
     }
 
     private void doubleRotateLeft(AvlNode<T> node) {
-
+        AvlNode<T> rightChild = node.right();
+        simpleRotationRight(rightChild);
+        simpleRotationLeft(node);
     }
 
 
@@ -197,29 +201,15 @@ public class AvlTree<T extends Comparable<T>> {
         System.out.println("This is the AVL test!");
 
         AvlTree<Integer> testTree = new AvlTree<>(10);
-        testTree.insert(11);
-        testTree.insert(12);
+        testTree.insert(5);
+        testTree.insert(8);
 
-        System.out.println("Preorder: ");
-        testTree.printPreorder();
-        System.out.println("Contains a 10? " + (testTree.containsEqual(10) ? "Yes" : "No"));
-        System.out.println("Contains a 15? " + (testTree.containsEqual(15) ? "Yes" : "No"));
-        System.out.println("");
-
-        System.out.println("Rotating left");
-        testTree.simpleRotationLeft(testTree.root);
-        System.out.println("New preorder:");
+        System.out.println("Preorder now");
         testTree.printPreorder();
 
-        AvlTree<Integer> testRotateRight = new AvlTree<>(2);
-        testRotateRight.insert(1);
-        testRotateRight.insert(0);
-        System.out.println("");
-        System.out.println("Tree is ");
-        testRotateRight.printPreorder();
-        System.out.println("After rotating right: ");
-        testRotateRight.simpleRotationRight(testRotateRight.root);
-        testRotateRight.printPreorder();
+        testTree.doubleRotateRight(testTree.root);
+        System.out.println("After rotating double right");
+        testTree.printPreorder();
 
     }
 }
