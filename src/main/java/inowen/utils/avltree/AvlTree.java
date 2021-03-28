@@ -61,12 +61,8 @@ public class AvlTree<T extends Comparable<T>> {
 
         // Readjust heights
         recalculateHeightChain(insertMe.parent());
-
-        // Optional rotation: go up from insertMe, find a node with more than 1 height diff btw its children, rotate it and end.
-        // -- This should be extracted to a function, I'll have to do the same thing again when I'm deleting.
-        int heightDiff = 0;
-        current = insertMe;
-
+        // Optional rotation
+        climbUntilRotationNeeded(insertMe);
     }
 
     // Delete
@@ -117,7 +113,7 @@ public class AvlTree<T extends Comparable<T>> {
         AvlNode<T> current = node;
 
         while(Math.abs(heightDifference)<=1 && !current.isNull()) {
-            current = node.parent();
+            current = current.parent();
             heightDifference = current.left().getHeight() - current.right().getHeight();
         }
 
@@ -220,7 +216,6 @@ public class AvlTree<T extends Comparable<T>> {
     private void recalculateHeightChain(AvlNode<T> node) {
         AvlNode<T> current = node;
         while(!current.isNull()) {
-            System.out.println("Recalculation");
             current.setHeight(1 + Ints.max(current.left().getHeight(), current.right().getHeight()));
             current = current.parent();
         }
@@ -229,18 +224,36 @@ public class AvlTree<T extends Comparable<T>> {
 
     // Test
     public static void main(String[] args) {
-        System.out.println("This is the AVL test!");
+        System.out.println("Testing if rotations are applied automatically when needed");
 
-        AvlTree<Integer> testTree = new AvlTree<>(11);
-        testTree.insert(99);
-        testTree.insert(55);
+        AvlTree<Integer> testSimpleRight = new AvlTree<>(11);
+        testSimpleRight.insert(10);
+        testSimpleRight.insert(9);
+        System.out.println("Should have rotated simple and return 9 10 11");
+        testSimpleRight.printPreorder();
+        System.out.println("");
 
-        System.out.println("Preorder now");
-        testTree.printPreorder();
+        AvlTree<Integer> testSimpleLeft = new AvlTree<>(11);
+        testSimpleLeft.insert(12);
+        testSimpleLeft.insert(13);
+        System.out.println("Should have rotated simple right and return 11 12 13, max height 1");
+        testSimpleLeft.printPreorder();
+        System.out.println("");
 
-        testTree.doubleRotateLeft(testTree.root);
-        System.out.println("After rotating double left");
-        testTree.printPreorder();
+        AvlTree<Integer> testDoubleRight = new AvlTree<>(10);
+        testDoubleRight.insert(0);
+        testDoubleRight.insert(5);
+        System.out.println("Should have rotated double right, return 0 5 10, max height 1");
+        testDoubleRight.printPreorder();
+        System.out.println("");
+
+        AvlTree<Integer> testDoubleLeft = new AvlTree<>(10);
+        testDoubleLeft.insert(20);
+        testDoubleLeft.insert(15);
+        System.out.println("Should have rotated double left, return 10 15 20, max height 1");
+        testDoubleLeft.printPreorder();
+        System.out.println("");
+
 
     }
 }
