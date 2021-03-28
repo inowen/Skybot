@@ -112,6 +112,36 @@ public class AvlTree<T extends Comparable<T>> {
         return findEqual(value) != null;
     }
 
+    private void climbUntilRotationNeeded(AvlNode<T> node) {
+        int heightDifference = node.left().getHeight() - node.right().getHeight();
+        AvlNode<T> current = node;
+
+        while(Math.abs(heightDifference)<=1 && !current.isNull()) {
+            current = node.parent();
+            heightDifference = current.left().getHeight() - current.right().getHeight();
+        }
+
+        // Pick a rotation based on the height difference.
+        if (heightDifference > 1) {
+            AvlNode<T> leftChild = current.left();
+            if (leftChild.left().getHeight() > leftChild.right().getHeight()) {
+                simpleRotationRight(current);
+            }
+            else {
+                doubleRotateRight(current);
+            }
+        }
+        else if (heightDifference < -1) { // (remove) Right weights more
+            AvlNode<T> rightChild = current.right();
+            if (rightChild.right().getHeight() > rightChild.left().getHeight()) {
+                simpleRotationLeft(current);
+            }
+            else {
+                doubleRotateLeft(current);
+            }
+        }
+    }
+
 
 
     // ROTATIONS
