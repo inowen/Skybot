@@ -13,6 +13,8 @@ import com.google.common.primitives.Ints;
  * In order to change something in the tree, first delete the corresponding node,
  * then change it, after that reinsert it.
  *
+ * THIS ISN'T DONE!!!
+ *
  * @author Noah Wenck (inowen)
  */
 public class AvlTree<T extends Comparable<T>> {
@@ -67,7 +69,13 @@ public class AvlTree<T extends Comparable<T>> {
 
     // Delete
     public void deleteEqual(AvlNode<T> node) {
+        AvlNode<T> deleteMe = findEqual(node.getValue());
 
+        if (deleteMe != null) {
+            if (deleteMe.left().isNull()) {
+                // Unlink, move right child up, 
+            }
+        }
     }
 
     /**
@@ -235,7 +243,6 @@ public class AvlTree<T extends Comparable<T>> {
         testTree.insert(8);
 
         testTree.printPreorder();
-
     }
 
 
