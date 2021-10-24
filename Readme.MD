@@ -35,4 +35,9 @@ How to build and run it: From a console or terminal, go into the folder with the
 To use the mod, install Forge 1.15.2 (the easiest way to do that is via TLauncher (https://tlauncher.org/en/). Open the .minecraft folder where Minecraft is installed, then move the jar file from before into .minecraft/mods and run the game.
 
 ### Note to self:
-Use "gradlew genIntellijRuns" to get the client run config back.
+On windows: Use "gradlew genIntellijRuns" to get the client run config back.
+--------------
+Set up intelliJ IDEA on linux with this:
+- Clone the repository in some folder
+- Open that folder as a project from within IntelliJ (this will automatically download everything else that forge needs)
+- To run: Create configuration, select gradle, search for genIntellijRuns. Run it once, then switch to 'Run Client' configuration, which will have been created by genIntellijRuns.
