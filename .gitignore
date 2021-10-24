@@ -36,6 +36,7 @@ build/
 options.txt
 *.ini
 cmd.lnk
+*.sh
 
 
 
