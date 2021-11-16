@@ -41,3 +41,5 @@ Set up intelliJ IDEA on linux with this:
 - Clone the repository in some folder
 - Open that folder as a project from within IntelliJ (this will automatically download everything else that forge needs)
 - To run: Create configuration, select gradle, search for genIntellijRuns. Run it once, then switch to 'Run Client' configuration, which will have been created by genIntellijRuns.
+
+Also, the build script (gradlew) might complain about endings. Use :set fileformat=unix in vim to fix that.
