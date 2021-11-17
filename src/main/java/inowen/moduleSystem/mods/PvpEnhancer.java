@@ -1,7 +1,6 @@
 package inowen.moduleSystem.mods;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
@@ -10,16 +9,13 @@ import inowen.utils.ForgeKeys;
 import inowen.utils.StringFormatter;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
@@ -27,13 +23,10 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import javax.annotation.Resource;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -128,7 +121,6 @@ public class PvpEnhancer extends Module {
             int leggingsStackSize = armorList.get(1).getCount();
             int bootsStackSize = armorList.get(0).getCount();
 
-
             // Message to indicate that a piece of armor is broken (not present)
             String msgBroken = TextFormatting.DARK_RED + "BROKEN";
 
@@ -151,19 +143,6 @@ public class PvpEnhancer extends Module {
     }
 
 
-
-
-    // Use this once I understand more about rendering? For now just put it in the nametag...
-    /*
-    @SubscribeEvent
-    public static void showOpponentWeapon(RenderPlayerEvent event) {
-        // Get item that the player is holding
-        PlayerEntity player = event.getPlayer();
-        Item heldItem = player.getHeldItemMainhand().getItem();
-        System.out.println("Held item: " + heldItem);
-
-    }
-    */
 
     @SubscribeEvent
     public static void showSharpnessInName(RenderNameplateEvent event) {
@@ -208,7 +187,6 @@ public class PvpEnhancer extends Module {
         List<EffectInstance> effectsList = ImmutableList.copyOf(effectsCollection);
         Screen screenInstance = new Screen(new StringTextComponent("screen")) {};
 
-
         // Where to display the icons.
         int displayMaxX = (int)(mc.getMainWindow().getScaledWidth()*0.35);
         int displayY = mc.getMainWindow().getScaledHeight()-28;
@@ -218,7 +196,6 @@ public class PvpEnhancer extends Module {
 
         // How many icons have been displayed so far (for positioning)
         int iconsDisplayed = 0;
-
 
         // Go through all the effects and show them.
         for(EffectInstance effect : effectsList) {
@@ -254,8 +231,6 @@ public class PvpEnhancer extends Module {
                 iconsDisplayed++;
             }
         }
-
-
 
         // Bind transparent texture to avoid random characters over the HUD.
         mc.getTextureManager().bindTexture(new ResourceLocation(SkyBotMod.MOD_ID, "transparent.png"));
