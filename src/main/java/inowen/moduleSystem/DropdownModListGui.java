@@ -19,7 +19,7 @@ public class DropdownModListGui {
     private static Minecraft mc = Minecraft.getInstance();
 
     @SubscribeEvent
-    public static void showModsDropdown(RenderGameOverlayEvent event) {
+    public static void showModsDropdown(RenderGameOverlayEvent.Post event) {
         // Draw big title
         mc.fontRenderer.drawStringWithShadow("SkyBot", 1, 1, 0x0000aa);
 

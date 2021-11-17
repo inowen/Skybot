@@ -20,7 +20,7 @@ public class StatsIngameOverlay {
      * Show username in bottom left corner.
      */
     @SubscribeEvent
-    public static void showUsernameIngame(RenderGameOverlayEvent event) {
+    public static void showUsernameIngame(RenderGameOverlayEvent.Post event) {
         if (SkybotConfig.showNameIngameConfig.value) {
 
             // Display username ingame

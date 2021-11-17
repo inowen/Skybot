@@ -47,7 +47,7 @@ public class CpsCounter extends Module {
 
 
     @SubscribeEvent
-    public static void showOnScreen(RenderGameOverlayEvent event) {
+    public static void showOnScreen(RenderGameOverlayEvent.Post event) {
         mc.fontRenderer.drawString("CPS: " + clicks.size()/2.0, 100, 100, Colors.WHITE);
     }
 }
