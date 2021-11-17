@@ -22,7 +22,6 @@ public class ModuleManager {
         addMod(new PvpEnhancer());
 
         // Testing
-        
 
     }
 

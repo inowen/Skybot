@@ -2,6 +2,7 @@ package inowen.moduleSystem.mods;
 
 import inowen.SkyBotMod;
 import inowen.moduleSystem.Module;
+import inowen.moduleSystem.ModuleManager;
 import inowen.utils.Colors;
 import inowen.utils.ForgeKeys;
 import net.minecraftforge.api.distmarker.Dist;
@@ -45,9 +46,11 @@ public class CpsCounter extends Module {
         }
 }
 
-
     @SubscribeEvent
     public static void showOnScreen(RenderGameOverlayEvent.Post event) {
-        mc.fontRenderer.drawString("CPS: " + clicks.size()/2.0, 100, 100, Colors.WHITE);
+        Module thisMod = ModuleManager.getModule(CpsCounter.class.getSimpleName());
+        if (thisMod != null && thisMod.isToggled()) {
+            mc.fontRenderer.drawString("CPS: " + clicks.size()/2.0, 100, 100, Colors.WHITE);
+        }
     }
 }
