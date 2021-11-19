@@ -1,13 +1,11 @@
 package inowen.config;
 
-
 import inowen.SkyBotMod;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
 
 /**
  * A list of ConfigOption fields, one for each of the options that can be changed around.
@@ -27,7 +25,6 @@ public class SkybotConfig {
     public static ConfigOption<Boolean> showNameIngameConfig = new ConfigOption<>("ShowNameIngame", true, true);
     public static ConfigOption<Boolean> OVERRIDE_HEALTH_ARMOR = new ConfigOption<>("OverrideHealthAndArmor", true, true);
 
-
     // Each module gets its own config section
 
     // ------------- OLD CROP BOT ---------------------
@@ -39,9 +36,7 @@ public class SkybotConfig {
         public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("OLD_CROP_BOT_MIN_ITEMS_SELL", 64, 64);
         public static ConfigOption<Double> BREAK_REACH = new ConfigOption<>("OLD_CROP_BOT_BREAK_REACH", 3.2, 3.2);
         public static ConfigOption<Double> PLANT_REACH = new ConfigOption<>("OLD_CROP_BOT_PLANT_REACH", 3.2, 3.2);
-
     }
-
 
     // ----------- MELON PUMPKIN BOT ---------------------
     public static class MelonPumpkinBot extends ConfigSection {
@@ -50,7 +45,6 @@ public class SkybotConfig {
         public static ConfigOption<String> FARMED_ITEM = new ConfigOption<>("MUMPKIN_BOT_BARRIER_BLOCK", "melon", "melon");
         public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("MUMPKIN_BARRIER_BLOCK", 64, 64);
     }
-
 
     // ----------- SUGARCANE BOT ---------------------
     public static class SugarcaneBot extends ConfigSection {
@@ -61,7 +55,6 @@ public class SkybotConfig {
         public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("SUGARCANE_BOT_MIN_ITEMS_SELL", 64, 64);
     }
 
-
     // ----------- SEEDS CROP BOT ---------------------
     public static class SeedsCropBot extends ConfigSection {
 
@@ -71,11 +64,9 @@ public class SkybotConfig {
         public static ConfigOption<Integer> MIN_ITEMS_SELL = new ConfigOption<>("SEEDS_CROP_BOT_MIN_ITEMS_SELL", 64, 64);
     }
 
-
     // ------------ HIDE NAMES MODULE ------------------
 
     public static ConfigOption<String> HIDE_NAMES_SUBSTITUTE = new ConfigOption<>("Hide_Names_Substitute", "Skybot_Hidden_Name", "Skybot_Hidden_Name");
-
 
     // ------------ PVP ENHANCEMENT ----------------------
     public static class PvpEnhancer {
@@ -86,8 +77,6 @@ public class SkybotConfig {
         public static ConfigOption<Boolean> SHOW_EFFECTS_BELOW_CHAT = new ConfigOption<>("PVP_SHOW_EFFECTS", true, true);
         public static ConfigOption<Boolean> SHOW_ARMOR_STACKS_COUNT = new ConfigOption<>("PVP_SHOW_ARMOR_STACKS_COUNT", true, true);
     }
-
-
 
 
 
@@ -150,12 +139,10 @@ public class SkybotConfig {
      */
     public static ArrayList<String> getConfigsAsStrings() {
         ArrayList<String> configs = new ArrayList<>();
-
         for (Object option : getConfigOptions()) {
             ConfigOption<?> configOption = (ConfigOption<?>)option;
             configs.add(configOption.name + ":" + configOption.value);
         }
-
         return configs;
     }
 
@@ -176,10 +163,8 @@ public class SkybotConfig {
             }
         }
 
-        // If the file exists now, write the config strings to it
         if (textFile.exists()) {
             try {
-                // Create a writer
                 FileWriter writer = new FileWriter(textFile);
                 BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
@@ -187,8 +172,6 @@ public class SkybotConfig {
                 for (String s : getConfigsAsStrings()) {
                     bufferedWriter.write(s + "\n");
                 }
-
-                // Finish writing before continuing
                 bufferedWriter.flush();
                 bufferedWriter.close();
             }
@@ -222,7 +205,6 @@ public class SkybotConfig {
     public static ArrayList<String> readConfigFile(String fileName) {
         ArrayList<String> lines = new ArrayList<>();
 
-        // Read
         try {
             // File from which to read.
             File configFolder = FMLPaths.CONFIGDIR.get().toFile();

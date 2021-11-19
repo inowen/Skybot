@@ -1,6 +1,5 @@
 package inowen.config;
 
-
 /**
  * With T as Integer, Boolean, String or Double.
  * (other types won't work! The compiler will accept them, but internally they'll be handled as Strings when
@@ -39,6 +38,5 @@ public class ConfigOption<T> {
     }
 
     public T getValue() { return value; }
-
 
 }
