@@ -90,9 +90,6 @@ public class MainConfigScreen extends Screen {
 
 
 
-
-
-
     /**
      * Create and add to the gui all the checkboxes related to enabling or disabling modules:
      * Things like WhiteList and HideNames, and whatever might be added later.

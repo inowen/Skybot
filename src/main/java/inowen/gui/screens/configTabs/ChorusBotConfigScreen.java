@@ -28,6 +28,4 @@ public class ChorusBotConfigScreen extends MainConfigScreen {
         super.tick();
     }
 
-
-
 }

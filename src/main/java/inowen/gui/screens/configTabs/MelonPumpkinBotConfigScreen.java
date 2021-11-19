@@ -8,7 +8,7 @@ public class MelonPumpkinBotConfigScreen extends MainConfigScreen {
     /**
      * Constructor.
      *
-     * @param titleIn Title for the window (can be accessed through this.title)
+     * @param titleIn Title for the window
      */
     public MelonPumpkinBotConfigScreen(ITextComponent titleIn) {
         super(titleIn);

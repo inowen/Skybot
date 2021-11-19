@@ -16,7 +16,7 @@ public class ChangeSessionScreen extends Screen {
     private static final Minecraft mc = Minecraft.getInstance();
 
     // The TextField from which the desired username is read.
-    TextFieldWidget desiredUsername = null;
+    TextFieldWidget desiredUsernameField = null;
 
     /**
      * Constructor for the screen.
@@ -36,13 +36,13 @@ public class ChangeSessionScreen extends Screen {
         }));
 
         // Create the text field to input the new username and add it to the widget list.
-        desiredUsername = new TextFieldWidget(mc.fontRenderer, this.width/2-75, (int)(0.2*this.height)+25, 150, 20, "");
-        this.addButton(desiredUsername);
+        desiredUsernameField = new TextFieldWidget(mc.fontRenderer, this.width/2-75, (int)(0.2*this.height)+25, 150, 20, "");
+        this.addButton(desiredUsernameField);
 
-        // Create button to change username to whatever is in the desiredUsername TextFieldWidget (except if it´s empty).
+        // Create button to change username to whatever is in the desiredUsernameField TextFieldWidget (except if it´s empty).
         this.addButton(new Button((int)(0.5*this.width), (int)(0.2*this.height)+60, 80, 20, "Set Username", button -> {
-            if (desiredUsername.getText() != "") {
-                setUsername(desiredUsername.getText());
+            if (desiredUsernameField.getText() != "") {
+                setUsername(desiredUsernameField.getText());
             }
         }));
     }
@@ -67,14 +67,12 @@ public class ChangeSessionScreen extends Screen {
     }
 
 
-
     /**
      * Use reflection to change the Session at runtime.
      * mc.session is a private final field, changing it from outside is tricky.
      * @param username
      */
     public void setUsername(String username) {
-        // Get Minecraft Class object.
         Class minecraftClass = Minecraft.class;
 
         // Try to change the private final field session to set new username.

@@ -3,7 +3,6 @@ package inowen.gui.hud;
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -11,8 +10,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import javax.annotation.Resource;
 
 
 /**
@@ -30,7 +27,7 @@ public class CustomHealthHunger extends Screen {
     }
 
     @SubscribeEvent
-    public static void replaceHud(RenderGameOverlayEvent event) {
+    public static void replaceHud(RenderGameOverlayEvent.Post event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH && SkybotConfig.OVERRIDE_HEALTH_ARMOR.value) {
 
             int xIn = (int)(0.3575*event.getWindow().getScaledWidth());
@@ -45,11 +42,9 @@ public class CustomHealthHunger extends Screen {
             int hungerX = xIn + healthBarWidth + 10;
             showHungerLevel(hungerX, yIn-1);
 
-
             // Show xp level
             int xpLevel = mc.player.experienceLevel;
             mc.fontRenderer.drawString("XP: " + xpLevel, hungerX, yIn+8, 0x006900);
-
 
             // Cancel event to remove old HUD
             event.setCanceled(true);
@@ -88,7 +83,6 @@ public class CustomHealthHunger extends Screen {
         mc.getTextureManager().bindTexture(protectionBarTexture);
         double protectionFraction = mc.player.getAbsorptionAmount()/mc.player.getMaxHealth();
         instance.blit(innerMinX, innerMinY, 0, 0, (int)(protectionFraction*(double)insideHpBarWidth), innerBarHeight);
-
     }
 
 

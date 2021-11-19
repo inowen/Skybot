@@ -7,7 +7,7 @@ public class SugarcaneBotConfigScreen extends MainConfigScreen {
 
     /**
      * Constructor.
-     * @param titleIn Title for the window (can be accessed through this.title)
+     * @param titleIn Title for the window
      */
     public SugarcaneBotConfigScreen(ITextComponent titleIn) {
         super(titleIn);
