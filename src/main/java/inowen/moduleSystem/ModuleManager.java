@@ -1,7 +1,6 @@
 package inowen.moduleSystem;
 
 import inowen.moduleSystem.mods.*;
-import inowen.testing.mods.*;
 
 import java.util.ArrayList;
 
