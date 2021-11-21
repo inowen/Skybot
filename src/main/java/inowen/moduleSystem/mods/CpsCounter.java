@@ -32,7 +32,7 @@ public class CpsCounter extends Module {
     private static Deque<Long> clicks = new LinkedList<>();
 
     public CpsCounter() {
-        super("CpsCounter", ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE);
     }
 
 

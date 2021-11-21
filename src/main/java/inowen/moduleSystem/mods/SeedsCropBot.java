@@ -12,7 +12,7 @@ public class SeedsCropBot extends Module {
     private float lastRealPitch = 0;
 
     public SeedsCropBot() {
-        super(SeedsCropBot.class.getName(), ForgeKeys.KEY_V);
+        super(ForgeKeys.KEY_V);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SeedsCropBot extends Module {
         // Shut off the module if there is no player to control with it.
         if (mc.player == null) {
             this.onDisable();
-            this.toggled = false;
+            this.setToggled(false);
             return;
         }
 

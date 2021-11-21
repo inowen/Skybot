@@ -25,9 +25,9 @@ public class KeypressCatcher {
         int key = event.getKey();
         for (Module m : ModuleManager.getModules()) {
             if (m.getKeyBind()==key) {
-                if (System.currentTimeMillis()-m.timeLastToggle > DELAY_BETWEEN_TOGGLES) {
+                if (System.currentTimeMillis()-m.getTimeLastToggle() > DELAY_BETWEEN_TOGGLES) {
                     m.toggle();
-                    m.timeLastToggle = System.currentTimeMillis();
+                    m.setTimeLastToggle(System.currentTimeMillis());
                 }
             }
         }

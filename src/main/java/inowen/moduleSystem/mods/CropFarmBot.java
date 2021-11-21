@@ -16,7 +16,7 @@ public class CropFarmBot extends Module {
     private float lastWorkingPitch = 0F;
 
     public CropFarmBot() {
-        super("CropsFarmingBot", ForgeKeys.KEY_P);
+        super(ForgeKeys.KEY_P);
     }
 
     @Override

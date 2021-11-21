@@ -36,7 +36,7 @@ public class SugarcaneBotHFSM extends StateMachine {
             System.out.println("Problem initially loading the farm in. Shutting off.");
             if (botModule.isToggled()) {
                 botModule.onDisable();
-                botModule.toggled = false;
+                botModule.setToggled(false);
             }
             return;
         }
@@ -56,7 +56,7 @@ public class SugarcaneBotHFSM extends StateMachine {
             System.out.println("OnTick: Problem, no farm. Shutting off.");
             if (botModule.isToggled()) {
                 botModule.onDisable();
-                botModule.toggled = false;
+                botModule.setToggled(false);
                 return;
             }
         }
@@ -65,7 +65,7 @@ public class SugarcaneBotHFSM extends StateMachine {
         if (!theFarm.zoneConstraints.contains(mc.player.getPositionVector())) {
             if (botModule.isToggled()) {
                 botModule.onDisable();
-                botModule.toggled = false;
+                botModule.setToggled(false);
                 return;
             }
         }

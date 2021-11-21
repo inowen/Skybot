@@ -95,10 +95,10 @@ public class ContextManager {
 		}
 		else {
 			System.out.println("OnUpdate not doing anything (no farm). Shutting off.");
-			Module theMod = ModuleManager.getModule("CropsFarmingBot");
+			Module theMod = ModuleManager.getModule("CropFarmBot");
 			if (theMod.isToggled()) {
 				theMod.onDisable();
-				theMod.toggled = false;
+				theMod.setToggled(false);
 			}
 		}
 	}

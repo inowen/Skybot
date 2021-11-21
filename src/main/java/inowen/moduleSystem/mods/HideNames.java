@@ -25,7 +25,7 @@ public class HideNames extends Module {
      * Create the module. Done in the ModuleManager, addMod.
      */
     public HideNames() {
-        super("HideNames", ForgeKeys.KEY_H);
+        super(ForgeKeys.KEY_H);
     }
 
     /**

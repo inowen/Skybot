@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ModuleManager {
 
-    public static ArrayList<Module> modules = new ArrayList<Module>();
+    public static ArrayList<Module> modules = new ArrayList<>();
 
     public static void init() {
         // Add all the modules
@@ -54,13 +54,13 @@ public class ModuleManager {
     }
 
     /**
-     * Find a module in the list given its name.
-     * @param name
+     * Find a module in the list given the simple name of its class
+     * @param classSimpleName
      * @return
      */
-    public static Module getModule(String name) {
+    public static Module getModule(String classSimpleName){
         for (Module m : modules) {
-            if (m.name == name) {
+            if (m.getClass().getSimpleName().equals(classSimpleName)) {
                 return m;
             }
         }
@@ -74,7 +74,7 @@ public class ModuleManager {
         for (Module m : modules) {
             if (m.isToggled()) {
                 m.onDisable();
-                m.toggled = false;
+                m.setToggled(true);
             }
         }
     }

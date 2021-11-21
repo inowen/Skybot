@@ -140,7 +140,7 @@ public class MainConfigScreen extends Screen {
 
         // Read hideNames checkbox
         Module hideNames = ModuleManager.getModule("HideNames");
-        hideNames.toggled = hideNamesCheckBox.isChecked();
+        hideNames.setToggled(hideNamesCheckBox.isChecked());
 
         // Read fullBright checkbox
         Module fullBright = ModuleManager.getModule("FullBright");
@@ -157,20 +157,20 @@ public class MainConfigScreen extends Screen {
             // Enable module if it isn't already
             if (!whitelist.isToggled()) {
                 whitelist.onEnable();
-                whitelist.toggled = true;
+                whitelist.setToggled(true);
             }
         }
         else {
             // if module enabled, disable it
             if (whitelist.isToggled()) {
                 whitelist.onDisable();
-                whitelist.toggled = false;
+                whitelist.setToggled(false);
             }
         }
 
         // Read pvp enhancer checkbox
         Module pvpEnhancer = ModuleManager.getModule("PvpEnhancer");
-        pvpEnhancer.toggled = pvpEnhancerCheckbox.isChecked();
+        pvpEnhancer.setToggled(pvpEnhancerCheckbox.isChecked());
 
         // Read showUsernameIngame checkbox
         SkybotConfig.showNameIngameConfig.value = showUsernameIngameCheckbox.isChecked();

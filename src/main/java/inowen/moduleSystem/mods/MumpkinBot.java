@@ -18,7 +18,7 @@ public class MumpkinBot extends Module {
     public float lastRealPitch = 0;
 
     public MumpkinBot() {
-        super("MumpkinBot", ForgeKeys.KEY_I);
+        super(ForgeKeys.KEY_I);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MumpkinBot extends Module {
         else {
             if (this.isToggled()) {
                 this.onDisable();
-                this.toggled = false;
+                this.setToggled(false);
             }
         }
 

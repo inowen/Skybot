@@ -12,7 +12,7 @@ public class SugarcaneBot extends Module {
     // The state machine for the sugarcane bot
     SugarcaneBotHFSM theStateMachine = null;
 
-    public SugarcaneBot() { super("SugarcaneBot", ForgeKeys.KEY_T); }
+    public SugarcaneBot() { super(ForgeKeys.KEY_T); }
 
     @Override
     public void onEnable() {
@@ -30,7 +30,7 @@ public class SugarcaneBot extends Module {
         }
         // Shut the module off if it's not ingame.
         else if (this.isToggled()) {
-            this.toggled = false;
+            this.setToggled(false);
         }
     }
 

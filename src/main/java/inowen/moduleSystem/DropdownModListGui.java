@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT, bus= Mod.EventBusSubscriber.Bus.FORGE)
 public class DropdownModListGui {
 
-    private static Minecraft mc = Minecraft.getInstance();
+    private static final Minecraft mc = Minecraft.getInstance();
 
     @SubscribeEvent
     public static void showModsDropdown(RenderGameOverlayEvent.Post event) {
@@ -25,7 +25,7 @@ public class DropdownModListGui {
         int currentY = 11;
         for (Module m : ModuleManager.getModules()) {
             if (m.isToggled()) {
-                mc.fontRenderer.drawString(m.name, 1, currentY, 0xffffff);
+                mc.fontRenderer.drawString(m.getClass().getSimpleName(), 1, currentY, 0xffffff);
                 currentY += mc.fontRenderer.FONT_HEIGHT;
             }
         }

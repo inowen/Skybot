@@ -3,20 +3,17 @@ package inowen.moduleSystem;
 import net.minecraft.client.Minecraft;
 
 public class Module {
-    public final String name;
-    public boolean toggled = false;
-    public int keyBind;
-    public long timeLastToggle = 0;
+    private boolean toggled = false;
+    private int keyBind;
+    private long timeLastToggle = 0;
 
     protected static Minecraft mc = Minecraft.getInstance();
 
     /**
      * Create the module. Done in the ModuleManager, addMod.
-     * @param name
      * @param keyBind
      */
-    public Module(String name, int keyBind) {
-        this.name = name;
+    public Module(int keyBind) {
         this.keyBind = keyBind;
     }
 
@@ -30,8 +27,10 @@ public class Module {
     public boolean isToggled() {
         return toggled;
     }
-
+    public void setToggled(boolean v) { toggled = v; }
     public int getKeyBind() { return keyBind; }
+    public long getTimeLastToggle() { return timeLastToggle; }
+    public void setTimeLastToggle(long t) { timeLastToggle = t; }
 
     /**
      * Toggle this module: If it was on, turn it off.

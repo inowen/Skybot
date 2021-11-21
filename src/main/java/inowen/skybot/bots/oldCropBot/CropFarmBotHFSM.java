@@ -51,10 +51,10 @@ public class CropFarmBotHFSM {
 
         if (!ContextManager.areConstraintsInitialized()) {
             System.out.println("You are not inside a farm.");
-            boolean modToggled = ModuleManager.getModule("CropsFarmingBot").toggled;
+            boolean modToggled = ModuleManager.getModule("CropsFarmingBot").isToggled();
             if (modToggled) {
                 ModuleManager.getModule("CropsFarmingBot").onDisable();
-                ModuleManager.getModule("CropsFarmingBot").toggled = false;
+                ModuleManager.getModule("CropsFarmingBot").setToggled(false);
             }
             return;
         }

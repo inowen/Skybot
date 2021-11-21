@@ -23,7 +23,7 @@ public class WhiteList extends Module {
     private ArrayList<String> whitelistedUsers; // List of users that don't cause the bot to shut off.
 
     public WhiteList() {
-        super("WhiteList", ForgeKeys.KEY_O);
+        super(ForgeKeys.KEY_O);
     }
 
     @Override

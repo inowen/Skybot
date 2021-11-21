@@ -6,7 +6,7 @@ import inowen.utils.ForgeKeys;
 public class FullBright extends Module {
 
     public FullBright() {
-        super("FullBright", ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE);
     }
 
     @Override

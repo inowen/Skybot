@@ -57,7 +57,7 @@ public class PvpEnhancer extends Module {
     public static final ResourceLocation REGENERATION_ICON = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/golden_apple.png");
 
     public PvpEnhancer() {
-        super("PvpEnhancer", ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE);
     }
 
 

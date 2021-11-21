@@ -42,7 +42,7 @@ public class MumpkinBotHFSM extends StateMachine {
             if(botModule.isToggled()) {
                 System.out.println("Couldn't load farm correctly. Shutting off.");
                 botModule.onDisable();
-                botModule.toggled = false;
+                botModule.setToggled(false);
                 return;
             }
             else {
@@ -89,7 +89,7 @@ public class MumpkinBotHFSM extends StateMachine {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-                botModule.toggled = false;
+                botModule.setToggled(false);
                 return;
             }
         }
@@ -98,7 +98,7 @@ public class MumpkinBotHFSM extends StateMachine {
         if (!theFarm.zoneConstraints.contains(Minecraft.getInstance().player.getPositionVector())) {
             if (botModule.isToggled()) {
                 botModule.onDisable();
-                botModule.toggled = false;
+                botModule.setToggled(false);
                 return;
             }
         }
