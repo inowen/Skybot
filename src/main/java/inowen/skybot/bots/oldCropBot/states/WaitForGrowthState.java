@@ -3,17 +3,12 @@ package inowen.skybot.bots.oldCropBot.states;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.utils.InventoryHelper;
 
-public class WaitForGrowthState extends State{
+public class WaitForGrowthState extends State {
 	
 	public WaitForGrowthState() {
-		// Set the name
 		this.name = "WaitForGrowthState";
-		
-		// Set the substates
-		this.subStates = null; // Atomic
-		
-		// Set the current state
-		currentState = null; // Atomic: no substates!
+		this.subStates = null;
+		currentState = null;
 	}
 	
 	

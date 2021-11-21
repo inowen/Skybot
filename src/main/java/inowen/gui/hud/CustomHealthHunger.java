@@ -27,7 +27,7 @@ public class CustomHealthHunger extends Screen {
     }
 
     @SubscribeEvent
-    public static void replaceHud(RenderGameOverlayEvent.Post event) {
+    public static void replaceHud(RenderGameOverlayEvent event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH && SkybotConfig.OVERRIDE_HEALTH_ARMOR.value) {
 
             int xIn = (int)(0.3575*event.getWindow().getScaledWidth());

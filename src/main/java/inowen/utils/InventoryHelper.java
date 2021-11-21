@@ -63,7 +63,6 @@ public class InventoryHelper {
                 totalCount += mainInv.get(i).getCount();
             }
         }
-
         return totalCount;
     }
 
@@ -93,7 +92,6 @@ public class InventoryHelper {
                 slotId = mainInvIndexToSlotId(i);
             }
         }
-
         return slotId;
     }
 
@@ -188,28 +186,20 @@ public class InventoryHelper {
     public static void printDebugMessages(boolean printIngame) {
         ArrayList<String> debugMessages = new ArrayList<String>();
         Item targetItem = Items.CARROT;
-
         // item of interest is...
         debugMessages.add("Item of interest: " + targetItem.getName());
-
         // isInventoryFull
         debugMessages.add("Inventory full? : " + (isInvFull() ? "Yes" : "No"));
-
         // is InventoryEmpty
         debugMessages.add("Inventory empty? : " + (isInvEmpty() ? "Yes" : "No"));
-
         // countNumItems
         debugMessages.add("Amount of item in inventory: " + countNumItems(targetItem));
-
         // First slot with content
         debugMessages.add("First slot with item: " + firstSlotWithContent(targetItem));
-
         // is there any space left to store item
         debugMessages.add("Any space left to store item? : " + (isSpaceLeftToStore(targetItem) ? "Yes" : "No"));
-
         // how much space is there left to store item
         debugMessages.add("Number of extra items that fit in inv: " + howManyMoreCanStore(targetItem));
-
         // If this isn't going to be printed ingame, print to console.
         if (!printIngame) {
             System.out.println("---- DEBUG INVENTORY_HELPER ----");
@@ -226,36 +216,6 @@ public class InventoryHelper {
                 yHeight += 10;
             }
         }
-
-
     }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// END

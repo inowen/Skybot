@@ -1,6 +1,5 @@
 package inowen.moduleSystem.mods;
 
-
 import inowen.SkyBotMod;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 public class WhiteList extends Module {
 
     private ArrayList<String> whitelistedUsers; // List of users that don't cause the bot to shut off.
-
 
     public WhiteList() {
         super("WhiteList", ForgeKeys.KEY_O);

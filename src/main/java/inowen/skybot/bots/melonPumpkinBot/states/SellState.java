@@ -125,7 +125,6 @@ public class SellState extends State {
     public State getNextState() {
         State nextState = null;
         if (innerState == InnerState.FREE_TO_SWITCH) {
-            // Depending on conditions, set nextState
             if (timeExceeded) {
                 nextState = new SellState(theFarm);
             }

@@ -11,7 +11,7 @@ public abstract class State {
 
     protected static Minecraft mc = Minecraft.getInstance();
 
-    public String name = ""; // Set the name in constructor.
+    public String name = ""; // Set the name in child constructor.
     public State currentState = null;
 
     /**
@@ -38,12 +38,9 @@ public abstract class State {
     public abstract void onExit();
 
 
-    // Getter for name of this state.
     public String getName() {
         return name;
     }
-
-    // Get current substate
     public State getCurrentSubstate() {
         return currentState;
     }

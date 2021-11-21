@@ -12,9 +12,7 @@ import inowen.skybot.hfsmBase.State;
 import inowen.skybot.hfsmBase.StateMachine;
 import inowen.utils.InventoryHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -72,11 +70,9 @@ public class MumpkinBotHFSM extends StateMachine {
 
     @Override
     public void onTick() {
-        // Check if the module was disabled, if so, don't perform the tick.
         if (!botModule.isToggled()) {
             return;
         }
-
         if (currentState == null) {
             if (botModule.isToggled()) {
                 botModule.toggle();
@@ -84,7 +80,7 @@ public class MumpkinBotHFSM extends StateMachine {
             return;
         }
 
-        // If there is no player (disconnect or the likes), toggle off the module.
+        // If there is no player, toggle off the module.
         if (Minecraft.getInstance().player == null) {
             if (botModule.isToggled()) {
                 try {
@@ -109,7 +105,6 @@ public class MumpkinBotHFSM extends StateMachine {
 
         // Update information about the context (the farm)
         theFarm.update(tracker);
-
         // Propagate tick to current state
         currentState.run();
 

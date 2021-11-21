@@ -6,3 +6,5 @@ The size of the region that will be broken should depend on the size of the farm
 
 Apart from that, it will focus on stability. All relevant states will have timers to reset them, in case the bot gets stuck somewhere.
 
+(I'm leaving the readme here since the bot isn't done yet, so REMOVE IT once the bot is implemented)
+

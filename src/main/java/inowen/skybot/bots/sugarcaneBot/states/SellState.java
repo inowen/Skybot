@@ -3,9 +3,6 @@ package inowen.skybot.bots.sugarcaneBot.states;
 import inowen.config.SkybotConfig;
 import inowen.skybot.bots.sugarcaneBot.context.SugarcaneFarm;
 import inowen.skybot.hfsmBase.State;
-
-
-//.............
 import inowen.utils.InventoryHelper;
 import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.ClickType;
@@ -44,7 +41,7 @@ public class SellState extends State {
     @Override
     public void run() {
 
-        // If the delay isn't over yet, wait. Only do stuff once it is time for the next action.
+        // If the delay isn't over yet, wait.
         if (System.currentTimeMillis() - timeLastAction < DELAY_BETWEEN_ACTIONS) {
             return;
         }
@@ -101,9 +98,6 @@ public class SellState extends State {
             mc.player.sendChatMessage("/sellshop");
         }
 
-
-        // In any case, no matter which action is taken, set the timer
-        // (unless there was an old timer, but in that case it wouldn't go past the return).
         timeLastAction = System.currentTimeMillis();
     }
 
@@ -196,30 +190,8 @@ public class SellState extends State {
     }
 
 
-
-
-
-
-
-
     public static enum Action {
         SELLING, CLOSING_Q_MENU, CLOSING_SELECT_MENU, WAITING_BEFORE_DONE, DONE
     }
 
-    // END CLASS
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// END

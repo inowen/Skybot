@@ -46,7 +46,7 @@ public class SeedsCropBot extends Module {
     public void onGui() {
         if (theStateMachine != null) {
             mc.fontRenderer.drawString("Current state: " + theStateMachine.getStatePath(), 100, 100, 0xffffff);
-            // Late give some kind of information here about how many items left before sale or seeds or whatever.
+            // Later give some kind of information here about how many items left before sale or seeds or whatever.
         }
 
     }
@@ -62,7 +62,7 @@ public class SeedsCropBot extends Module {
     /**
      * Sometimes yaw / pitch become NaN for a reason that I don't know yet.
      * This keeps track of the angles and if they become NaN, it resets to the previous one.
-     * NOTE: Might just make an event listener that does this for all bots...
+     * In the future, extract to a base Bot class.
      */
     private void fixNanAngles() {
         // Check yaw

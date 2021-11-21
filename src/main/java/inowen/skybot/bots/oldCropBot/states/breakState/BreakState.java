@@ -16,18 +16,10 @@ public class BreakState extends State {
 	private boolean oneCircleBroken = false;
 	
 	public BreakState() {
-		
-		// Set the name
 		this.name = "BreakState";
-		
-		// Set the substates
 		subStates.add(new SimplePathingState());
 		subStates.add(new BreakReachState());
-		
-		
-		// Set the current state
 		currentState = this.getSubstateFromName("SimplePathingState");
-		
 	}
 	
 	
@@ -67,18 +59,10 @@ public class BreakState extends State {
 	
 	@Override 
 	public String checkConditions() {
-		String nextState = "";
-		
-		if (this.oneCircleBroken) {
-			nextState = "PickupItemsState";
-		}
-		
-		return nextState;
+		return this.oneCircleBroken ? "PickupItemsState" : "";
 	}
 	
 	
 	@Override
-	public void onExit() {
-		
-	}
+	public void onExit() { }
 }

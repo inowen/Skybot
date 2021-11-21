@@ -6,9 +6,7 @@ import net.minecraft.util.math.Vec3d;
 
 /**
  * Makes transformations from chunk coords to block coords,
- * global block coordinates to coordinates inside the scanZone
- * (to adjust pathfinding)...
- *
+ * BlockPos to vector, directions to look at, etc.
  *
  * @author PrinceChaos
  *

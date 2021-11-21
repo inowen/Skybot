@@ -9,7 +9,6 @@ import net.minecraft.util.math.Vec3d;
 
 public class SugarcaneLane {
 
-    // Singleton instance of Minecraft
     private Minecraft mc = Minecraft.getInstance();
 
     public BlockPos initPosition;
@@ -83,6 +82,5 @@ public class SugarcaneLane {
     public double distanceTo(Vec3d target) {
         return target.subtract(CoordinateTranslator.blockPosToVectorPosition(this.initPosition)).length();
     }
-
 
 }

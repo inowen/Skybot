@@ -15,7 +15,6 @@ import inowen.utils.RayTraceHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -27,7 +26,7 @@ import java.util.ArrayList;
  * This one is a pure state machine. Its states are located in
  * the botStates package.
  *
- * Singleton instance, everything in this class will be static.
+ * Singleton, everything in this class will be static.
  * (none of the substates / nested state machines are static).
  * @author PrinceChaos
  *
@@ -44,8 +43,6 @@ public class CropFarmBotHFSM {
      * Constructor. Sets everything to default values.
      */
     public CropFarmBotHFSM() {
-
-        // Which item is to be farmed
         String farmedItemName = SkybotConfig.OldCropBot.FARMED_ITEM.value;
         ContextManager.farmedItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(farmedItemName));
 
@@ -64,9 +61,7 @@ public class CropFarmBotHFSM {
 
         ContextManager.update();
 
-        // Create the list of states available
         states = new ArrayList<State>();
-
         // Add all the states to the list of states for this state machine.
         states.add(new PickupItemsState());
         states.add(new WaitForGrowthState());
@@ -75,7 +70,6 @@ public class CropFarmBotHFSM {
         states.add(new BreakState());
         states.add(new EatState());
 
-        // Initiate the current state (to the default: Picking up items)
         currentState = getStateByName(NAME_DEFAULT_STATE);
         currentState.onEnter();
 
@@ -161,7 +155,6 @@ public class CropFarmBotHFSM {
     }
 
 
-
     /**
      * Get a state with the given name.
      * @param name
@@ -177,7 +170,5 @@ public class CropFarmBotHFSM {
 
         return target;
     }
-
-
 
 }

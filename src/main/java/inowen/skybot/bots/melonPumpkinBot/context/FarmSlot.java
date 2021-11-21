@@ -1,6 +1,5 @@
 package inowen.skybot.bots.melonPumpkinBot.context;
 
-
 import net.minecraft.util.math.BlockPos;
 
 /**
@@ -12,7 +11,6 @@ public class FarmSlot {
     public BlockPos globalBlockPos = null;
     public FarmSlotContent content = null;
 
-    // Different things that a FarmSlot can contain.
     public enum FarmSlotContent {
         COVERS_WATER, EMPTY, STEM, PLANT_BLOCK, UNKNOWN
     }

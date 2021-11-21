@@ -35,12 +35,6 @@ public abstract class StateMachine {
             s = s.getCurrentSubstate();
         }
 
-        //DEBUG
-        if (statePath == "") {
-            statePath = "No state path";
-        }
-        //DEBUG_END
-
         return statePath;
     }
 }

@@ -16,14 +16,13 @@ import net.minecraft.util.math.Vec3d;
  * @author PrinceChaos
  */
 public class FarmZoneConstraints {
-    // Reference to the singleton Minecraft instance.
     private Minecraft mc = Minecraft.getInstance();
 
     // How far it should go in one direction before saying there is no farm around the player.
     public static final int MAX_FARM_SIZE = 55;
     public final Block BARRIER_BLOCK;
 
-    // The highest and smallest values for x and z that aren't on the borders.
+    // The highest and lowest values for x and z that aren't on the borders.
     public int minX = 0;
     public int maxX = 0;
     public int minZ = 0;

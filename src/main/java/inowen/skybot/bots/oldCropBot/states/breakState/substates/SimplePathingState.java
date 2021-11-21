@@ -19,7 +19,8 @@ public class SimplePathingState extends State {
 	// If the player is closer to the target than this, the target is considered reached.
 	public static double MIN_DIST_TARGET = 0.5;
 	
-	// Highest allowed difference between the Euler Angles and what they should be.
+	// Highest allowed difference between the Euler Angles and what they should be (smoothes out pathing).
+	// Note: It would be better if it adjusted the angle one at a time slowly instead of waiting until the end and jerking the cam over.
 	public static double ANGLE_LENIENCY = 10;
 	
 	private boolean targetReached = false;
@@ -40,7 +41,6 @@ public class SimplePathingState extends State {
 	@Override
 	public void onEnter() {
 		targetReached = false;
-		
 		// Acquire target
 		BlockPos closestTargetBlock = ContextManager.getClosestFullyGrown(mc.player.getPositionVector());
 		this.target = CoordinateTranslator.blockPosToVectorPosition(closestTargetBlock);
@@ -49,8 +49,6 @@ public class SimplePathingState extends State {
 	
 	@Override
 	public void run() {
-
-		// Test to check (just in case) that the target exists.
 		if (target == null) {
 			targetReached = true;
 			return;
@@ -80,7 +78,6 @@ public class SimplePathingState extends State {
 	@Override
 	public String checkConditions() {
 		String nextState = "";
-		
 		if (targetReached) {
 			nextState = "BreakReachState";
 		}

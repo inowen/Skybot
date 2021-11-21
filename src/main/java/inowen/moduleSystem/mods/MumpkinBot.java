@@ -6,7 +6,6 @@ import inowen.utils.ForgeKeys;
 import inowen.utils.InventoryHelper;
 import inowen.utils.RayTraceHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.StemGrownBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -44,10 +43,8 @@ public class MumpkinBot extends Module {
 
         // Check if Euler Angles somehow became NaN.
         checkForNaNAngles();
-
-        // Don't attack if it isn't a melon or pumpkin!
+        // Don't attack if it isn't a melon or pumpkin
         preventBreakingFarm();
-
     }
 
     @Override

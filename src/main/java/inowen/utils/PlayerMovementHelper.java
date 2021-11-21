@@ -44,14 +44,12 @@ public class PlayerMovementHelper {
 	 */
 	public static double getYawToLookAt(Vec3d targetPosition) {
 		Vec3d playerPosition = mc.player.getPositionVector();
-		// Find the look vector (the vector that goes from playerPosition to target)
+		// Find the vector that goes from playerPosition to target.
 		Vec3d lookVector = targetPosition.subtract(playerPosition);
 		if (lookVector.length() < 1.0E-4D) {
-			return 0; // Nobody cares. It will never try to look at something this close. 
-						// (As long as PathFollower.ACCURACY is set higher than 1.0E-4D)
+			return 0;
  		}
-		// Normalize means divide each coordinate by the length of the vector, making the total length 1
-		lookVector = new Vec3d(lookVector.getX(), 0, lookVector.getZ()); // Imagine it being a Vec2D. Not using yCoord, and it would mess up the normalize.
+		lookVector = new Vec3d(lookVector.getX(), 0, lookVector.getZ());
 		lookVector = lookVector.normalize();
 		
 		// These would be sin and cos that define this same angle in a standard XZ coordinate system

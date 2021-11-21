@@ -3,7 +3,6 @@ package inowen.skybot.bots.melonPumpkinBot.states;
 import inowen.skybot.bots.melonPumpkinBot.context.MumpkinFarm;
 import inowen.skybot.hfsmBase.State;
 import inowen.utils.InventoryHelper;
-import org.lwjgl.system.CallbackI;
 
 public class WaitForGrowthState extends State {
 

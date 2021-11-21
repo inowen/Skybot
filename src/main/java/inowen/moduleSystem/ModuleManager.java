@@ -1,12 +1,10 @@
 package inowen.moduleSystem;
 
 import inowen.moduleSystem.mods.*;
-
 import java.util.ArrayList;
 
 public class ModuleManager {
 
-    // List of mods
     public static ArrayList<Module> modules = new ArrayList<Module>();
 
     public static void init() {
@@ -19,15 +17,19 @@ public class ModuleManager {
         // addMod(new SeedsCropBot());
         addMod(new FullBright());
         addMod(new PvpEnhancer());
-
-        // Testing
-
     }
 
-    // Add a mod to the list.
-    public static void addMod(Module mod) { modules.add(mod); }
+    /**
+     * Register a module (add it to the manager's list)
+     * @param mod
+     */
+    public static void addMod(Module mod) {
+        modules.add(mod);
+    }
 
-    public static ArrayList<Module> getModules() { return modules; }
+    public static ArrayList<Module> getModules() {
+        return modules;
+    }
 
     /**
      * Propagate an update (tick) through all the modules in the list.

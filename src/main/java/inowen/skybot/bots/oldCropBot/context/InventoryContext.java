@@ -11,29 +11,24 @@ public class InventoryContext {
 	
 	private static Minecraft mc = Minecraft.getInstance();
 	
-	/// -------------- INFORMATION ---------------------- ///
 	boolean fullInventory;
 	int numSeeds;
 	int anySlotWithSeeds;
 	boolean isEmptyInventory;
 	int bestSellingAmount;
-	
+
 	// 36 spots. ORDER: Hotbar = 0-8, then 3 rows main inv. 36 spots total.
 	NonNullList<ItemStack> mainInventory = mc.player.inventory.mainInventory; 
-	
 	Item itemBeingFarmed = null;
 
-	/// -------------- END INFORMATION ------------------ ///
-	
 	
 	/**
 	 * Constructor.
-	 * @param itemBeingFarmed Can only be one where the seed is the same as the drop (could fix that limitation later, but no need).
+	 * @param itemBeingFarmed Can only be one where the seed is the same as the drop
 	 * @param playerIn The player.
 	 */
 	public InventoryContext(Item itemBeingFarmed, PlayerEntity playerIn) {
 		this.itemBeingFarmed = itemBeingFarmed;
-		
 		fullInventory = isInventoryFull();
 		numSeeds = this.numSeedsAvailable();
 		anySlotWithSeeds = this.firstSlotIdWithSeeds();
@@ -42,7 +37,7 @@ public class InventoryContext {
 	}
 	
 	/**
-	 * Call this function to refresh all information contained here.
+	 * Refresh all information stored about the inventory.
 	 * @param playerIn
 	 */
 	public void update(PlayerEntity playerIn) {
@@ -58,10 +53,6 @@ public class InventoryContext {
 	
 	// ------------- AUXILIARY FUNCTIONALITY ------------------ //
 
-	/**
-	 * THIS ONE. DEBUG AND FIX
-	 * @return
-	 */
 	public boolean isInventoryFull() {
 		boolean inventoryFull = true;
 		for (int i=0; i<36 && inventoryFull; i++) {
@@ -72,10 +63,6 @@ public class InventoryContext {
 		return inventoryFull;
 	}
 
-	/**
-	 * THIS ONE. DEBUG AND FIX
-	 * @return
-	 */
 	public boolean isInventoryEmpty() {
 		boolean inventoryEmpty = true;
 		for (int i=0; i<36 && inventoryEmpty; i++) {
@@ -189,21 +176,13 @@ public class InventoryContext {
 		// Inventory: 0-8 is hotbar, rest inventory.
 		return (invIndexWithSeeds<=8 && invIndexWithSeeds>=0 ? 36+invIndexWithSeeds : invIndexWithSeeds);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * For debugging: Prints out every bit of relevant information about this InventoryContext to the console.
 	 */
 	public void printInventoryInfo() {
-		// firstSlotIdWithSeeds
-		// bestSellingAmount
-		// numSeedsAvailable
-		// numSlotsWithSeeds
-		// isInventoryEmpty
-		// isInventoryFull
-		// Item being farmed: name
-		
 		System.out.println("InventoryContext state: ");
 		System.out.println("\t Item being farmed: " + itemBeingFarmed.getName());
 		System.out.println("\t Inventory full? " + (isInventoryFull() ? "Yes" : "No"));
@@ -213,23 +192,5 @@ public class InventoryContext {
 		System.out.println("\t Highest amount of seeds sellable: " + bestSellingAmount());
 		System.out.println("\t First inventory slot with seeds in it: " + firstSlotIdWithSeeds());
 		System.out.println("\t NonNullList mainInventory.size() : " + mainInventory.size());
-		/*
-		System.out.println("---- MAIN INVENTORY CONTENT ----");
-		for (int i=0; i<36; i++) {
-			ItemStack current = mainInventory.get(i);
-			System.out.println("\tItem: " + current);
-		}
-		*/
-		
 	}
 }
-
-
-
-
-
-
-
-
-
-// END

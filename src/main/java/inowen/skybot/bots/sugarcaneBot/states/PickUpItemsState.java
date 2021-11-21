@@ -38,7 +38,6 @@ public class PickUpItemsState extends State {
     }
 
 
-
     @Override
     public State getNextState() {
         State nextState = null;
@@ -55,8 +54,6 @@ public class PickUpItemsState extends State {
 
         return nextState;
     }
-
-
 
 
     @Override

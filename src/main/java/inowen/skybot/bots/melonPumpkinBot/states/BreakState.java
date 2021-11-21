@@ -33,7 +33,6 @@ public class BreakState extends State {
 
     @Override
     public void run() {
-
         // Switch to axe if there is one in the inventory and if the player isn't holding one.
         if (mc.player.getHeldItemMainhand().getItem() != Items.DIAMOND_AXE) {
             int axeSlotId = InventoryHelper.firstSlotWithContent(Items.DIAMOND_AXE);
@@ -44,22 +43,7 @@ public class BreakState extends State {
             mc.playerController.windowClick(mc.player.container.windowId, axeSlotId, 0, ClickType.PICKUP, mc.player);
         }
 
-
         mc.gameSettings.keyBindAttack.setPressed(true);
-        /*
-        Try something: The bot doesn't allow itself to break anything that isn't a plant block.
-        So if during the entire BreakState the default is to break something and the emergency stops everything that shouldn't break,
-        it would just have to look at things and would handle whether to break what it is looking at independently from
-        what it is actually looking at.
-
-        That way, the looking would just be looking at the closest breakable thing (determining a new target each time the
-        timer is over).
-
-        ALGORITHM:
-        - each tick, determine the closest target.
-        - if the target changes, check if the delay has passed. If so, reset delay and set the new closest target at focused target.
-        - each tick, make sure it's looking at the focused target.
-         */
 
         // Get the closest target this tick.
         Vec3d closestTargetNow = theFarm.posClosestVisiblePlantBlock(mc.player.getEyePosition(0));
@@ -112,8 +96,6 @@ public class BreakState extends State {
             // Calculate distance, if higher than reach switch to pathing state.
             double distance = mc.player.getEyePosition(0).subtract(closestVisiblePos).length();
             if (distance > REACH_DIST) {
-
-                // Each time it relocates inside break state, this is triggered.
                 if (theFarm.itemsToRecollect.size() > 0) {
                     nextState = new PickUpItemsState(theFarm);
                 }

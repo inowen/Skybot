@@ -1,22 +1,18 @@
 package inowen.skybot.bots.sugarcaneBot.states;
 
 import inowen.skybot.bots.sugarcaneBot.context.SugarcaneFarm;
-import inowen.skybot.bots.sugarcaneBot.context.SugarcaneLane;
 import inowen.skybot.hfsmBase.State;
 import inowen.utils.CoordinateTranslator;
 import inowen.utils.InventoryHelper;
 import inowen.utils.PlayerMovementHelper;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 
 public class HarvestLaneState extends State {
 
     public SugarcaneFarm theFarm;
     public BlockPos laneInitPos;
-
     public static final double ANGLE_LENIENCY = 2.5;
-
     // State variables
     boolean strafingRight = true;  // Right means in the opposite direction of the X-axis.
 
@@ -30,7 +26,6 @@ public class HarvestLaneState extends State {
         mc.player.rotationYaw = 0;
         mc.player.rotationPitch = 0;
         laneInitPos = new BlockPos(mc.player).down();
-
         this.strafingRight = true;
     }
 
@@ -73,7 +68,8 @@ public class HarvestLaneState extends State {
     public State getNextState() {
         State nextState = null;
 
-        boolean shouldTransition = (theFarm.getLaneWithInitPos(laneInitPos)==null || mc.player.getPositionVector().getZ() > theFarm.getLaneWithInitPos(laneInitPos).endingZ);
+        boolean shouldTransition = (theFarm.getLaneWithInitPos(laneInitPos)==null
+                || mc.player.getPositionVector().getZ() > theFarm.getLaneWithInitPos(laneInitPos).endingZ);
 
         if (shouldTransition) {
             if (!InventoryHelper.isSpaceLeftToStore(Items.SUGAR_CANE)) {

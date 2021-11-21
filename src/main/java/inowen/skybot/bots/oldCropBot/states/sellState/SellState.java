@@ -25,10 +25,7 @@ public class SellState extends State {
 	public Action action = Action.SELLING;
 	
 	public SellState() {
-		
-		// Set the name
 		this.name = "SellState";
-		
 		// Atomic state
 		this.subStates = null;
 		this.currentState = null;
@@ -58,7 +55,7 @@ public class SellState extends State {
 		}
 		else if (action == Action.CLOSING_SELECT_MENU) {
 			mc.player.closeScreen();
-			mc.setGameFocused(true); // Try if this line fixes the clicks not registering after selling.
+			mc.setGameFocused(true);
 			action = Action.WAITING_BEFORE_DONE;
 			timeLastAction = System.currentTimeMillis();
 			return;
@@ -100,7 +97,6 @@ public class SellState extends State {
 		else {
 			mc.player.sendChatMessage("/sellshop");
 		}
-
 
 		// In any case, no matter which action is taken, set the timer
 		// (unless there was an old timer, but in that case it wouldn't go past the return).
@@ -205,30 +201,8 @@ public class SellState extends State {
 	}
 
 
-
-
-
-
-
-
 	public static enum Action {
 		SELLING, CLOSING_Q_MENU, CLOSING_SELECT_MENU, WAITING_BEFORE_DONE, DONE
 	}
 
-	// END CLASS
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// END

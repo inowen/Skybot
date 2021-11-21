@@ -16,15 +16,9 @@ import inowen.utils.PlayerMovementHelper;
 public class PlantState extends State {
 	
 	public PlantState() {
-		// Set the name
 		this.name = "PlantState";
-		
-		// Set the substates
-		// --- subStates.add(new PathingState()); State currently not in use
 		subStates.add(new SimplePathingState());
 		subStates.add(new PlantingSurroundingsState());
-		
-		// Set the current state (defaults to pathing to the next position)
 		currentState = this.getSubstateFromName("SimplePathingState");
 	}
 	
@@ -88,20 +82,4 @@ public class PlantState extends State {
 	public void onExit() {
 		PlayerMovementHelper.desetAllkeybinds();
 	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// END

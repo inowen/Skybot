@@ -16,7 +16,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.ArrayList;
 
 public class SugarcaneFarm {
-    // Reference to the singleton Minecraft instance.
     private Minecraft mc = Minecraft.getInstance();
 
     public static final Block BARRIER_BLOCK = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.SugarcaneBot.BARRIER_BLOCK.value));
@@ -96,9 +95,7 @@ public class SugarcaneFarm {
      * positioning is considered not movable).
      */
     public void update() {
-        // Recalculate results of farming every one of the lanes.
         for (SugarcaneLane lane : lanes) { lane.calculateHarvest(); }
-        // Update ground items
         updateGroundItems();
     }
 
@@ -210,6 +207,5 @@ public class SugarcaneFarm {
 
         return resultLane;
     }
-
 
 }

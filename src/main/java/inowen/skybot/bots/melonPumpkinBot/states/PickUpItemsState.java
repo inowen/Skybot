@@ -24,11 +24,9 @@ public class PickUpItemsState extends State {
 
     @Override
     public void run() {
-
-        // Get closest target
         ItemEntity closestItem = theFarm.getClosestItemTo(mc.player.getPositionVector());
 
-        // Walk towards closest target (except if it's null)
+        // Walk towards closest target
         if (closestItem != null) {
             Vec3d closestItemPosition = closestItem.getPositionVector();
             double yawShouldBe = PlayerMovementHelper.getYawToLookAt(closestItemPosition);
@@ -36,9 +34,7 @@ public class PickUpItemsState extends State {
             if (Math.abs(mc.player.rotationYaw - yawShouldBe) > ANGLE_LENIENCY) {
                 mc.player.rotationYaw = (float) yawShouldBe;
             }
-
         }
-
     }
 
     @Override

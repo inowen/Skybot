@@ -26,7 +26,7 @@ public class PlantingSurroundingsState extends State {
 	private static final long TIME_AFTER_LOOK_TO_PLANT = 125;
 	private static final long TIME_BEFORE_LETTING_GO_MOUSE = 35;
 	
-	// Variables for the delay
+	// Variables for the actual delay
 	private long timeLastLook = 0;
 	private long timeLastPlant = 0;
 	private long timeLastMouseClick = 0;
@@ -89,8 +89,6 @@ public class PlantingSurroundingsState extends State {
 		}
 		
 		// If it was breaking something in the last frame, stop breaking.
-		// Somehow test that the thing that you're looking at is empty farmland? DO THAT LATER IF THIS DOESN'T WORK WELL.
-		// Else, just press for 50 ms and check a timer for how long to press the break key? for the server to pick it up.
 		if (mc.gameSettings.keyBindUseItem.isPressed()) {
 			if (Math.abs(System.currentTimeMillis() - timeLastMouseClick) < TIME_BEFORE_LETTING_GO_MOUSE) {
 				return;

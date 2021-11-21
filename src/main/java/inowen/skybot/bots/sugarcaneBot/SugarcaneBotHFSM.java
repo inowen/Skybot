@@ -86,10 +86,6 @@ public class SugarcaneBotHFSM extends StateMachine {
 
         // Check Euler Angles
         preventNanEulerAngles();
-
-        // Emergency stuff (probably won't be anything, but if it needs something
-        // like the click stopper in CropFarmBot, put it here)
-
     }
 
     @Override

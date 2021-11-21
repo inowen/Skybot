@@ -32,13 +32,9 @@ import net.minecraftforge.registries.ForgeRegistries;
  */
 public class ContextManager {
 
-	/// ---------------- STORED MEMBER DATA ----------------------------------
-
-	// Minecraft reference
 	protected static Minecraft mc = Minecraft.getInstance();
 
-	// The item that the bot should be farming (that is dropped when breaking
-	// crops).
+	// The item that the bot should be farming
 	public static Item farmedItem = null; // The HFSM module sets this.
 	public static Block BARRIER_BLOCK = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(SkybotConfig.OldCropBot.BARRIER_BLOCK.value));
 
@@ -55,11 +51,7 @@ public class ContextManager {
 	// If this farm was initialized correctly
 	public static boolean constraintsInitialized = false;
 
-	/// ---------------- END STORED MEMBER DATA ----------------------------------
-	
-	
-	
-	
+
 	/**
 	 * Gather relevant session +data, constraints of farm etc. This will only be
 	 * called once (in onEnable() of the given module).
@@ -78,14 +70,9 @@ public class ContextManager {
 			return;
 		}
 
-		// Init the inventory watcher 
+		// Context information
 		inventoryContext = new InventoryContext(farmedItem, mc.player);
-
-		// Initialize the itemsToRecollect list empty
 		itemsToRecollect.clear();
-		
-		// Initialize the FarmSlot matrix with the size of the farm
-		// (get that from the constraints) Matrix[x][z] "x=rows, z=columns"
 		farmSlots = new FarmSlot[zoneConstraints.xLength()][zoneConstraints.zLength()];
 	}
 
@@ -94,17 +81,13 @@ public class ContextManager {
 	 * the farm won't change). - Content of FarmSlots - Content of inventory - Floor
 	 * items
 	 * 
-	 * Wastes computing power, updates everything and not just what is needed, every frame. But I'm bored,
-	 * and the computer can handle this...
+	 * Wastes computing power, updates everything and not just what is needed, every frame.
 	 */
 	public static void update() {
 		if (constraintsInitialized) {
 			// Update items located inside the farmzone.
 			itemsToRecollect = itemsInsideFarmzone(zoneConstraints);
-			// Update content of the FarmSlots matrix (reload every single thing)
-			/* In this we assume the constraints of the farmZone never change at runtime. */
 			updateFarmSlots(zoneConstraints);
-			// Update the inventory context information (NOT IMPLEMENTED)
 			if (inventoryContext == null) {
 				System.out.println("PROBLEM: inventoryContext == null");
 			}
@@ -122,7 +105,7 @@ public class ContextManager {
 	
 	
 	
-	// ---------------------- UTILITYYY -----------------------------------------------------------//
+	// ---------------------- UTILITY -----------------------------------------------------------//
 	
 	/**
 	 * Whether the constraints of the farm were found and set correctly.
@@ -133,31 +116,23 @@ public class ContextManager {
 	}
 
 	/**
-	 * Get the items that are inside the FarmZone. Used in the update function.
-	 * Means: Get the list of items. Filter out based on whether they are inside and
-	 * the correct item.
-	 * 
+	 * Gets list of the instances of farmedItem currently available within the farm's constraints.
 	 * @param fzc
-	 * @return
+	 * @return List of useful items inside the farm
 	 */
 	public static ArrayList<ItemEntity> itemsInsideFarmzone(FarmZoneConstraints fzc) {
-
-		// The list that this will return
 		ArrayList<ItemEntity> itemsInside = new ArrayList<ItemEntity>();
 
 		// Go through all the entities in the world, filter out ItemEntity.
 		for (Object element : mc.world.getAllEntities()) {
-
 			if (element instanceof ItemEntity) {
 				ItemEntity theItem = (ItemEntity) element;
-
 				// Check that the item is inside the farm and on the floor.
 				if ((theItem.getItem().getItem() == farmedItem) && zoneConstraints.containsVecPos(theItem.getPositionVector())) {
 					itemsInside.add(theItem);
 				}
 			}
 		}
-
 		return itemsInside;
 	}
 
@@ -174,7 +149,6 @@ public class ContextManager {
 	 */
 	public static void updateFarmSlots(FarmZoneConstraints fzc) {
 		
-		// The x and z variables for the matrix, representing rows and columns (matrix doesn't start at minX, but at 0).
 		int matrixX = 0;
 		int matrixZ = 0;
 		
@@ -251,30 +225,24 @@ public class ContextManager {
 		}
 	}
 	
-	
-	
-	
+
 	
 	/**
 	 * This is here for debugging. Leaving it just in case I need some of it again.
 	 */
 	public static void debugMessage() {
-		
 		System.out.println("-------- Debug -------------");
-		
 		System.out.println("Zone constraints: " + zoneConstraints.toString());
 		System.out.println("Player position vector inside farm? " + (zoneConstraints.containsVecPos(mc.player.getPositionVector()) ? "Yes" : "No"));
 		System.out.println("Player position BlockPos inside farm? " + (zoneConstraints.containsBlockPos(mc.player.getPosition()) ? "Yes" : "No"));
 		System.out.println(" --- Dimensions: ");
 		System.out.println("\tLengthX = " + zoneConstraints.xLength());
 		System.out.println("\tLengthZ = " + zoneConstraints.zLength());
-		
-		System.out.println("--------- Debug end ---------");
-		
 		System.out.println("List of items inside the FarmZone. Amount: " + itemsToRecollect.size());
 		for (ItemEntity item : itemsToRecollect) {
 			System.out.println("\t" + item.toString());
 		}
+		System.out.println("--------- Debug end ---------");
 	}
 
 

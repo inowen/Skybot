@@ -10,13 +10,8 @@ public class PickupItemsState extends State {
 	private static double ANGLES_OVERLOOK = 15;
 	
 	public PickupItemsState() {
-		// Set the name
 		this.name = "PickupItemsState";
-		
-		// Set the substates
 		this.subStates = null;
-		
-		// Set the current state
 		this.currentState = null; // This is an atomic state.
 	}
 	
@@ -91,10 +86,5 @@ public class PickupItemsState extends State {
 		
 		PlayerMovementHelper.desetAllkeybinds();
 	}
-	
-	
+
 }
-
-
-
-// END

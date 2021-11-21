@@ -1,12 +1,10 @@
 package inowen.moduleSystem.mods;
 
 import inowen.moduleSystem.Module;
-import inowen.moduleSystem.ModuleManager;
 import inowen.skybot.bots.sugarcaneBot.SugarcaneBotHFSM;
 import inowen.utils.ForgeKeys;
 import inowen.utils.InventoryHelper;
 import inowen.utils.PlayerMovementHelper;
-import net.minecraft.block.SugarCaneBlock;
 import net.minecraft.item.Items;
 
 public class SugarcaneBot extends Module {
@@ -49,7 +47,6 @@ public class SugarcaneBot extends Module {
     public void onDisable() {
         if (mc.world != null && mc.player != null) {
             PlayerMovementHelper.desetAllkeybinds();
-
         }
     }
 }

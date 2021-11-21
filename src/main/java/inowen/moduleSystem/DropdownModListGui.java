@@ -7,9 +7,8 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-
 /**
- * Shows a gui with the toggled modules.
+ * Lists the enabled modules in the top left corner on the screen.
  *
  * @author PrinceChaos
  */
