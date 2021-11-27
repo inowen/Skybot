@@ -29,7 +29,7 @@ public class MumpkinBot extends Module {
 
 
     @Override
-    public void onUpdate() {
+    public void onClientTick() {
         // Propagate tick to the state machine.
         if (mc.player != null && mc.world != null) {
             theStateMachine.onTick();
@@ -48,7 +48,7 @@ public class MumpkinBot extends Module {
     }
 
     @Override
-    public void onGui() {
+    public void onRenderGuiOverlayEvent() {
         mc.fontRenderer.drawString("Items left until selling: " + InventoryHelper.howManyMoreCanStore(theStateMachine.farmedItem), 100, 90, 0xffffff);
         mc.fontRenderer.drawString("State: " + theStateMachine.getStatePath(), 100, 100, 0xffffff);
     }

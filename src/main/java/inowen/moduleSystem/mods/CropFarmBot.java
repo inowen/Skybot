@@ -28,7 +28,7 @@ public class CropFarmBot extends Module {
 
 
     @Override
-    public void onUpdate() {
+    public void onClientTick() {
         if (mc.player != null) {
             // Propagate tick to the HFSM
             theStateMachine.onTick();
@@ -55,7 +55,7 @@ public class CropFarmBot extends Module {
      * state_substate_substateOfTheSubstate
      */
     @Override
-    public void onGui() {
+    public void onRenderGuiOverlayEvent() {
         if (mc.player != null) {
             mc.fontRenderer.drawString("Current bot state: " + theStateMachine.getStatePath(), 75, 75, 0xffffff);
             mc.fontRenderer.drawString("Space left till sell: " + InventoryHelper.howManyMoreCanStore(ContextManager.farmedItem), 75, 85, 0xffffff);

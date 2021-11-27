@@ -16,7 +16,7 @@ public class KeypressCatcher {
     @SubscribeEvent
     public static void onKeyEvent(InputEvent.KeyInputEvent event) {
 
-        // Do not accept keypresses if in some kind of ingame menu (chest, chat, inventory...)
+        // Do not accept key presses if in some kind of in-game menu (chest, chat, inventory...)
         // If currentScreen is null, there is no screen like CreativeScreen, ChestScreen, InventoryScreen... open.
         if (getInstance().currentScreen != null) {
             return;

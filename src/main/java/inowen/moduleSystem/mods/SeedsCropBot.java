@@ -22,7 +22,7 @@ public class SeedsCropBot extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onClientTick() {
         // Shut off the module if there is no player to control with it.
         if (mc.player == null) {
             this.onDisable();
@@ -43,7 +43,7 @@ public class SeedsCropBot extends Module {
     }
 
     @Override
-    public void onGui() {
+    public void onRenderGuiOverlayEvent() {
         if (theStateMachine != null) {
             mc.fontRenderer.drawString("Current state: " + theStateMachine.getStatePath(), 100, 100, 0xffffff);
             // Later give some kind of information here about how many items left before sale or seeds or whatever.

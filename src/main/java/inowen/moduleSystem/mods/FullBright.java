@@ -15,7 +15,7 @@ public class FullBright extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onClientTick() {
         mc.gameSettings.gamma = 10D;
     }
 

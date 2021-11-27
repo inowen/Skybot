@@ -48,7 +48,7 @@ public class WhiteList extends Module {
     }
 
     @Override
-    public void onUpdate() {
+    public void onClientTick() {
         Iterable<Entity> allEntities = mc.world.getAllEntities();
         for (Entity entity : allEntities) {
             if (entity instanceof PlayerEntity) {

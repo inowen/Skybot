@@ -19,8 +19,8 @@ public class Module {
 
     // Every child will overwrite these
     public void onEnable() { }
-    public void onUpdate() { }
-    public void onGui() { }
+    public void onClientTick() { }
+    public void onRenderGuiOverlayEvent() { }
     public void onDisable() { }
 
 
