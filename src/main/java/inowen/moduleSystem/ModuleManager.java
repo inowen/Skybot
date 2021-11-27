@@ -1,8 +1,17 @@
 package inowen.moduleSystem;
 
+import inowen.SkyBotMod;
 import inowen.moduleSystem.mods.*;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
 import java.util.ArrayList;
 
+@Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
 public class ModuleManager {
 
     public static ArrayList<Module> modules = new ArrayList<>();
@@ -32,23 +41,27 @@ public class ModuleManager {
     }
 
     /**
-     * Propagate an update (tick) through all the modules in the list.
+     * Catch a client tick event and propagate it through all the active modules.
      */
-    public static void onUpdate() {
-        for (Module m: modules) {
-            if (m.isToggled()) {
-                m.onUpdate();
+    @SubscribeEvent
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+        if (Minecraft.getInstance().player != null) {
+            for (Module m: modules) {
+                if (m.isToggled()) {
+                    m.onClientTick();
+                }
             }
         }
     }
 
     /**
-     * Propagate the call to render GUI overlay to all the stored modules.
+     * Catch a gui overlay render event and propagate it to all active modules.
      */
-    public static void onGui() {
+    @SubscribeEvent
+    public static void onRenderGuiOverlayTick(RenderGameOverlayEvent.Post event) {
         for (Module m : modules) {
             if (m.isToggled()) {
-                m.onGui();
+                m.onRenderGuiOverlayEvent();
             }
         }
     }
