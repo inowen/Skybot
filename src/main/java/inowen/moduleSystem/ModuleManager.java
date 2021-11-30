@@ -53,6 +53,7 @@ public class ModuleManager {
      */
     public static void addMod(Module mod) {
         modules.add(mod);
+        mod.setToggled(true);
     }
 
     public static ArrayList<Module> getModules() {
@@ -102,6 +103,7 @@ public class ModuleManager {
     public static void onInitGuiEvent(GuiScreenEvent.InitGuiEvent event) {
         for (Module m : modules) {
             if (m.isToggled()) {
+                System.out.println(m.getClass().getSimpleName());
                 m.onInitGuiEvent(event);
             }
         }
