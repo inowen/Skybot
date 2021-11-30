@@ -1,6 +1,7 @@
 package inowen.moduleSystem;
 
 import inowen.SkyBotMod;
+import inowen.utils.ForgeKeys;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -12,13 +13,20 @@ import net.minecraftforge.fml.common.Mod;
  *
  * @author PrinceChaos
  */
-@Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT, bus= Mod.EventBusSubscriber.Bus.FORGE)
-public class DropdownModListGui {
+public class DropdownModListGui extends Module {
 
     private static final Minecraft mc = Minecraft.getInstance();
 
-    @SubscribeEvent
-    public static void showModsDropdown(RenderGameOverlayEvent.Post event) {
+    public DropdownModListGui() {
+        super(ForgeKeys.KEY_NONE, Category.NONE);
+    }
+
+    @Override
+    public void onRenderGuiOverlayEvent(RenderGameOverlayEvent.Post event) {
+        showModsDropdown(event);
+    }
+
+    public void showModsDropdown(RenderGameOverlayEvent.Post event) {
         // Draw big title
         mc.fontRenderer.drawStringWithShadow("SkyBot", 1, 1, 0x0000aa);
 
