@@ -1,6 +1,8 @@
 package inowen.moduleSystem;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.TickEvent;
 
 public class Module {
     private boolean toggled = false;
@@ -19,8 +21,9 @@ public class Module {
 
     // Every child will overwrite these
     public void onEnable() { }
-    public void onClientTick() { }
-    public void onRenderGuiOverlayEvent() { }
+    public void onClientTick(TickEvent.ClientTickEvent event) { }
+    public void onRenderGuiOverlayEvent(RenderGameOverlayEvent.Post event) { }
+    public void onRenderGuiOverlayCancellableEvent(RenderGameOverlayEvent event) { }
     public void onDisable() { }
 
 

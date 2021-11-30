@@ -1,7 +1,10 @@
 package inowen.moduleSystem;
 
+import com.google.common.eventbus.Subscribe;
 import inowen.SkyBotMod;
 import inowen.moduleSystem.mods.*;
+import inowen.moduleSystem.mods.gui.hud.CustomHealthHunger;
+import inowen.utils.ForgeKeys;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
@@ -29,6 +32,10 @@ public class ModuleManager {
         // addMod(new SeedsCropBot());
         addMod(new FullBright());
         addMod(new PvpEnhancer());
+
+
+        // Gui modules
+        addMod(new CustomHealthHunger(ForgeKeys.KEY_J));
     }
 
     /**
@@ -51,7 +58,7 @@ public class ModuleManager {
         if (Minecraft.getInstance().player != null) {
             for (Module m: modules) {
                 if (m.isToggled()) {
-                    m.onClientTick();
+                    m.onClientTick(event);
                 }
             }
         }
@@ -64,7 +71,16 @@ public class ModuleManager {
     public static void onRenderGuiOverlayTick(RenderGameOverlayEvent.Post event) {
         for (Module m : modules) {
             if (m.isToggled()) {
-                m.onRenderGuiOverlayEvent();
+                m.onRenderGuiOverlayEvent(event);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRenderGuiOverlayCancellableEvent(RenderGameOverlayEvent event) {
+        for (Module m : modules) {
+            if (m.isToggled()) {
+                m.onRenderGuiOverlayCancellableEvent(event);
             }
         }
     }
