@@ -9,6 +9,7 @@ public class Module {
     private boolean toggled = false;
     private int keyBind;
     private long timeLastToggle = 0;
+    private Category category;
 
     protected static Minecraft mc = Minecraft.getInstance();
 
@@ -16,8 +17,9 @@ public class Module {
      * Create the module. Done in the ModuleManager, addMod.
      * @param keyBind
      */
-    public Module(int keyBind) {
+    public Module(int keyBind, Category category) {
         this.keyBind = keyBind;
+        this.category = category;
     }
 
     // Every child will overwrite these

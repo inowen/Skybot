@@ -1,5 +1,6 @@
 package inowen.moduleSystem.mods;
 
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.skybot.bots.sugarcaneBot.SugarcaneBotHFSM;
 import inowen.utils.ForgeKeys;
@@ -14,7 +15,7 @@ public class SugarcaneBot extends Module {
     // The state machine for the sugarcane bot
     SugarcaneBotHFSM theStateMachine = null;
 
-    public SugarcaneBot() { super(ForgeKeys.KEY_T); }
+    public SugarcaneBot() { super(ForgeKeys.KEY_T, Category.AUTOMATION); }
 
     @Override
     public void onEnable() {

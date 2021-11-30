@@ -1,6 +1,7 @@
 package inowen.moduleSystem.mods.gui;
 
 import inowen.gui.screens.ChangeSessionScreen;
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
 import net.minecraft.client.Minecraft;
@@ -17,7 +18,7 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 public class ChangeNameBtnMMenu extends Module {
 
     public ChangeNameBtnMMenu() {
-        super(ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE, Category.GUI);
     }
 
     @Override

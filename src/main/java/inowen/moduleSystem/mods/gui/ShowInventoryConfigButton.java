@@ -3,6 +3,7 @@ package inowen.moduleSystem.mods.gui;
 
 import inowen.SkyBotMod;
 import inowen.gui.screens.MainConfigScreen;
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
 import net.minecraft.client.Minecraft;
@@ -19,7 +20,7 @@ public class ShowInventoryConfigButton extends Module {
     private static Minecraft mc = Minecraft.getInstance();
 
     public ShowInventoryConfigButton() {
-        super(ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE, Category.NONE);
     }
 
     @Override

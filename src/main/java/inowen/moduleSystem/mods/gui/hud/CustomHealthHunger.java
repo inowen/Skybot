@@ -2,6 +2,7 @@ package inowen.moduleSystem.mods.gui.hud;
 
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
@@ -12,7 +13,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class CustomHealthHunger extends Module {
     public CustomHealthHunger(int keyBind) {
-        super(keyBind);
+        super(keyBind, Category.GUI);
     }
 
     @Override

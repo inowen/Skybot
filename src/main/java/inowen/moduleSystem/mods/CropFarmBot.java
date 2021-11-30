@@ -1,5 +1,6 @@
 package inowen.moduleSystem.mods;
 
+import inowen.moduleSystem.Category;
 import inowen.skybot.bots.oldCropBot.CropFarmBotHFSM;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.moduleSystem.Module;
@@ -18,7 +19,7 @@ public class CropFarmBot extends Module {
     private float lastWorkingPitch = 0F;
 
     public CropFarmBot() {
-        super(ForgeKeys.KEY_P);
+        super(ForgeKeys.KEY_P, Category.AUTOMATION);
     }
 
     @Override

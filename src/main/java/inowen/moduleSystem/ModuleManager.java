@@ -39,6 +39,7 @@ public class ModuleManager {
 
 
         // Gui modules
+        addMod(new DropdownModListGui());
         addMod(new CustomHealthHunger(ForgeKeys.KEY_J));
         addMod(new ShowUsernameIngame());
         addMod(new ChangeNameBtnMMenu());

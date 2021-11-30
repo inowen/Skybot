@@ -1,5 +1,6 @@
 package inowen.moduleSystem.mods;
 
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.skybot.bots.seedsCropBot.SeedsCropBotHFSM;
 import inowen.utils.ForgeKeys;
@@ -14,7 +15,7 @@ public class SeedsCropBot extends Module {
     private float lastRealPitch = 0;
 
     public SeedsCropBot() {
-        super(ForgeKeys.KEY_V);
+        super(ForgeKeys.KEY_V, Category.AUTOMATION);
     }
 
     @Override

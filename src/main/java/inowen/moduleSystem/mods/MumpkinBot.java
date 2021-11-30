@@ -1,5 +1,6 @@
 package inowen.moduleSystem.mods;
 
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.skybot.bots.melonPumpkinBot.MumpkinBotHFSM;
 import inowen.utils.ForgeKeys;
@@ -20,7 +21,7 @@ public class MumpkinBot extends Module {
     public float lastRealPitch = 0;
 
     public MumpkinBot() {
-        super(ForgeKeys.KEY_I);
+        super(ForgeKeys.KEY_I, Category.AUTOMATION);
     }
 
     @Override

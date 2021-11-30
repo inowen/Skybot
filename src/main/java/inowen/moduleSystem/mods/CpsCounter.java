@@ -1,6 +1,7 @@
 package inowen.moduleSystem.mods;
 
 import inowen.SkyBotMod;
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.utils.Colors;
@@ -32,7 +33,7 @@ public class CpsCounter extends Module {
     private static Deque<Long> clicks = new LinkedList<>();
 
     public CpsCounter() {
-        super(ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE, Category.FIGHT);
     }
 
 

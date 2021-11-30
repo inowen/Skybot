@@ -2,6 +2,7 @@ package inowen.moduleSystem.mods;
 
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.utils.ForgeKeys;
@@ -25,7 +26,7 @@ public class HideNames extends Module {
      * Create the module. Done in the ModuleManager, addMod.
      */
     public HideNames() {
-        super(ForgeKeys.KEY_H);
+        super(ForgeKeys.KEY_H, Category.RENDER);
     }
 
     /**

@@ -1,6 +1,7 @@
 package inowen.moduleSystem.mods.gui.hud;
 
 import inowen.config.SkybotConfig;
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
 import net.minecraft.client.Minecraft;
@@ -9,7 +10,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 public class ShowUsernameIngame extends Module {
 
     public ShowUsernameIngame() {
-        super(ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE, Category.GUI);
     }
 
     @Override

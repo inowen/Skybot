@@ -3,6 +3,7 @@ package inowen.moduleSystem.mods;
 import com.google.common.collect.ImmutableList;
 import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
+import inowen.moduleSystem.Category;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
 import inowen.utils.ForgeKeys;
@@ -57,7 +58,7 @@ public class PvpEnhancer extends Module {
     public static final ResourceLocation REGENERATION_ICON = new ResourceLocation(SkyBotMod.MOD_ID, "effect_icons/golden_apple.png");
 
     public PvpEnhancer() {
-        super(ForgeKeys.KEY_NONE);
+        super(ForgeKeys.KEY_NONE, Category.FIGHT);
     }
 
 
