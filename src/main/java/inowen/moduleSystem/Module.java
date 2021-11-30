@@ -44,6 +44,7 @@ public class Module {
     public int getKeyBind() { return keyBind; }
     public long getTimeLastToggle() { return timeLastToggle; }
     public void setTimeLastToggle(long t) { timeLastToggle = t; }
+    public Category getCategory() { return category; }
 
     /**
      * Toggle this module: If it was on, turn it off.

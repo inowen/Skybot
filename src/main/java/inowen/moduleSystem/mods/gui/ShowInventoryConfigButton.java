@@ -21,6 +21,7 @@ public class ShowInventoryConfigButton extends Module {
 
     public ShowInventoryConfigButton() {
         super(ForgeKeys.KEY_NONE, Category.NONE);
+        this.setToggled(true);
     }
 
     @Override

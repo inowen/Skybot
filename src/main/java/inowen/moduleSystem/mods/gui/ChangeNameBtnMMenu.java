@@ -19,6 +19,7 @@ public class ChangeNameBtnMMenu extends Module {
 
     public ChangeNameBtnMMenu() {
         super(ForgeKeys.KEY_NONE, Category.GUI);
+        this.setToggled(true);
     }
 
     @Override

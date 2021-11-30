@@ -11,6 +11,7 @@ public class ShowUsernameIngame extends Module {
 
     public ShowUsernameIngame() {
         super(ForgeKeys.KEY_NONE, Category.GUI);
+        this.setToggled(true);
     }
 
     @Override

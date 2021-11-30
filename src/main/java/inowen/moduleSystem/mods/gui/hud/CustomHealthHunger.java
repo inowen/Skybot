@@ -14,6 +14,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 public class CustomHealthHunger extends Module {
     public CustomHealthHunger(int keyBind) {
         super(keyBind, Category.GUI);
+        this.setToggled(true);
     }
 
     @Override

@@ -19,6 +19,7 @@ public class DropdownModListGui extends Module {
 
     public DropdownModListGui() {
         super(ForgeKeys.KEY_NONE, Category.NONE);
+        this.setToggled(true);
     }
 
     @Override
@@ -32,7 +33,7 @@ public class DropdownModListGui extends Module {
 
         int currentY = 11;
         for (Module m : ModuleManager.getModules()) {
-            if (m.isToggled()) {
+            if (m.isToggled() && m.getCategory()!=Category.NONE && m.getCategory()!=Category.GUI) {
                 mc.fontRenderer.drawString(m.getClass().getSimpleName(), 1, currentY, 0xffffff);
                 currentY += mc.fontRenderer.FONT_HEIGHT;
             }

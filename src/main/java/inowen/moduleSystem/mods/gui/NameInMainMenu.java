@@ -11,6 +11,7 @@ public class NameInMainMenu extends Module {
 
     public NameInMainMenu() {
         super(ForgeKeys.KEY_NONE, Category.GUI);
+        this.setToggled(true);
     }
 
     @Override

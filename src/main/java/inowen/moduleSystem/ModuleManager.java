@@ -53,7 +53,6 @@ public class ModuleManager {
      */
     public static void addMod(Module mod) {
         modules.add(mod);
-        mod.setToggled(true);
     }
 
     public static ArrayList<Module> getModules() {
