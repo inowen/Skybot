@@ -4,12 +4,15 @@ import inowen.SkyBotMod;
 import inowen.moduleSystem.mods.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
+
+import static net.minecraft.client.Minecraft.getInstance;
 
 @Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
 public class ModuleManager {
@@ -88,6 +91,28 @@ public class ModuleManager {
             if (m.isToggled()) {
                 m.onDisable();
                 m.setToggled(true);
+            }
+        }
+    }
+
+
+    // KEYBOARD INTERACTION: Pressing keys can toggle mods
+    // (temporary, until I remake the entire keyboard interaction)
+    public static final long DELAY_BETWEEN_TOGGLES = 500;
+    @SubscribeEvent
+    public static void onKeyEvent(InputEvent.KeyInputEvent event) {
+        // Do not accept key presses if in some kind of in-game menu (chest, chat, inventory...)
+        // If currentScreen is null, there is no screen like CreativeScreen, ChestScreen, InventoryScreen... open.
+        if (getInstance().currentScreen != null) {
+            return;
+        }
+        int key = event.getKey();
+        for (Module m : ModuleManager.getModules()) {
+            if (m.getKeyBind()==key) {
+                if (System.currentTimeMillis()-m.getTimeLastToggle() > DELAY_BETWEEN_TOGGLES) {
+                    m.toggle();
+                    m.setTimeLastToggle(System.currentTimeMillis());
+                }
             }
         }
     }
