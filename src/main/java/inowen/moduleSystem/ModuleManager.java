@@ -4,6 +4,7 @@ import com.google.common.eventbus.Subscribe;
 import inowen.SkyBotMod;
 import inowen.moduleSystem.mods.*;
 import inowen.moduleSystem.mods.gui.hud.CustomHealthHunger;
+import inowen.moduleSystem.mods.gui.hud.ShowUsernameIngame;
 import inowen.utils.ForgeKeys;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,6 +37,7 @@ public class ModuleManager {
 
         // Gui modules
         addMod(new CustomHealthHunger(ForgeKeys.KEY_J));
+        addMod(new ShowUsernameIngame());
     }
 
     /**
