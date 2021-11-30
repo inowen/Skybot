@@ -9,6 +9,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StemGrownBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.TickEvent;
 
 public class MumpkinBot extends Module {
 
@@ -29,7 +31,7 @@ public class MumpkinBot extends Module {
 
 
     @Override
-    public void onClientTick() {
+    public void onClientTick(TickEvent.ClientTickEvent event) {
         // Propagate tick to the state machine.
         if (mc.player != null && mc.world != null) {
             theStateMachine.onTick();
@@ -48,7 +50,7 @@ public class MumpkinBot extends Module {
     }
 
     @Override
-    public void onRenderGuiOverlayEvent() {
+    public void onRenderGuiOverlayEvent(RenderGameOverlayEvent.Post event) {
         mc.fontRenderer.drawString("Items left until selling: " + InventoryHelper.howManyMoreCanStore(theStateMachine.farmedItem), 100, 90, 0xffffff);
         mc.fontRenderer.drawString("State: " + theStateMachine.getStatePath(), 100, 100, 0xffffff);
     }

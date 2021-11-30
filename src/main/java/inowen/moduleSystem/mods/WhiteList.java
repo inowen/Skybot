@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.TickEvent;
 
 import java.io.DataInputStream;
 import java.io.InputStream;
@@ -48,7 +49,7 @@ public class WhiteList extends Module {
     }
 
     @Override
-    public void onClientTick() {
+    public void onClientTick(TickEvent.ClientTickEvent event) {
         Iterable<Entity> allEntities = mc.world.getAllEntities();
         for (Entity entity : allEntities) {
             if (entity instanceof PlayerEntity) {

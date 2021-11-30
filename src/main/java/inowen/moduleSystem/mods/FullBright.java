@@ -2,6 +2,7 @@ package inowen.moduleSystem.mods;
 
 import inowen.moduleSystem.Module;
 import inowen.utils.ForgeKeys;
+import net.minecraftforge.event.TickEvent;
 
 public class FullBright extends Module {
 
@@ -15,7 +16,7 @@ public class FullBright extends Module {
     }
 
     @Override
-    public void onClientTick() {
+    public void onClientTick(TickEvent.ClientTickEvent event) {
         mc.gameSettings.gamma = 10D;
     }
 

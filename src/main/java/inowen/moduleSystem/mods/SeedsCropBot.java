@@ -3,6 +3,8 @@ package inowen.moduleSystem.mods;
 import inowen.moduleSystem.Module;
 import inowen.skybot.bots.seedsCropBot.SeedsCropBotHFSM;
 import inowen.utils.ForgeKeys;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.TickEvent;
 
 public class SeedsCropBot extends Module {
 
@@ -22,7 +24,7 @@ public class SeedsCropBot extends Module {
     }
 
     @Override
-    public void onClientTick() {
+    public void onClientTick(TickEvent.ClientTickEvent event) {
         // Shut off the module if there is no player to control with it.
         if (mc.player == null) {
             this.onDisable();
@@ -43,7 +45,7 @@ public class SeedsCropBot extends Module {
     }
 
     @Override
-    public void onRenderGuiOverlayEvent() {
+    public void onRenderGuiOverlayEvent(RenderGameOverlayEvent.Post event) {
         if (theStateMachine != null) {
             mc.fontRenderer.drawString("Current state: " + theStateMachine.getStatePath(), 100, 100, 0xffffff);
             // Later give some kind of information here about how many items left before sale or seeds or whatever.

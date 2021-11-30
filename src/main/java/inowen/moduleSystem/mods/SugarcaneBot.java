@@ -6,6 +6,8 @@ import inowen.utils.ForgeKeys;
 import inowen.utils.InventoryHelper;
 import inowen.utils.PlayerMovementHelper;
 import net.minecraft.item.Items;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.TickEvent;
 
 public class SugarcaneBot extends Module {
 
@@ -24,7 +26,7 @@ public class SugarcaneBot extends Module {
 
 
     @Override
-    public void onClientTick() {
+    public void onClientTick(TickEvent.ClientTickEvent event) {
         if (mc.player != null && mc.world != null) {
             theStateMachine.onTick();
         }
@@ -36,7 +38,7 @@ public class SugarcaneBot extends Module {
 
 
     @Override
-    public void onRenderGuiOverlayEvent() {
+    public void onRenderGuiOverlayEvent(RenderGameOverlayEvent.Post event) {
         if (mc.player != null && mc.world != null) {
             mc.fontRenderer.drawString("Current state: " + theStateMachine.getStatePath(), 100, 50, 0xffffff);
             mc.fontRenderer.drawString("Items left till sell: " + InventoryHelper.howManyMoreCanStore(Items.SUGAR_CANE), 100, 60, 0xffffff);
