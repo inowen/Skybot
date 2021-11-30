@@ -1,6 +1,7 @@
 package inowen.moduleSystem;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.TickEvent;
 
@@ -25,6 +26,13 @@ public class Module {
     public void onRenderGuiOverlayEvent(RenderGameOverlayEvent.Post event) { }
     public void onRenderGuiOverlayCancellableEvent(RenderGameOverlayEvent event) { }
     public void onDisable() { }
+
+    // ------ MORE SPECIFIC SCREEN EVENTS ---------
+    // The event of opening a GUI
+    public void onInitGuiEvent(GuiScreenEvent.InitGuiEvent event) { }
+    // Called after every single render tick (including in main menus)
+    public void onRenderTickEvent(TickEvent.RenderTickEvent event) { }
+
 
 
     public boolean isToggled() {

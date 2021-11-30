@@ -1,6 +1,5 @@
 package inowen.moduleSystem;
 
-import com.google.common.eventbus.Subscribe;
 import inowen.SkyBotMod;
 import inowen.moduleSystem.mods.*;
 import inowen.moduleSystem.mods.gui.hud.CustomHealthHunger;
@@ -8,6 +7,7 @@ import inowen.moduleSystem.mods.gui.hud.ShowUsernameIngame;
 import inowen.utils.ForgeKeys;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.TickEvent;
@@ -86,6 +86,32 @@ public class ModuleManager {
             }
         }
     }
+
+    /**
+     * Catch the event of a GUI being opened, propagate to all modules.
+     * @param event
+     */
+    @SubscribeEvent
+    public static void onInitGuiEvent(GuiScreenEvent.InitGuiEvent event) {
+        for (Module m : modules) {
+            if (m.isToggled()) {
+                m.onInitGuiEvent(event);
+            }
+        }
+    }
+
+    /**
+     * Called after every render tick, propagates tick to all modules.
+     */
+    @SubscribeEvent
+    public static void onRenderTickEvent(TickEvent.RenderTickEvent event) {
+        for (Module m : modules) {
+            if (m.isToggled()) {
+                m.onRenderTickEvent(event);
+            }
+        }
+    }
+
 
     /**
      * Find a module in the list given the simple name of its class
