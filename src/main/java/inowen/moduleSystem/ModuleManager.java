@@ -1,7 +1,10 @@
 package inowen.moduleSystem;
 
 import inowen.SkyBotMod;
+import inowen.moduleSystem.mods.gui.ChangeNameBtnMMenu;
 import inowen.moduleSystem.mods.*;
+import inowen.moduleSystem.mods.gui.NameInMainMenu;
+import inowen.moduleSystem.mods.gui.ShowInventoryConfigButton;
 import inowen.moduleSystem.mods.gui.hud.CustomHealthHunger;
 import inowen.moduleSystem.mods.gui.hud.ShowUsernameIngame;
 import inowen.utils.ForgeKeys;
@@ -38,6 +41,9 @@ public class ModuleManager {
         // Gui modules
         addMod(new CustomHealthHunger(ForgeKeys.KEY_J));
         addMod(new ShowUsernameIngame());
+        addMod(new ChangeNameBtnMMenu());
+        addMod(new NameInMainMenu());
+        addMod(new ShowInventoryConfigButton());
     }
 
     /**
