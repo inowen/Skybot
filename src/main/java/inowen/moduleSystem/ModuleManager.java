@@ -120,6 +120,14 @@ public class ModuleManager {
         }
     }
 
+    @SubscribeEvent
+    public void onMouseInputEvent(InputEvent.MouseInputEvent event) {
+        for (Module m : modules) {
+            if (m.isToggled()) {
+                m.onMouseInputEvent(event);
+            }
+        }
+    }
 
     /**
      * Find a module in the list given the simple name of its class

@@ -2,6 +2,7 @@ package inowen.moduleSystem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.TickEvent;
 
@@ -34,6 +35,10 @@ public class Module {
     public void onInitGuiEvent(GuiScreenEvent.InitGuiEvent event) { }
     // Called after every single render tick (including in main menus)
     public void onRenderTickEvent(TickEvent.RenderTickEvent event) { }
+
+
+    // ----- INPUT EVENTS ------
+    public void onMouseInputEvent(InputEvent.MouseInputEvent event) { }
 
 
 

@@ -26,7 +26,6 @@ import java.util.LinkedList;
  * Each update, pop timestamps that happened more than X time ago.
  * theList.size()/2 is how many clicks happened in the last X time.
  */
-@Mod.EventBusSubscriber(modid= SkyBotMod.MOD_ID, value= Dist.CLIENT)
 public class CpsCounter extends Module {
 
     // Mouse clicks in the last second.
@@ -36,9 +35,8 @@ public class CpsCounter extends Module {
         super(ForgeKeys.KEY_NONE, Category.FIGHT);
     }
 
-
-    @SubscribeEvent
-    public static void getMousePress(InputEvent.MouseInputEvent event) {
+    @Override
+    public void onMouseInputEvent(InputEvent.MouseInputEvent event) {
         clicks.addFirst(System.currentTimeMillis());
 
         // Remove all clicks that were more than 1sec ago
@@ -47,8 +45,8 @@ public class CpsCounter extends Module {
         }
 }
 
-    @SubscribeEvent
-    public static void showOnScreen(RenderGameOverlayEvent.Post event) {
+    @Override
+    public void onRenderGuiOverlayEvent(RenderGameOverlayEvent.Post event) {
         Module thisMod = ModuleManager.getModule(CpsCounter.class.getSimpleName());
         if (thisMod != null && thisMod.isToggled()) {
             mc.fontRenderer.drawString("CPS: " + clicks.size()/2.0, 100, 100, Colors.WHITE);
