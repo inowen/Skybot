@@ -2,9 +2,6 @@ package inowen.pathfinder;
 
 import inowen.SkyBotMod;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
@@ -91,23 +88,20 @@ public class PriorityQueue<T extends Comparable<T>> {
      * @param item
      */
     public void insert(T item) {
-        // Append at the end
         heap.add(item);
 
         // Bubble up, swapping with its parent while it's smaller than said parent
+        int currentIdx = heap.size()-1;
+        int parent = currentIdx%2==0 ? ((currentIdx-2)/2) : ((currentIdx-1)/2);
+        while (currentIdx!=0 && heap.get(currentIdx).compareTo(heap.get(parent))<=0) {
+            // Swap
+            T currentTmp = heap.get(currentIdx);
+            heap.set(currentIdx, heap.get(parent));
+            heap.set(parent, currentTmp);
+            // Set current and parent for the next iteration
+            currentIdx = parent;
+            parent = currentIdx%2==0 ? ((currentIdx-2)/2) : ((currentIdx-1)/2);
+        }
     }
 
-
-    /**
-     * Test for the PriorityQueue
-     */
-    @SubscribeEvent
-    public static void main(GuiScreenEvent.InitGuiEvent event) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        pq.insert(20);
-        pq.insert(10);
-        pq.insert(5);
-        pq.insert(11);
-        pq.insert(2);
-    }
 }
