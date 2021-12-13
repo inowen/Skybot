@@ -2,9 +2,11 @@ package inowen.skybot.bots.oldCropBot.context;
 
 import java.util.ArrayList;
 
+import inowen.SkyBotMod;
 import inowen.config.SkybotConfig;
 import inowen.moduleSystem.Module;
 import inowen.moduleSystem.ModuleManager;
+import inowen.moduleSystem.mods.CropFarmBot;
 import inowen.utils.CoordinateTranslator;
 import inowen.utils.RayTraceHelper;
 import net.minecraft.block.*;
@@ -62,9 +64,12 @@ public class ContextManager {
 			zoneConstraints.getConstraints(mc.world, CoordinateTranslator.vec3ToBlockPos(mc.player.getPositionVector().add(new Vec3d(0,0.1,0))), BARRIER_BLOCK);
 			constraintsInitialized = true;
 		} catch (Exception e) {
-			Module botModule = ModuleManager.getModule("CropsFarmingBot");
-			if (botModule.isToggled()) {
-				ModuleManager.getModule("CropsFarmingBot").toggle();
+			Module botModule = ModuleManager.getModule(CropFarmBot.class.getSimpleName());
+			if (botModule == null) {
+				SkyBotMod.LOGGER.error(CropFarmBot.class.getSimpleName() + " module not found.");
+			}
+			else if (botModule.isToggled()) {
+				ModuleManager.getModule(CropFarmBot.class.getSimpleName()).toggle();
 			}
 			System.out.println("Error: Couldn't find any farm!");
 			return;
