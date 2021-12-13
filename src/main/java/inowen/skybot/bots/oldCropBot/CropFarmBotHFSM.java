@@ -1,6 +1,8 @@
 package inowen.skybot.bots.oldCropBot;
 
 import inowen.config.SkybotConfig;
+import inowen.moduleSystem.Module;
+import inowen.moduleSystem.mods.CropFarmBot;
 import inowen.skybot.bots.oldCropBot.context.ContextManager;
 import inowen.moduleSystem.ModuleManager;
 import inowen.skybot.bots.oldCropBot.states.EatState;
@@ -51,10 +53,10 @@ public class CropFarmBotHFSM {
 
         if (!ContextManager.areConstraintsInitialized()) {
             System.out.println("You are not inside a farm.");
-            boolean modToggled = ModuleManager.getModule("CropsFarmingBot").isToggled();
-            if (modToggled) {
-                ModuleManager.getModule("CropsFarmingBot").onDisable();
-                ModuleManager.getModule("CropsFarmingBot").setToggled(false);
+            Module mod = ModuleManager.getModule(CropFarmBot.class.getSimpleName());
+            if (mod!=null || mod.isToggled()) {
+                ModuleManager.getModule(CropFarmBot.class.getSimpleName()).onDisable();
+                ModuleManager.getModule(CropFarmBot.class.getSimpleName()).setToggled(false);
             }
             return;
         }
