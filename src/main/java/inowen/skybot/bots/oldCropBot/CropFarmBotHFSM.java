@@ -54,7 +54,7 @@ public class CropFarmBotHFSM {
         if (!ContextManager.areConstraintsInitialized()) {
             System.out.println("You are not inside a farm.");
             Module mod = ModuleManager.getModule(CropFarmBot.class.getSimpleName());
-            if (mod!=null || mod.isToggled()) {
+            if (mod!=null && mod.isToggled()) {
                 ModuleManager.getModule(CropFarmBot.class.getSimpleName()).onDisable();
                 ModuleManager.getModule(CropFarmBot.class.getSimpleName()).setToggled(false);
             }
